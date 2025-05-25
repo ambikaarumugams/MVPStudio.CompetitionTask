@@ -88,7 +88,7 @@ namespace qa_dotnet_cucumber.Hooks
                     {
                         edgeOptions.AddArgument("--headless");
                     }
-                    _driver = new EdgeDriver();
+                    _driver = new EdgeDriver(edgeOptions);
                     break;
 
                 default:

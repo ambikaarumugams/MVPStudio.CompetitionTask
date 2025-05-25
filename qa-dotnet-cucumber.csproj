@@ -11,10 +11,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="TestData\EducationTestData.json" />
     <None Remove="TestData\skills.csv" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="TestData\EducationTestData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="TestData\skills.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
