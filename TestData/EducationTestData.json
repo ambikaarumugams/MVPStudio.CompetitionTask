@@ -1,7 +1,337 @@
 {
-  "CollegeUniversityName": "Anna University",
-  "Country": "India",
-  "Title": "B.Tech",
-  "Degree": "Bachelor of Engineering",
-  "YearOfGraduation": "2015"
-}
+  "Scenarios": [
+    {
+      "ScenarioName": "AddEducationDetailsWithValidInput",
+      "TestItems": [
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "The University of Sydney",
+            "Country": "Australia",
+            "Title": "B.A",
+            "Degree": "Astrophysics",
+            "YearOfGraduation": "2018"
+          },
+          "EducationDetailsToUpdate": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "Stanford University",
+            "Country": "United States",
+            "Title": "M.B.A",
+            "Degree": "Master of Business Administration",
+            "YearOfGraduation": "2021"
+          },
+          "EducationDetailsToUpdate": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "Oxford University",
+            "Country": "United Kingdom",
+            "Title": "PHD",
+            "Degree": "Computer Science",
+            "YearOfGraduation": "2023"
+          },
+          "EducationDetailsToUpdate": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "AddEducationDetailsWithInvalidCollegeUniversityName",
+      "TestItems": [
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "fdhjfhghjkjm",
+            "Country": "Australia",
+            "Title": "B.A",
+            "Degree": "Astrophysics",
+            "YearOfGraduation": "2018"
+          },
+          "EducationDetailsToUpdate": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "123567890",
+            "Country": "United States",
+            "Title": "M.B.A",
+            "Degree": "Master of Business Administration",
+            "YearOfGraduation": "2021"
+          },
+          "EducationDetailsToUpdate": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "!@#$%&**&%",
+            "Country": "United Kingdom",
+            "Title": "PHD",
+            "Degree": "Computer Science",
+            "YearOfGraduation": "2023"
+          },
+          "EducationDetailsToUpdate": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": " ",
+            "Country": "United Kingdom",
+            "Title": "PHD",
+            "Degree": "Computer Science",
+            "YearOfGraduation": "2025"
+          },
+          "EducationDetailsToUpdate": null
+        }
+      ]
+    },
+
+    {
+      "ScenarioName": "AddEducationDetailsWithInvalidDegree",
+      "TestItems": [
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "The University of Sydney",
+            "Country": "Australia",
+            "Title": "B.A",
+            "Degree": "fdhjfhghjkjm",
+            "YearOfGraduation": "2018"
+          },
+          "EducationDetailsToUpdate": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "Stanford University",
+            "Country": "United States",
+            "Title": "M.B.A",
+            "Degree": "123567890",
+            "YearOfGraduation": "2021"
+          },
+          "EducationDetailsToUpdate": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "Oxford University",
+            "Country": "United Kingdom",
+            "Title": "PHD",
+            "Degree": "!@#$%&**&%",
+            "YearOfGraduation": "2023"
+          },
+          "EducationDetailsToUpdate": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of Cambridge",
+            "Country": "United Kingdom",
+            "Title": "PHD",
+            "Degree": " ",
+            "YearOfGraduation": "2025"
+          },
+          "EducationDetailsToUpdate": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": ">250 characters of College/University Name",
+      "TestItems": [
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "International University for Multidisciplinary Research in Space Sciences, Artificial Intelligence, Blockchain, Quantum Physics, Astrobiology, Interstellar Communications, and Applied Philosophy with Extended Campus for Intergalactic Studies",
+            "Country": "Australia",
+            "Title": "PHD",
+            "Degree": "Advanced Multidisciplinary Studies",
+            "YearOfGraduation": "2023"
+          },
+          "EducationDetailsToUpdate": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": ">250 characters of Degree Name",
+      "TestItems": [
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "Global Center for Innovation and Research",
+            "Country": "Australia",
+            "Title": "PHD",
+            "Degree": "Master of Science in Interdisciplinary Integration of Quantum Computing, Artificial Intelligence, Nanotechnology, Ethical Bioengineering, and Advanced Sustainable Systems for Climate-Resilient Infrastructural Development and Future Technologies",
+            "YearOfGraduation": "2023"
+          },
+          "EducationDetailsToUpdate": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "LeaveEitherOneORAllTheFieldsEmpty",
+      "TestItems": [
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "",
+            "Country": "",
+            "Title": "",
+            "Degree": "",
+            "YearOfGraduation": ""
+          },
+          "EducationDetailsToUpdate": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "NIT",
+            "Country": "",
+            "Title": "",
+            "Degree": "",
+            "YearOfGraduation": ""
+          },
+          "EducationDetailsToUpdate": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "NIT",
+            "Country": "India",
+            "Title": "",
+            "Degree": "",
+            "YearOfGraduation": ""
+          },
+          "EducationDetailsToUpdate": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "NIT",
+            "Country": "India",
+            "Title": "M.Tech",
+            "Degree": "",
+            "YearOfGraduation": ""
+          },
+          "EducationDetailsToUpdate": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "NIT",
+            "Country": "India",
+            "Title": "M.Tech",
+            "Degree": "Power Electronics",
+            "YearOfGraduation": ""
+          },
+          "EducationDetailsToUpdate": null
+        }
+      ]
+    },
+
+    {
+      "ScenarioName": "AddSameEducationDetailsMultipleTimes",
+      "TestItems": [
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "NIT",
+            "Country": "India",
+            "Title": "M.Tech",
+            "Degree": "Power Systems",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToUpdate": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "NIT",
+            "Country": "India",
+            "Title": "M.Tech",
+            "Degree": "Power Systems",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToUpdate": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "AddEducationDetailsWhenSessionHasExpired",
+      "TestItems": [
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of Sydney",
+            "Country": "Australia",
+            "Title": "BFA",
+            "Degree": "Acting",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToUpdate": null
+        }
+      ]
+    },
+
+
+
+
+
+
+
+
+        {
+          "ScenarioName": "EditEducationDetailsWithValidInput",
+          "TestItems": [
+            {
+              "EducationDetails": {
+                "CollegeUniversityName": "Anna University",
+                "Country": "India",
+                "Title": "B.Tech",
+                "Degree": "Computer Science",
+                "YearOfGraduation": "2015"
+              },
+              "EducationDetailsToUpdate": {
+                "CollegeUniversityName": "NIT",
+                "Country": "India",
+                "Title": "B.Tech",
+                "Degree": "Information Technology",
+                "YearOfGraduation": "2016"
+              }
+            },
+            {
+              "EducationDetails": {
+                "CollegeUniversityName": "MIT",
+                "Country": "USA",
+                "Title": "M.Tech",
+                "Degree": "AI & Robotics",
+                "YearOfGraduation": "2020"
+              },
+              "EducationDetailsToUpdate": {
+                "CollegeUniversityName": "Harvard University",
+                "Country": "USA",
+                "Title": "M.Tech",
+                "Degree": "Quantum Computing",
+                "YearOfGraduation": "2022"
+              }
+            }
+          ]
+        },
+        {
+          "ScenarioName": "DeleteEducationDetails",
+          "TestItems": [
+            {
+              "EducationDetails": {
+                "CollegeUniversityName": "Oxford University2",
+                "Country": "Angola",
+                "Title": "B.A",
+                "Degree": "Astrophysics",
+                "YearOfGraduation": "2018"
+              }
+
+            },
+            {
+              "EducationDetails": {
+                "CollegeUniversityName": "Oxford University3",
+                "Country": "Angola",
+                "Title": "B.A",
+                "Degree": "Astrophysics",
+                "YearOfGraduation": "2018"
+              }
+            },
+
+            {
+              "EducationDetails": {
+                "CollegeUniversityName": "Oxford University3",
+                "Country": "Angola",
+                "Title": "B.A",
+                "Degree": "Astrophysics",
+                "YearOfGraduation": "2018"
+              }
+            }
+
+          ]
+        }
+
+      ]
+    }

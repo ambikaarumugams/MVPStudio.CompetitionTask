@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Razor.Language.Intermediate;
+using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.ObjectModel;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using qa_dotnet_cucumber.Entity;
 using SeleniumExtras.WaitHelpers;
 
 namespace qa_dotnet_cucumber.Pages
@@ -26,8 +24,9 @@ namespace qa_dotnet_cucumber.Pages
         private readonly By _profileTab = By.XPath("//a[normalize-space()='Profile']");
         private readonly By _educationTab = By.XPath("//form[@class='ui form']//a[normalize-space()='Education']");
 
-        private readonly By _educationTable = By.XPath("//div[@class='ui bottom attached tab segment tooltip-target active']//h3[contains(.,'Education')]");
-       // private readonly By _addNewButton = By.XPath("//div[@class='ui teal button' and normalize-space()='Add New']");
+        private readonly By _educationTable = By.XPath("//div[@data-tab='third']//table[@class='ui fixed table']");
+        //private readonly By _educationTable = By.XPath("//div[@class='ui bottom attached tab segment tooltip-target active']//h3[contains(.,'Education')]");
+        // private readonly By _addNewButton = By.XPath("//div[@class='ui teal button' and normalize-space()='Add New']");
 
         private readonly By _collegeUniversityNameField = By.XPath("//input[@placeholder='College/University Name']");
         private readonly By _countryDropDown = By.XPath("//select[@name='country']");
@@ -54,14 +53,15 @@ namespace qa_dotnet_cucumber.Pages
         public void ClickAddNewButton()
         {
             //Click "Add New" button
-            var educationTable = _wait.Until(ExpectedConditions.ElementIsVisible(_educationTable));
-            var addNewElement = educationTable.FindElement(By.XPath("//div[@class='ui bottom attached tab segment tooltip-target active']//div[contains(@class,'ui teal button')][normalize-space()='Add New']"));
+            var addNewElement = _driver.FindElement(By.XPath(
+                "//div[@class='ui bottom attached tab segment tooltip-target active']//div[contains(@class,'ui teal button')][normalize-space()='Add New']"));
             addNewElement.Click();
         }
 
         public void AddEducationDetails(string universityName, string countryName, string title, string degree, string year)
         {
-           //Enter College/University Name
+            ClickAddNewButton();
+            //Enter College/University Name
             var enterCollegeUniversityName = _wait.Until(ExpectedConditions.ElementIsVisible(_collegeUniversityNameField));
             enterCollegeUniversityName.SendKeys(universityName);
 
@@ -82,11 +82,11 @@ namespace qa_dotnet_cucumber.Pages
             degreeElement.SendKeys(degree);
 
             //Select the year of graduation drop down
-            var selectYearOfGraduationDropDown =
-                _wait.Until(ExpectedConditions.ElementIsVisible(_yearOfGraduationDropDown));
+            var selectYearOfGraduationDropDown = _wait.Until(ExpectedConditions.ElementIsVisible(_yearOfGraduationDropDown));
 
             SelectElement selectYear = new SelectElement(selectYearOfGraduationDropDown);
             selectYear.SelectByText(year);
+            ClickAddButton();
         }
 
         public void ClickAddButton()
@@ -95,5 +95,171 @@ namespace qa_dotnet_cucumber.Pages
             var addButton = _wait.Until(ExpectedConditions.ElementToBeClickable(_addButton));
             addButton.Click();
         }
+
+        public string GetSuccessMessage()
+        {
+            try
+            {
+
+                var successMessageElement =
+                    _wait.Until(ExpectedConditions.ElementIsVisible(
+                        By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-success ns-show']")));
+                return successMessageElement.Text;
+            }
+            catch
+            {
+                return String.Empty;
+            }
+        }
+
+        public void DeleteSpecificEducation(string educationToBeDeleted)
+        {
+            var educationTable = _wait.Until(ExpectedConditions.ElementIsVisible(_educationTable));
+            var row = educationTable.FindElement(By.XPath($".//tr[td[2]='{educationToBeDeleted}']")); //University name is in the second column
+            var deleteIcon = row.FindElement(By.XPath(".//i[contains(@class,'remove icon')]"));
+            deleteIcon.Click();
+        }
+
+        public string GetErrorMessage()
+        {
+            try
+            {
+
+                var errorMessageElement = _wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-error ns-show']")));
+                return errorMessageElement.Text;
+            }
+            catch
+            {
+                return string.Empty;
+            }
+        }
+
+        public (string MessageText, string MessageType) GetToastMessage()
+        {
+            try
+            {
+
+                var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(3));
+
+                var toastMessageElement =
+                    wait.Until(ExpectedConditions.ElementIsVisible(
+                        By.XPath("//div[contains(@class,'ns-type-') and contains(@class,'ns-show')]")));
+                var messageText = toastMessageElement.Text.Trim();
+                var classAttribute = string.Empty;
+                var messageType = string.Empty;
+
+                    classAttribute = toastMessageElement.GetAttribute("class");
+                    if (classAttribute != null)
+                    {
+                        messageType = classAttribute.Contains("ns-type-success") ? "success" :
+                            classAttribute.Contains("ns-type-error") ? "error" : "none";
+                    }
+                return (messageText,messageType);
+            }
+            catch
+            {
+                return ("", "error");
+            }
+        }
+
+        public string GetMessage()
+        {
+            try
+            {
+                var successMessageElement = _wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-success ns-show']")));
+                return successMessageElement.Text;
+
+            }
+            catch (WebDriverTimeoutException)
+            {
+                var errorMessageElement = _wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-error ns-show']")));
+                return errorMessageElement.Text;
+            }
+
+        }
+
+        public void LeaveEitherOneOrAllTheFieldsEmpty(string universityName, string countryName, string title, string degree, string year)
+        {
+            ClickAddNewButton();
+
+            //Enter College/University Name
+            var enterCollegeUniversityName = _wait.Until(ExpectedConditions.ElementIsVisible(_collegeUniversityNameField));
+            if (!string.IsNullOrWhiteSpace(universityName))
+            {
+                enterCollegeUniversityName.SendKeys(universityName);
+            }
+
+            //Select the country name using drop down
+            var selectCountryDropDown = _wait.Until(ExpectedConditions.ElementToBeClickable(_countryDropDown));
+
+            SelectElement selectCountry = new SelectElement(selectCountryDropDown);
+            if (!string.IsNullOrWhiteSpace(countryName))
+            {
+                selectCountry.SelectByText(countryName);
+            }
+            else
+            {
+                selectCountry.SelectByIndex(0);
+            }
+            //Select the title using drop down
+            var titleDropDown = _wait.Until(ExpectedConditions.ElementToBeClickable(_titleDropDown));
+
+            SelectElement selectTitle = new SelectElement(titleDropDown);
+            if (!string.IsNullOrWhiteSpace(title))
+            {
+                selectTitle.SelectByText(title);
+            }
+            else
+            {
+                selectTitle.SelectByIndex(0);
+            }
+
+            //Enter the degree
+            var degreeElement = _wait.Until(ExpectedConditions.ElementExists(_degreeField));
+            if (!string.IsNullOrWhiteSpace(degree))
+            {
+                degreeElement.SendKeys(degree);
+            }
+
+            //Select the year of graduation drop down
+            var selectYearOfGraduationDropDown = _wait.Until(ExpectedConditions.ElementIsVisible(_yearOfGraduationDropDown));
+
+            SelectElement selectYear = new SelectElement(selectYearOfGraduationDropDown);
+            if (!string.IsNullOrWhiteSpace(year))
+            {
+                selectYear.SelectByText(year);
+            }
+            else
+            {
+                selectYear.SelectByIndex(0);
+            }
+
+            ClickAddButton();
+            ClickCancelButton();
+        }
+
+        public void ClickCancelButton()
+        {
+            var cancelElement = _wait.Until(ExpectedConditions.ElementToBeClickable(_cancelButton));
+            cancelElement.Click();
+
+        }
+
+
+        public void ExpireSession() //To delete the token to get the session timeout message
+        {
+            try
+            {
+                _driver.Manage().Cookies.DeleteCookieNamed("marsAuthToken");
+            }
+            catch
+            {
+            }
+        }
     }
 }
+
+
+
+
+

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace qa_dotnet_cucumber
+namespace qa_dotnet_cucumber.Helper
 {
     public static class JsonHelper
     {
