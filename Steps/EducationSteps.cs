@@ -1,10 +1,7 @@
-﻿using System.Collections.Immutable;
-using Reqnroll;
+﻿using Reqnroll;
 using qa_dotnet_cucumber.Pages;
 using qa_dotnet_cucumber.Entity;
 using qa_dotnet_cucumber.Helper;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.ObjectModel;
 
 namespace qa_dotnet_cucumber.Steps
 {
@@ -17,7 +14,7 @@ namespace qa_dotnet_cucumber.Steps
         private readonly ScenarioContext _scenarioContext;
         private readonly EducationPage _educationPage;
 
-        public EducationSteps(LoginPage loginPage, NavigationHelper navigationHelper, ScenarioContext scenarioContext, EducationPage educationPage)
+        public EducationSteps(LoginPage loginPage, NavigationHelper navigationHelper, ScenarioContext scenarioContext,EducationPage educationPage)
         {
             _loginPage = loginPage;
             _navigationHelper = navigationHelper;
@@ -29,10 +26,12 @@ namespace qa_dotnet_cucumber.Steps
         public void GivenINavigateToTheProfilePageAsARegisteredUser()
         {
             _navigationHelper.NavigateTo("Home");
-            _loginPage.Login("ambikaarumugams@gmail.com", "AmbikaSenthil123");
+            var loginDetails = JsonHelper.LoadJson<LoginDetails>("LoginData");
+            var username = loginDetails.UserName;
+            var password = loginDetails.Password;
+            _loginPage.Login(username, password);
             _educationPage.NavigateToTheProfilePage();
         }
-
 
         [When("I enter education details from json file with the TestName {string}")]
         public void WhenIEnterEducationDetailsFromJsonFileWithTheTestName(string scenarioName)
@@ -51,7 +50,6 @@ namespace qa_dotnet_cucumber.Steps
                     _educationPage.AddEducationDetails(details.CollegeUniversityName, details.Country, details.Title, details.Degree, details.YearOfGraduation);
                     var successMessage = _educationPage.GetSuccessMessage();
                     actualEducationList.Add(successMessage);
-
                     cleanupList.Add(details.CollegeUniversityName);
                 }
                 _scenarioContext.Set(cleanupList, "EducationToCleanup");
@@ -108,9 +106,7 @@ namespace qa_dotnet_cucumber.Steps
                     Assert.That(message, Is.EqualTo(MessageConstants.ErrorMessage), $"Message {MessageConstants.ErrorMessage} is expected.");
                 }
             });
-
         }
-
 
         [Then("I should see the error message for adding huge string")]
         public void ThenIShouldSeeTheErrorMessageForAddingHugeString()
@@ -135,8 +131,8 @@ namespace qa_dotnet_cucumber.Steps
                 foreach (var testItem in scenario.TestItems)
                 {
                     var details = testItem.EducationDetails;
-                    _educationPage.LeaveEitherOneOrAllTheFieldsEmpty(details.CollegeUniversityName, details.Country, details.Title, details.Degree, details.YearOfGraduation);
-                    var message = _educationPage.GetMessage();
+                    _educationPage.LeaveEitherOneOrAllTheFieldsEmptyToAdd(details.CollegeUniversityName, details.Country, details.Title, details.Degree, details.YearOfGraduation);
+                    var message = _educationPage.GetErrorMessage();
                     actualMessageList.Add(message);
                 }
                 _scenarioContext.Set(actualMessageList, "ActualErrorMessage");
@@ -173,8 +169,7 @@ namespace qa_dotnet_cucumber.Steps
                     {
                         cleanUpList.Add(details.CollegeUniversityName);
                     }
-
-                    messageResults.Remove(("Education has been added","success"));
+                    messageResults.Remove(("Education has been added", "success"));
                 }
             }
             _scenarioContext.Set(messageResults, "ActualMessageList");
@@ -190,7 +185,8 @@ namespace qa_dotnet_cucumber.Steps
                 foreach (var (message, type) in messageResults)
                 {
                     Assert.That(type, Is.EqualTo("error"), $"Expected message type should be {type},but found error");
-                    Assert.That(message, Is.EqualTo(MessageConstants.ErrorMessageForAddingDuplicateDetails), $"Message {MessageConstants.ErrorMessageForAddingDuplicateDetails} is expected.");
+                    Assert.That(message, Is.EqualTo(MessageConstants.ErrorMessageForAddingDuplicateDetails),
+                        $"Message {MessageConstants.ErrorMessageForAddingDuplicateDetails} is expected.");
                 }
             });
         }
@@ -204,7 +200,6 @@ namespace qa_dotnet_cucumber.Steps
             if (scenario != null)
             {
                 var actualMessageList = new List<string>();
-               
                 foreach (var testItem in scenario.TestItems)
                 {
                     var details = testItem.EducationDetails;
@@ -220,11 +215,281 @@ namespace qa_dotnet_cucumber.Steps
         [Then("I should see the error message for session expired")]
         public void ThenIShouldSeeTheErrorMessageForSessionExpired()
         {
-            var actualList =_scenarioContext.Get<List<string>>("ActualMessageList");
+            var actualList = _scenarioContext.Get<List<string>>("ActualMessageList");
             foreach (var actual in actualList)
             {
-                Assert.That(actual,Is.EqualTo(MessageConstants.ErrorMessageForSessionExpired),$"Expected message is {MessageConstants.ErrorMessageForSessionExpired}, but it wasn't found");
+                Assert.That(actual, Is.EqualTo(MessageConstants.ErrorMessageForSessionExpired), $"Expected message is {MessageConstants.ErrorMessageForSessionExpired}, but it wasn't found");
             }
         }
+       
+        [Then("I should see the error message for adding education details")]
+        public void ThenIShouldSeeTheErrorMessageForAddingEducationDetails()
+        {
+            var actualList = _scenarioContext.Get<List<string>>("ActualSuccessMessageList");
+            foreach (var actual in actualList)
+            {
+                Assert.That(actual, Is.EqualTo(MessageConstants.ErrorMessage), $"Expected message was '{MessageConstants.ErrorMessage}', but found '{actual}'");
+            }
+        }
+        
+        [When("I update education details with the existing details from json file with the TestName {string}")]
+        public void WhenIUpdateEducationDetailsWithTheExistingDetailsFromJsonFileWithTheTestName(string scenarioName)
+        {
+            var feature = JsonHelper.LoadJson<TestFeature>("EducationTestData");
+            var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
+            if (scenario != null)
+            {
+                var actualUpdateMessages = new List<string>();
+                var cleanUpList = new List<string>();
+                foreach (var testItem in scenario.TestItems)
+                {
+                    var existingDetails = testItem.EducationDetails;
+                    var detailsToUpdate = testItem.EducationDetailsToUpdate;
+                    _educationPage.AddEducationDetails(existingDetails.CollegeUniversityName, existingDetails.Country, existingDetails.Title, existingDetails.Degree, existingDetails.YearOfGraduation);
+                    _educationPage.UpdateEducationDetails(existingDetails.CollegeUniversityName,detailsToUpdate.CollegeUniversityName, detailsToUpdate.Country, detailsToUpdate.Title, detailsToUpdate.Degree, detailsToUpdate.YearOfGraduation);
+                    var successMessage = _educationPage.GetSuccessMessageForUpdate(MessageConstants.SuccessMessageForUpdate);
+                    actualUpdateMessages.Add(successMessage);
+                    cleanUpList.Add(detailsToUpdate.CollegeUniversityName);
+                }
+                _scenarioContext.Set(actualUpdateMessages, "ActualUpdateMessages");
+                _scenarioContext.Set(cleanUpList, "EducationToCleanup");
+            }
+        }
+
+        [Then("I should see the success message for update")]
+        public void ThenIShouldSeeTheSuccessMessageForUpdate()
+        {
+            var actualList = _scenarioContext.Get<List<string>>("ActualUpdateMessages");
+            foreach (var actual in actualList)
+            {
+                Assert.That(actual, Is.EqualTo(MessageConstants.SuccessMessageForUpdate), $"Expected message is {MessageConstants.SuccessMessageForUpdate}, but found actual");
+            }
+        }
+
+        [When("I enter invalid education details to update from json file with the TestName {string}")]
+        public void WhenIEnterInvalidEducationDetailsToUpdateFromJsonFileWithTheTestName(string scenarioName)
+        {
+            var feature = JsonHelper.LoadJson<TestFeature>("EducationTestData");
+            var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
+            if (scenario != null)
+            {
+                var cleanUpList = new List<string>();
+                var messageResults = new List<(string Message, string Type)>();
+                foreach (var testItem in scenario.TestItems)
+                {
+                    var existingDetails = testItem.EducationDetails;
+                    var detailsToUpdate = testItem.EducationDetailsToUpdate;
+                    _educationPage.AddEducationDetails(existingDetails.CollegeUniversityName, existingDetails.Country, existingDetails.Title, existingDetails.Degree, existingDetails.YearOfGraduation);
+                    Thread.Sleep(3000);
+                    _educationPage.UpdateEducationDetails(existingDetails.CollegeUniversityName,detailsToUpdate.CollegeUniversityName, detailsToUpdate.Country, detailsToUpdate.Title, detailsToUpdate.Degree, detailsToUpdate.YearOfGraduation);
+                    var (messageText, messageType) = _educationPage.GetToastMessage();
+                    messageResults.Add((messageText, messageType));
+                    if (string.Equals(messageType, "SUCCESS", StringComparison.OrdinalIgnoreCase))
+                    {
+                        cleanUpList.Add(detailsToUpdate.CollegeUniversityName);
+                    }
+                    else if (string.Equals(messageType, "Error", StringComparison.OrdinalIgnoreCase) && !string.IsNullOrWhiteSpace(messageText))
+                    {
+                        cleanUpList.Add(existingDetails.CollegeUniversityName);
+                    }
+                }
+                _scenarioContext.Set(messageResults, "ActualMessageList");
+                _scenarioContext.Set(cleanUpList, "EducationToCleanup");
+            }
+        }
+
+        [Then("I should see the error message for update invalid data")]
+        public void ThenIShouldSeeTheErrorMessageForUpdateInvalidData()
+        {
+            var messageResults = _scenarioContext.Get<List<(string Message, string Type)>>("ActualMessageList");
+            Assert.Multiple(() =>
+            {
+                foreach (var (message, type) in messageResults)
+                {
+                    Assert.That(type, Is.EqualTo("error"), "Error message should be shown, But was success!!!");
+                    Assert.That(message, Is.EqualTo(MessageConstants.ErrorMessage), $"Message {MessageConstants.ErrorMessage} is expected.");
+                }
+            });
+        }
+
+        [Then("I should see the error message for updating huge string")]
+        public void ThenIShouldSeeTheErrorMessageForUpdatingHugeString()
+        {
+            var actualList = _scenarioContext.Get<List<string>>("ActualUpdateMessages");
+            foreach (var actual in actualList)
+            {
+                Assert.That(actual, Is.EqualTo(MessageConstants.ErrorMessage),
+                    $"Expected message was {MessageConstants.ErrorMessage},but found {actual}");
+            }
+        }
+
+        [When("I enter education details from the Json file with the test name {string}")]
+        public void WhenIEnterEducationDetailsFromTheJsonFileWithTheTestName(string scenarioName)
+        {
+            var feature = JsonHelper.LoadJson<TestFeature>("EducationTestData");
+            var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
+            if (scenario != null)
+            {
+                var actualList = new List<string>();
+                foreach (var testItem in scenario.TestItems)
+                {
+                    var details = testItem.EducationDetails;
+                    _educationPage.CancelAddEducationDetails(details.CollegeUniversityName, details.Country, details.Title, details.Degree, details.YearOfGraduation);
+                }
+                _scenarioContext.Set(actualList, "ActualListAfterCancel");
+            }
+        }
+
+        [Then("I should see the education details shouldn't be added")]
+        public void ThenIShouldSeeTheEducationDetailsShouldntBeAdded()
+        {
+            var actualList = _scenarioContext.Get<List<string>>("ActualListAfterCancel");
+            Assert.That(actualList, Is.Empty, $"Expected list should be empty, but found list with added details");
+        }
+
+        [When("I leave either one or all the fields empty and give the data to update from json file with the TestName {string}")]
+        public void WhenILeaveEitherOneOrAllTheFieldsEmptyAndGiveTheDataToUpdateFromJsonFileWithTheTestName(string scenarioName)
+        {
+            var feature = JsonHelper.LoadJson<TestFeature>("EducationTestData");
+            var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
+
+            if (scenario != null)
+            {
+                var actualMessageList = new List<string>();
+                var cleanUpList = new List<string>();
+                foreach (var testItem in scenario.TestItems)
+                {
+                    var existingDetails = testItem.EducationDetails;
+                    var detailsToUpdate = testItem.EducationDetailsToUpdate;
+                    _educationPage.AddEducationDetails(existingDetails.CollegeUniversityName, existingDetails.Country, existingDetails.Title, existingDetails.Degree, existingDetails.YearOfGraduation);
+                    _educationPage.LeaveEitherOneOrAllTheFieldsEmptyToUpdate(existingDetails.CollegeUniversityName, detailsToUpdate.CollegeUniversityName, detailsToUpdate.Country, detailsToUpdate.Title, detailsToUpdate.Degree, detailsToUpdate.YearOfGraduation);
+                    var message = _educationPage.GetErrorMessage();
+                    actualMessageList.Add(message);
+                    _educationPage.ClickCancelUpdateButton();
+                    cleanUpList.Add(existingDetails.CollegeUniversityName);
+                }
+                _scenarioContext.Set(actualMessageList, "ActualErrorMessage");
+                _scenarioContext.Set(cleanUpList, "EducationToCleanup");
+            }
+        }
+
+        [When("I update education details from json file after the session has expired with the TestName {string}")]
+        public void WhenIUpdateEducationDetailsFromJsonFileAfterTheSessionHasExpiredWithTheTestName(string scenarioName)
+        {
+            var feature = JsonHelper.LoadJson<TestFeature>("EducationTestData");
+            var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
+
+            if (scenario != null)
+            {
+                var actualMessageList = new List<string>();
+                var cleanUpList = new List<string>();
+                foreach (var testItem in scenario.TestItems)
+                {
+                    var existingDetails = testItem.EducationDetails;
+                    var detailsToUpdate = testItem.EducationDetailsToUpdate;
+                    _educationPage.AddEducationDetails(existingDetails.CollegeUniversityName, existingDetails.Country, existingDetails.Title, existingDetails.Degree, existingDetails.YearOfGraduation);
+                    _educationPage.ExpireSession();
+                    _educationPage.UpdateEducationDetails(existingDetails.CollegeUniversityName, detailsToUpdate.CollegeUniversityName, detailsToUpdate.Country, detailsToUpdate.Title, detailsToUpdate.Degree, detailsToUpdate.YearOfGraduation);
+                    var errorMessage = _educationPage.GetErrorMessage();
+                    actualMessageList.Add(errorMessage);
+                    _educationPage.ClickCancelUpdateButton();
+                    cleanUpList.Add(existingDetails.CollegeUniversityName);
+                }
+                _scenarioContext.Set(actualMessageList, "ActualMessageList");
+                _scenarioContext.Set(cleanUpList, "EducationToCleanup");
+            }
+        }
+        
+        [Then("I should see the error message to update for session expired")]
+        public void ThenIShouldSeeTheErrorMessageToUpdateForSessionExpired()
+        {
+            var actualList = _scenarioContext.Get<List<string>>("ActualMessageList");
+            foreach (var actual in actualList)
+            {
+                Assert.That(actual, Is.EqualTo(MessageConstants.ErrorMessageForSessionExpiredToUpdate),
+                    $"Expected message is {MessageConstants.ErrorMessageForSessionExpiredToUpdate}, but it wasn't found");
+            }
+        }
+
+        [When("I delete education details from json file after the session has expired with the TestName {string}")]
+        public void WhenIDeleteEducationDetailsFromJsonFileAfterTheSessionHasExpiredWithTheTestName(string scenarioName)
+        {
+            var feature = JsonHelper.LoadJson<TestFeature>("EducationTestData");
+            var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
+
+            if (scenario != null)
+            {
+                var actualMessageList = new List<string>();
+                var cleanUpList = new List<string>();
+
+                foreach (var testItem in scenario.TestItems)
+                {
+                    var details = testItem.EducationDetails;
+                    var detailsToDelete = testItem.EducationDetailsToDelete;
+                   _educationPage.AddEducationDetails(details.CollegeUniversityName, details.Country, details.Title, details.Degree, details.YearOfGraduation);
+                    _educationPage.ExpireSession();
+                    _educationPage.DeleteSpecificEducation(detailsToDelete.CollegeUniversityName);
+                    var errorMessage = _educationPage.GetErrorMessage();
+                    actualMessageList.Add(errorMessage);
+                    cleanUpList.Add(details.CollegeUniversityName);
+                }
+                _scenarioContext.Set(actualMessageList, "ActualMessageList");
+                _scenarioContext.Set(cleanUpList,"EducationToCleanup");
+            }
+        }
+
+        [Then("I should see the error message to delete for session expired")]
+        public void ThenIShouldSeeTheErrorMessageToDeleteForSessionExpired()
+        {
+            var actualList = _scenarioContext.Get<List<string>>("ActualMessageList");
+            foreach (var actual in actualList)
+            {
+                Assert.That(actual, Is.EqualTo(MessageConstants.ErrorMessageForSessionExpiredToDelete),
+                    $"Expected message is {MessageConstants.ErrorMessageForSessionExpiredToDelete}, but it wasn't found");
+            }
+        }
+
+        [When("I update education details with the same existing details from json file with the TestName {string}")]
+        public void WhenIUpdateEducationDetailsWithTheSameExistingDetailsFromJsonFileWithTheTestName(string scenarioName)
+        {
+            var feature = JsonHelper.LoadJson<TestFeature>("EducationTestData");
+            var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
+            var messageResults = new List<(string Message, string Type)>();
+            var cleanUpList = new List<string>();
+            if (scenario != null)
+            {
+                foreach (var testItem in scenario.TestItems)
+                {
+                    var existingDetails = testItem.EducationDetails;
+                    var detailsToUpdate = testItem.EducationDetailsToUpdate;
+                    _educationPage.AddEducationDetails(existingDetails.CollegeUniversityName,existingDetails.Country, existingDetails.Title, existingDetails.Degree,
+                        existingDetails.YearOfGraduation);
+                    var successMessage = _educationPage.GetSuccessMessage();
+                    Console.WriteLine(successMessage);
+                    _educationPage.UpdateEducationDetails(existingDetails.CollegeUniversityName,
+                        detailsToUpdate.CollegeUniversityName, detailsToUpdate.Country, detailsToUpdate.Title,
+                        detailsToUpdate.Degree, detailsToUpdate.YearOfGraduation);
+                    var (messageText, messageType) = _educationPage.GetToastMessage();
+                    messageResults.Add((messageText, messageType));
+                    Thread.Sleep(5000);
+                    _educationPage.ClickCancelUpdateButton();
+                    cleanUpList.Add(existingDetails.CollegeUniversityName);
+                }
+            }
+            _scenarioContext.Set(messageResults, "ActualMessageList");
+            _scenarioContext.Set(cleanUpList, "EducationToCleanup");
+        }
+
+        [Then("I should see the error message for updating education details")]
+        public void ThenIShouldSeeTheErrorMessageForUpdatingEducationDetails()
+        {
+            var actualList = _scenarioContext.Get<List<string>>("ActualUpdateMessages");
+            foreach (var actual in actualList)
+            {
+                Assert.That(actual, Is.EqualTo(MessageConstants.ErrorMessage), $"Expected message was '{MessageConstants.ErrorMessage}', but found '{actual}'");
+            }
+        }
+
+
     }
 }

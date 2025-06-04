@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Razor.Language.Intermediate;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.ObjectModel;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using qa_dotnet_cucumber.Entity;
 using SeleniumExtras.WaitHelpers;
 
 namespace qa_dotnet_cucumber.Pages
@@ -37,6 +34,14 @@ namespace qa_dotnet_cucumber.Pages
         private readonly By _cancelButton = By.XPath("//input[@value='Cancel']");
 
         //Edit
+        private readonly By _editIcon = By.XPath("//td[@class='right aligned']//i[@class='outline write icon']");
+        private readonly By _collegeUniversityNameForUpdate = By.XPath(".//input[@placeholder='College/University Name']");
+        private readonly By _countryDropDownForUpdate = By.XPath(".//select[@name='country']");
+        private readonly By _titleDropDownForUpdate = By.XPath(".//select[@name='title']");
+        private readonly By _degreeFieldForUpdate = By.XPath(".//input[@placeholder='Degree']");
+        private readonly By _yearOfGraduationDropDownForUpdate = By.XPath(".//select[@name='yearOfGraduation']");
+        private readonly By _updateButton = By.XPath(".//input[@value='Update']");
+        private readonly By _cancelUpdateButton = By.XPath("//input[@value='Cancel']");
 
 
         //Action Methods
@@ -53,8 +58,7 @@ namespace qa_dotnet_cucumber.Pages
         public void ClickAddNewButton()
         {
             //Click "Add New" button
-            var addNewElement = _driver.FindElement(By.XPath(
-                "//div[@class='ui bottom attached tab segment tooltip-target active']//div[contains(@class,'ui teal button')][normalize-space()='Add New']"));
+            var addNewElement = _driver.FindElement(By.XPath("//div[@class='ui bottom attached tab segment tooltip-target active']//div[contains(@class,'ui teal button')][normalize-space()='Add New']"));
             addNewElement.Click();
         }
 
@@ -100,10 +104,8 @@ namespace qa_dotnet_cucumber.Pages
         {
             try
             {
-
-                var successMessageElement =
-                    _wait.Until(ExpectedConditions.ElementIsVisible(
-                        By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-success ns-show']")));
+                Thread.Sleep(3000);
+                var successMessageElement = _wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-success ns-show']")));
                 return successMessageElement.Text;
             }
             catch
@@ -124,7 +126,6 @@ namespace qa_dotnet_cucumber.Pages
         {
             try
             {
-
                 var errorMessageElement = _wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-error ns-show']")));
                 return errorMessageElement.Text;
             }
@@ -138,23 +139,21 @@ namespace qa_dotnet_cucumber.Pages
         {
             try
             {
-
                 var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(3));
 
-                var toastMessageElement =
-                    wait.Until(ExpectedConditions.ElementIsVisible(
-                        By.XPath("//div[contains(@class,'ns-type-') and contains(@class,'ns-show')]")));
+                var toastMessageElement = wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(@class,'ns-type-') and contains(@class,'ns-show')]")));
+                Thread.Sleep(3000);
                 var messageText = toastMessageElement.Text.Trim();
                 var classAttribute = string.Empty;
                 var messageType = string.Empty;
 
-                    classAttribute = toastMessageElement.GetAttribute("class");
-                    if (classAttribute != null)
-                    {
-                        messageType = classAttribute.Contains("ns-type-success") ? "success" :
-                            classAttribute.Contains("ns-type-error") ? "error" : "none";
-                    }
-                return (messageText,messageType);
+                classAttribute = toastMessageElement.GetAttribute("class");
+                if (classAttribute != null)
+                {
+                    messageType = classAttribute.Contains("ns-type-success") ? "success" :
+                                  classAttribute.Contains("ns-type-error") ? "error" : "none";
+                }
+                return (messageText, messageType);
             }
             catch
             {
@@ -168,7 +167,6 @@ namespace qa_dotnet_cucumber.Pages
             {
                 var successMessageElement = _wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-success ns-show']")));
                 return successMessageElement.Text;
-
             }
             catch (WebDriverTimeoutException)
             {
@@ -178,7 +176,7 @@ namespace qa_dotnet_cucumber.Pages
 
         }
 
-        public void LeaveEitherOneOrAllTheFieldsEmpty(string universityName, string countryName, string title, string degree, string year)
+        public void LeaveEitherOneOrAllTheFieldsEmptyToAdd(string universityName, string countryName, string title, string degree, string year)
         {
             ClickAddNewButton();
 
@@ -245,7 +243,6 @@ namespace qa_dotnet_cucumber.Pages
 
         }
 
-
         public void ExpireSession() //To delete the token to get the session timeout message
         {
             try
@@ -256,8 +253,177 @@ namespace qa_dotnet_cucumber.Pages
             {
             }
         }
+
+        public void UpdateEducationDetails(string existingUniversityName, string universityName, string countryName, string title, string degree, string year)
+        {
+            var educationTable = _wait.Until(ExpectedConditions.ElementIsVisible(_educationTable));
+            var row = educationTable.FindElement(By.XPath($".//tr[td[normalize-space(text())='{existingUniversityName}']]"));
+            var editIcon = row.FindElement(By.XPath(".//td[@class='right aligned']//i[@class='outline write icon']"));
+            editIcon.Click();
+
+            var editableRow = educationTable.FindElement(By.XPath($".//tr[.//input[@type='text' and @value='{existingUniversityName}']]"));
+
+            //Enter College/University Name
+            var enterCollegeUniversityNameForUpdate = editableRow.FindElement(_collegeUniversityNameForUpdate);
+            enterCollegeUniversityNameForUpdate.SendKeys(Keys.Control + "a" + Keys.Delete);
+            enterCollegeUniversityNameForUpdate.SendKeys(universityName);
+
+            //Select the country name using drop down
+            var selectCountryDropDownForUpdate = _wait.Until(ExpectedConditions.ElementToBeClickable(_countryDropDownForUpdate));
+
+            SelectElement selectCountry = new SelectElement(selectCountryDropDownForUpdate);
+            selectCountry.SelectByText(countryName);
+
+            //Select the title using drop down
+            var titleDropDownForUpdate = _wait.Until(ExpectedConditions.ElementToBeClickable(_titleDropDownForUpdate));
+
+            SelectElement selectTitle = new SelectElement(titleDropDownForUpdate);
+            selectTitle.SelectByText(title);
+
+            //Enter the degree
+            var degreeForUpdate = _wait.Until(ExpectedConditions.ElementExists(_degreeFieldForUpdate));
+            degreeForUpdate.SendKeys(Keys.Control + "a" + Keys.Delete);
+            degreeForUpdate.SendKeys(degree);
+
+            //Select the year of graduation drop down
+            var selectYearOfGraduationDropDownForUpdate = _wait.Until(ExpectedConditions.ElementIsVisible(_yearOfGraduationDropDownForUpdate));
+
+            SelectElement selectYear = new SelectElement(selectYearOfGraduationDropDownForUpdate);
+            selectYear.SelectByText(year);
+
+            var updateButtonElement = _wait.Until(ExpectedConditions.ElementToBeClickable(_updateButton));
+            updateButtonElement.Click();
+        }
+
+        public string GetSuccessMessageForUpdate(string successMessage)
+        {
+            try
+            {
+                var successMessageForUpdateElement =
+                    _wait.Until(ExpectedConditions.ElementIsVisible(
+                        By.XPath($"//div[@class='ns-box-inner' and  contains(text(), '{successMessage}')]")));
+                return successMessageForUpdateElement.Text;
+            }
+            catch
+            {
+                return string.Empty;
+            }
+        }
+
+
+        public void CancelAddEducationDetails(string universityName, string countryName, string title, string degree, string year)
+        {
+            ClickAddNewButton();
+            //Enter College/University Name
+            var enterCollegeUniversityName = _wait.Until(ExpectedConditions.ElementIsVisible(_collegeUniversityNameField));
+            enterCollegeUniversityName.SendKeys(universityName);
+
+            //Select the country name using drop down
+            var selectCountryDropDown = _wait.Until(ExpectedConditions.ElementToBeClickable(_countryDropDown));
+
+            SelectElement selectCountry = new SelectElement(selectCountryDropDown);
+            selectCountry.SelectByText(countryName);
+
+            //Select the title using drop down
+            var titleDropDown = _wait.Until(ExpectedConditions.ElementToBeClickable(_titleDropDown));
+
+            SelectElement selectTitle = new SelectElement(titleDropDown);
+            selectTitle.SelectByText(title);
+
+            //Enter the degree
+            var degreeElement = _wait.Until(ExpectedConditions.ElementExists(_degreeField));
+            degreeElement.SendKeys(degree);
+
+            //Select the year of graduation drop down
+            var selectYearOfGraduationDropDown = _wait.Until(ExpectedConditions.ElementIsVisible(_yearOfGraduationDropDown));
+
+            SelectElement selectYear = new SelectElement(selectYearOfGraduationDropDown);
+            selectYear.SelectByText(year);
+            ClickCancelButton();
+        }
+
+        public void LeaveEitherOneOrAllTheFieldsEmptyToUpdate(string existingUniversityName, string universityName, string countryName, string title, string degree, string year)
+        {
+            var educationTable = _wait.Until(ExpectedConditions.ElementIsVisible(_educationTable));
+            var row = educationTable.FindElement(By.XPath($".//tr[td[normalize-space(text())='{existingUniversityName}']]"));
+            var editIcon = row.FindElement(By.XPath(".//td[@class='right aligned']//i[@class='outline write icon']"));
+            editIcon.Click();
+
+            var editableRow = educationTable.FindElement(By.XPath($".//tr[.//input[@type='text' and @value='{existingUniversityName}']]"));
+
+            //Enter College/University Name
+            var enterCollegeUniversityNameForUpdate = editableRow.FindElement(_collegeUniversityNameForUpdate);
+            enterCollegeUniversityNameForUpdate.SendKeys(Keys.Control + "a" + Keys.Delete);
+
+            if (!string.IsNullOrWhiteSpace(universityName))
+            {
+                enterCollegeUniversityNameForUpdate.SendKeys(universityName);
+            }
+            //Select the country name using drop down
+            var selectCountryDropDownForUpdate = _wait.Until(ExpectedConditions.ElementToBeClickable(_countryDropDownForUpdate));
+
+            SelectElement selectCountry = new SelectElement(selectCountryDropDownForUpdate);
+
+            if (!string.IsNullOrWhiteSpace(countryName))
+            {
+                selectCountry.SelectByText(countryName);
+            }
+            else
+            {
+                selectCountry.SelectByIndex(0);
+            }
+           
+
+            //Select the title using drop down
+            var titleDropDownForUpdate = _wait.Until(ExpectedConditions.ElementToBeClickable(_titleDropDownForUpdate));
+
+            SelectElement selectTitle = new SelectElement(titleDropDownForUpdate);
+            if (!string.IsNullOrWhiteSpace(title))
+            {
+                selectTitle.SelectByText(title);
+            }
+            else
+            {
+                selectTitle.SelectByIndex(0);
+            }
+           
+
+            //Enter the degree
+            var degreeForUpdate = _wait.Until(ExpectedConditions.ElementExists(_degreeFieldForUpdate));
+            degreeForUpdate.SendKeys(Keys.Control + "a" + Keys.Delete);
+            if (!string.IsNullOrWhiteSpace(degree))
+            {
+                degreeForUpdate.SendKeys(degree);
+            }
+           
+
+            //Select the year of graduation drop down
+            var selectYearOfGraduationDropDownForUpdate = _wait.Until(ExpectedConditions.ElementIsVisible(_yearOfGraduationDropDownForUpdate));
+
+            SelectElement selectYear = new SelectElement(selectYearOfGraduationDropDownForUpdate);
+            if (!string.IsNullOrWhiteSpace(year))
+            {
+                selectYear.SelectByText(year);
+            }
+            else
+            {
+                selectYear.SelectByIndex(0);
+            }
+
+            var updateButtonElement = _wait.Until(ExpectedConditions.ElementToBeClickable(_updateButton));
+            updateButtonElement.Click();
+        }
+
+        public void ClickCancelUpdateButton()
+        {
+            var cancelUpdateElement = _wait.Until(ExpectedConditions.ElementToBeClickable(_cancelUpdateButton));
+            cancelUpdateElement.Click();
+        }
     }
+
+
 }
+    
 
 
 

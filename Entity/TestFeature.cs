@@ -14,6 +14,7 @@
         {
             public EducationDetails EducationDetails { get; set; }
             public EducationDetails EducationDetailsToUpdate { get; set; }
+            public EducationDetails EducationDetailsToDelete { get; set; }
            // public MessageDetails MessageDetails { get; set; }
         }
 

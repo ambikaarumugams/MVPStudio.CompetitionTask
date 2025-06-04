@@ -1,7 +1,7 @@
 {
   "Scenarios": [
     {
-      "ScenarioName": "AddEducationDetailsWithValidInput",
+      "ScenarioName": "Add education details with valid input",
       "TestItems": [
         {
           "EducationDetails": {
@@ -11,7 +11,8 @@
             "Degree": "Astrophysics",
             "YearOfGraduation": "2018"
           },
-          "EducationDetailsToUpdate": null
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
         },
         {
           "EducationDetails": {
@@ -21,7 +22,8 @@
             "Degree": "Master of Business Administration",
             "YearOfGraduation": "2021"
           },
-          "EducationDetailsToUpdate": null
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
         },
         {
           "EducationDetails": {
@@ -31,12 +33,13 @@
             "Degree": "Computer Science",
             "YearOfGraduation": "2023"
           },
-          "EducationDetailsToUpdate": null
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
         }
       ]
     },
     {
-      "ScenarioName": "AddEducationDetailsWithInvalidCollegeUniversityName",
+      "ScenarioName": "Add education details with invalid CollegeUniversityName",
       "TestItems": [
         {
           "EducationDetails": {
@@ -46,7 +49,8 @@
             "Degree": "Astrophysics",
             "YearOfGraduation": "2018"
           },
-          "EducationDetailsToUpdate": null
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
         },
         {
           "EducationDetails": {
@@ -56,7 +60,8 @@
             "Degree": "Master of Business Administration",
             "YearOfGraduation": "2021"
           },
-          "EducationDetailsToUpdate": null
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
         },
         {
           "EducationDetails": {
@@ -66,7 +71,8 @@
             "Degree": "Computer Science",
             "YearOfGraduation": "2023"
           },
-          "EducationDetailsToUpdate": null
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
         },
         {
           "EducationDetails": {
@@ -76,13 +82,14 @@
             "Degree": "Computer Science",
             "YearOfGraduation": "2025"
           },
-          "EducationDetailsToUpdate": null
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
         }
       ]
     },
 
     {
-      "ScenarioName": "AddEducationDetailsWithInvalidDegree",
+      "ScenarioName": "Add education details with invalid Degree",
       "TestItems": [
         {
           "EducationDetails": {
@@ -92,7 +99,8 @@
             "Degree": "fdhjfhghjkjm",
             "YearOfGraduation": "2018"
           },
-          "EducationDetailsToUpdate": null
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
         },
         {
           "EducationDetails": {
@@ -102,7 +110,8 @@
             "Degree": "123567890",
             "YearOfGraduation": "2021"
           },
-          "EducationDetailsToUpdate": null
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
         },
         {
           "EducationDetails": {
@@ -112,7 +121,8 @@
             "Degree": "!@#$%&**&%",
             "YearOfGraduation": "2023"
           },
-          "EducationDetailsToUpdate": null
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
         },
         {
           "EducationDetails": {
@@ -122,7 +132,8 @@
             "Degree": " ",
             "YearOfGraduation": "2025"
           },
-          "EducationDetailsToUpdate": null
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
         }
       ]
     },
@@ -137,7 +148,8 @@
             "Degree": "Advanced Multidisciplinary Studies",
             "YearOfGraduation": "2023"
           },
-          "EducationDetailsToUpdate": null
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
         }
       ]
     },
@@ -152,12 +164,13 @@
             "Degree": "Master of Science in Interdisciplinary Integration of Quantum Computing, Artificial Intelligence, Nanotechnology, Ethical Bioengineering, and Advanced Sustainable Systems for Climate-Resilient Infrastructural Development and Future Technologies",
             "YearOfGraduation": "2023"
           },
-          "EducationDetailsToUpdate": null
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
         }
       ]
     },
     {
-      "ScenarioName": "LeaveEitherOneORAllTheFieldsEmpty",
+      "ScenarioName": "Leave either one or all the fields empty",
       "TestItems": [
         {
           "EducationDetails": {
@@ -167,7 +180,8 @@
             "Degree": "",
             "YearOfGraduation": ""
           },
-          "EducationDetailsToUpdate": null
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
         },
         {
           "EducationDetails": {
@@ -177,7 +191,8 @@
             "Degree": "",
             "YearOfGraduation": ""
           },
-          "EducationDetailsToUpdate": null
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
         },
         {
           "EducationDetails": {
@@ -187,7 +202,8 @@
             "Degree": "",
             "YearOfGraduation": ""
           },
-          "EducationDetailsToUpdate": null
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
         },
         {
           "EducationDetails": {
@@ -197,7 +213,8 @@
             "Degree": "",
             "YearOfGraduation": ""
           },
-          "EducationDetailsToUpdate": null
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
         },
         {
           "EducationDetails": {
@@ -207,13 +224,14 @@
             "Degree": "Power Electronics",
             "YearOfGraduation": ""
           },
-          "EducationDetailsToUpdate": null
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
         }
       ]
     },
 
     {
-      "ScenarioName": "AddSameEducationDetailsMultipleTimes",
+      "ScenarioName": "Add same education details multiple times",
       "TestItems": [
         {
           "EducationDetails": {
@@ -223,7 +241,8 @@
             "Degree": "Power Systems",
             "YearOfGraduation": "2009"
           },
-          "EducationDetailsToUpdate": null
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
         },
         {
           "EducationDetails": {
@@ -233,12 +252,13 @@
             "Degree": "Power Systems",
             "YearOfGraduation": "2009"
           },
-          "EducationDetailsToUpdate": null
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
         }
       ]
     },
     {
-      "ScenarioName": "AddEducationDetailsWhenSessionHasExpired",
+      "ScenarioName": "Add education details when the session has expired",
       "TestItems": [
         {
           "EducationDetails": {
@@ -248,55 +268,706 @@
             "Degree": "Acting",
             "YearOfGraduation": "2009"
           },
-          "EducationDetailsToUpdate": null
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Negative testing with valid input",
+      "TestItems": [
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of Sydney",
+            "Country": "Australia",
+            "Title": "B.Tech",
+            "Degree": "Computer science and information technology",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of New South Wales",
+            "Country": "Australia",
+            "Title": "BFA",
+            "Degree": "Acting",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of Melbourne",
+            "Country": "Australia",
+            "Title": "M.A",
+            "Degree": "Psychology",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "Monash University",
+            "Country": "Australia",
+            "Title": "B.Tech",
+            "Degree": "Biomedical engineering",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of Sydney",
+            "Country": "India",
+            "Title": "B.Tech",
+            "Degree": "Computer science and information technology",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of New South Wales",
+            "Country": "United States",
+            "Title": "BFA",
+            "Degree": "Acting",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of Melbourne",
+            "Country": "United Kingdom",
+            "Title": "M.A",
+            "Degree": "Psychology",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of Sydney",
+            "Country": "India",
+            "Title": "M.B.A",
+            "Degree": "Computer science and information technology",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of New South Wales",
+            "Country": "United States",
+            "Title": "B.Sc",
+            "Degree": "Acting",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of Melbourne",
+            "Country": "United Kingdom",
+            "Title": "M.A",
+            "Degree": "Computer Science",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Cancel add process",
+      "TestItems": [
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of Sydney",
+            "Country": "Australia",
+            "Title": "B.Tech",
+            "Degree": "Computer science and information technology",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Update education details with valid input",
+      "TestItems": [
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "Anna University",
+            "Country": "India",
+            "Title": "B.Tech",
+            "Degree": "Computer Science",
+            "YearOfGraduation": "2015"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "IIT",
+            "Country": "India",
+            "Title": "M.Tech",
+            "Degree": "Mechanics",
+            "YearOfGraduation": "2016"
+          },
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "MIT",
+            "Country": "United States",
+            "Title": "M.Tech",
+            "Degree": "AI & Robotics",
+            "YearOfGraduation": "2020"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "Harvard University",
+            "Country": "United States",
+            "Title": "M.Tech",
+            "Degree": "Quantum Computing",
+            "YearOfGraduation": "2022"
+          },
+          "EducationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Update education details with invalid College/University Name",
+      "TestItems": [
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of Sydney",
+            "Country": "Australia",
+            "Title": "B.A",
+            "Degree": "Astrophysics",
+            "YearOfGraduation": "2018"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "fdhjfhghjkjm",
+            "Country": "Australia",
+            "Title": "B.A",
+            "Degree": "Astrophysics",
+            "YearOfGraduation": "2018"
+          },
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of California",
+            "Country": "United States",
+            "Title": "M.B.A",
+            "Degree": "Master of Business Administration",
+            "YearOfGraduation": "2021"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "123567890",
+            "Country": "United States",
+            "Title": "M.B.A",
+            "Degree": "Master of Business Administration",
+            "YearOfGraduation": "2021"
+          },
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of Cambridge",
+            "Country": "United Kingdom",
+            "Title": "PHD",
+            "Degree": "Computer Science",
+            "YearOfGraduation": "2023"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "!@#$%&**&%",
+            "Country": "United Kingdom",
+            "Title": "PHD",
+            "Degree": "Computer Science",
+            "YearOfGraduation": "2023"
+          },
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of Edinburgh",
+            "Country": "United Kingdom",
+            "Title": "PHD",
+            "Degree": "Computer Science",
+            "YearOfGraduation": "2025"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": " ",
+            "Country": "United Kingdom",
+            "Title": "PHD",
+            "Degree": "Computer Science",
+            "YearOfGraduation": "2025"
+          },
+          "EducationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Update education details with invalid Degree",
+      "TestItems": [
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of Sydney",
+            "Country": "Australia",
+            "Title": "B.A",
+            "Degree": "Astrophysics",
+            "YearOfGraduation": "2018"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "University of Sydney",
+            "Country": "Australia",
+            "Title": "B.A",
+            "Degree": "fdhjfhghjkjm",
+            "YearOfGraduation": "2018"
+          },
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of California",
+            "Country": "United States",
+            "Title": "M.B.A",
+            "Degree": "Master of Business Administration",
+            "YearOfGraduation": "2021"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "University of California",
+            "Country": "United States",
+            "Title": "M.B.A",
+            "Degree": "123567890",
+            "YearOfGraduation": "2021"
+          },
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of Cambridge",
+            "Country": "United Kingdom",
+            "Title": "PHD",
+            "Degree": "Computer Science",
+            "YearOfGraduation": "2023"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "University of Cambridge",
+            "Country": "United Kingdom",
+            "Title": "PHD",
+            "Degree": "!@#$%&**&%",
+            "YearOfGraduation": "2023"
+          },
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of Edinburgh",
+            "Country": "United Kingdom",
+            "Title": "PHD",
+            "Degree": "Computer Science",
+            "YearOfGraduation": "2025"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "University of Edinburgh",
+            "Country": "United Kingdom",
+            "Title": "PHD",
+            "Degree": "   ",
+            "YearOfGraduation": "2025"
+          },
+          "EducationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": ">250 characters of College/University Name for update",
+      "TestItems": [
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "International University for Multidisciplinary Research in Space Sciences",
+            "Country": "Australia",
+            "Title": "PHD",
+            "Degree": "Advanced Multidisciplinary Studies",
+            "YearOfGraduation": "2023"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "International University for Multidisciplinary Research in Space Sciences, Artificial Intelligence, Blockchain, Quantum Physics, Astrobiology, Interstellar Communications, and Applied Philosophy with Extended Campus for Intergalactic Studies",
+            "Country": "Australia",
+            "Title": "PHD",
+            "Degree": "Advanced Multidisciplinary Studies",
+            "YearOfGraduation": "2023"
+          },
+          "EducationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": ">250 characters of Degree Name for update",
+      "TestItems": [
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "Global Center for Innovation and Research",
+            "Country": "Australia",
+            "Title": "PHD",
+            "Degree": "Master of Science in Interdisciplinary Integration of Quantum Computing",
+            "YearOfGraduation": "2023"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "Global Center for Innovation and Research",
+            "Country": "Australia",
+            "Title": "PHD",
+            "Degree": "Master of Science in Interdisciplinary Integration of Quantum Computing, Artificial Intelligence, Nanotechnology, Ethical Bioengineering, and Advanced Sustainable Systems for Climate-Resilient Infrastructural Development and Future Technologies",
+            "YearOfGraduation": "2023"
+          },
+          "EducationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Leave either one or all the fields empty for update",
+      "TestItems": [
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "NIT",
+            "Country": "India",
+            "Title": "BArch",
+            "Degree": "Architecture",
+            "YearOfGraduation": "2005"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "",
+            "Country": "",
+            "Title": "",
+            "Degree": "",
+            "YearOfGraduation": ""
+          },
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of Edinburgh",
+            "Country": "United Kingdom",
+            "Title": "PHD",
+            "Degree": "Computer Science",
+            "YearOfGraduation": "2025"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "University of California",
+            "Country": "",
+            "Title": "",
+            "Degree": "",
+            "YearOfGraduation": ""
+          },
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "Anna University",
+            "Country": "India",
+            "Title": "B.Tech",
+            "Degree": "Computer Science",
+            "YearOfGraduation": "2015"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "University of Adelaide",
+            "Country": "Australia",
+            "Title": "",
+            "Degree": "",
+            "YearOfGraduation": ""
+          },
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "Stanford University",
+            "Country": "United States",
+            "Title": "M.B.A",
+            "Degree": "Master of Business Administration",
+            "YearOfGraduation": "2021"
+
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "University of Western Australia",
+            "Country": "Australia",
+            "Title": "MFA",
+            "Degree": "",
+            "YearOfGraduation": ""
+          },
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "Oxford University",
+            "Country": "United Kingdom",
+            "Title": "PHD",
+            "Degree": "Computer Science",
+            "YearOfGraduation": "2023"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "University of Queensland",
+            "Country": "Australia",
+            "Title": "B.Tech",
+            "Degree": "Mechanical Engineering",
+            "YearOfGraduation": ""
+          },
+          "EducationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Update education details when the session has expired",
+      "TestItems": [
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "NIT",
+            "Country": "India",
+            "Title": "BArch",
+            "Degree": "Architecture",
+            "YearOfGraduation": "2005"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "Oxford University",
+            "Country": "United Kingdom",
+            "Title": "PHD",
+            "Degree": "Computer Science",
+            "YearOfGraduation": "2023"
+          },
+          "EducationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Update the education details as same as the existing one",
+      "TestItems": [
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of Sydney",
+            "Country": "Australia",
+            "Title": "B.A",
+            "Degree": "Astrophysics",
+            "YearOfGraduation": "2018"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "University of Sydney",
+            "Country": "Australia",
+            "Title": "B.A",
+            "Degree": "Astrophysics",
+            "YearOfGraduation": "2018"
+          },
+          "EducationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Negative testing with valid input for update",
+      "TestItems": [
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of Melbourne",
+            "Country": "Australia",
+            "Title": "B.Tech",
+            "Degree": "Computer science and information technology",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "University of Sydney",
+            "Country": "Australia",
+            "Title": "B.Tech",
+            "Degree": "Computer science and information technology",
+            "YearOfGraduation": "2013"
+          },
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of New South Wales",
+            "Country": "Australia",
+            "Title": "BFA",
+            "Degree": "Acting",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "University of Western Australia",
+            "Country": "Australia",
+            "Title": "BFA",
+            "Degree": "Acting",
+            "YearOfGraduation": "2013"
+          },
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of Queensland",
+            "Country": "Australia",
+            "Title": "M.A",
+            "Degree": "Psychology",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "University of New South Wales",
+            "Country": "Australia",
+            "Title": "BFA",
+            "Degree": "Acting",
+            "YearOfGraduation": "2013"
+          },
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "Monash University",
+            "Country": "Australia",
+            "Title": "B.Tech",
+            "Degree": "Biomedical engineering",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "University of Melbourne",
+            "Country": "Austria",
+            "Title": "BFA",
+            "Degree": "Acting",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of Newcastle",
+            "Country": "Australia",
+            "Title": "B.Tech",
+            "Degree": "Computer science and information technology",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "Australian National University",
+            "Country": "India",
+            "Title": "BFA",
+            "Degree": "Acting",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of Newzealand",
+            "Country": "New Zealand",
+            "Title": "BFA",
+            "Degree": "Acting",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "University of Technology, Sydney",
+            "Country": "United States",
+            "Title": "BFA",
+            "Degree": "Acting",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of Melbourne",
+            "Country": "Australia",
+            "Title": "M.A",
+            "Degree": "Psychology",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "University of Melbourne",
+            "Country": "United Kingdom",
+            "Title": "BFA",
+            "Degree": "Acting",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "Anna University",
+            "Country": "India",
+            "Title": "M.B.A",
+            "Degree": "Computer science and information technology",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "MIT",
+            "Country": "India",
+            "Title": "BFA",
+            "Degree": "Acting",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "Oxford University",
+            "Country": "United Kingdom",
+            "Title": "MFA",
+            "Degree": "Acting",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "University of Adelaide",
+            "Country": "United States",
+            "Title": "B.Sc",
+            "Degree": "Acting",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToDelete": null
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "University of Melbourne",
+            "Country": "Australia",
+            "Title": "M.A",
+            "Degree": "Phychology",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToUpdate": {
+            "CollegeUniversityName": "NIT",
+            "Country": "United Kingdom",
+            "Title": "BFA",
+            "Degree": "Computer Science",
+            "YearOfGraduation": "2009"
+          },
+          "EducationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Delete education details when the session has expired",
+      "TestItems": [
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "Oxford University",
+            "Country": "Angola",
+            "Title": "B.A",
+            "Degree": "Astrophysics",
+            "YearOfGraduation": "2018"
+          },
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": {
+            "CollegeUniversityName": "Oxford University",
+            "Country": "Angola",
+            "Title": "B.A",
+            "Degree": "Astrophysics",
+            "YearOfGraduation": "2018"
+          }
         }
       ]
     },
 
 
 
-
-
-
-
-
-        {
-          "ScenarioName": "EditEducationDetailsWithValidInput",
-          "TestItems": [
-            {
-              "EducationDetails": {
-                "CollegeUniversityName": "Anna University",
-                "Country": "India",
-                "Title": "B.Tech",
-                "Degree": "Computer Science",
-                "YearOfGraduation": "2015"
-              },
-              "EducationDetailsToUpdate": {
-                "CollegeUniversityName": "NIT",
-                "Country": "India",
-                "Title": "B.Tech",
-                "Degree": "Information Technology",
-                "YearOfGraduation": "2016"
-              }
-            },
-            {
-              "EducationDetails": {
-                "CollegeUniversityName": "MIT",
-                "Country": "USA",
-                "Title": "M.Tech",
-                "Degree": "AI & Robotics",
-                "YearOfGraduation": "2020"
-              },
-              "EducationDetailsToUpdate": {
-                "CollegeUniversityName": "Harvard University",
-                "Country": "USA",
-                "Title": "M.Tech",
-                "Degree": "Quantum Computing",
-                "YearOfGraduation": "2022"
-              }
-            }
-          ]
-        },
         {
           "ScenarioName": "DeleteEducationDetails",
           "TestItems": [
@@ -308,7 +979,6 @@
                 "Degree": "Astrophysics",
                 "YearOfGraduation": "2018"
               }
-
             },
             {
               "EducationDetails": {
@@ -319,7 +989,6 @@
                 "YearOfGraduation": "2018"
               }
             },
-
             {
               "EducationDetails": {
                 "CollegeUniversityName": "Oxford University3",
