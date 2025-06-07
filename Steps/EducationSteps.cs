@@ -22,22 +22,22 @@ namespace qa_dotnet_cucumber.Steps
             _educationPage = educationPage;
         }
 
-        [Given("I navigate to the profile page as a registered user")]
+        [Given("I navigate to the profile page as a registered user")]  //Login using Json test data
         public void GivenINavigateToTheProfilePageAsARegisteredUser()
         {
             _navigationHelper.NavigateTo("Home");
-            var loginDetails = JsonHelper.LoadJson<LoginDetails>("LoginData");
+            var loginDetails = JsonHelper.LoadJson<LoginDetails>("LoginData");  
             var username = loginDetails.UserName;
             var password = loginDetails.Password;
             _loginPage.Login(username, password);
             _educationPage.NavigateToTheProfilePage();
         }
 
-        [When("I enter education details from json file with the TestName {string}")]
-        public void WhenIEnterEducationDetailsFromJsonFileWithTheTestName(string scenarioName)
+        [When("I enter education details from json file with the TestName {string}")]  //Add education details
+        public void WhenIEnterEducationDetailsFromJsonFileWithTheTestName(string scenarioName) 
         {
-            var feature = JsonHelper.LoadJson<TestFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
+            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
+            var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);  //Filter the scenario using the scenario name 
 
             if (scenario != null)
             {
@@ -70,7 +70,7 @@ namespace qa_dotnet_cucumber.Steps
         [When("I enter invalid education details from json file with the TestName {string}")]
         public void WhenIEnterInvalidEducationDetailsFromJsonFileWithTheTestName(string scenarioName)
         {
-            var feature = JsonHelper.LoadJson<TestFeature>("EducationTestData");
+            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
             var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
 
             if (scenario != null)
@@ -121,7 +121,7 @@ namespace qa_dotnet_cucumber.Steps
         [When("I leave either one or all the fields empty and give the data from json file with the TestName {string}")]
         public void WhenILeaveEitherOneOrAllTheFieldsEmptyAndGiveTheDataFromJsonFileWithTheTestName(string scenarioName)
         {
-            var feature = JsonHelper.LoadJson<TestFeature>("EducationTestData");
+            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
             var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
 
             if (scenario != null)
@@ -152,7 +152,7 @@ namespace qa_dotnet_cucumber.Steps
         [When("I enter same education details twice from json file with the TestName {string}")]
         public void WhenIEnterSameEducationDetailsTwiceFromJsonFileWithTheTestName(string scenarioName)
         {
-            var feature = JsonHelper.LoadJson<TestFeature>("EducationTestData");
+            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
             var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
             var messageResults = new List<(string Message, string Type)>();
             var cleanUpList = new List<string>();
@@ -194,7 +194,7 @@ namespace qa_dotnet_cucumber.Steps
         [When("I enter education details from json file after the session has expired with the TestName {string}")]
         public void WhenIEnterEducationDetailsFromJsonFileAfterTheSessionHasExpiredWithTheTestName(string scenarioName)
         {
-            var feature = JsonHelper.LoadJson<TestFeature>("EducationTestData");
+            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
             var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
 
             if (scenario != null)
@@ -235,7 +235,7 @@ namespace qa_dotnet_cucumber.Steps
         [When("I update education details with the existing details from json file with the TestName {string}")]
         public void WhenIUpdateEducationDetailsWithTheExistingDetailsFromJsonFileWithTheTestName(string scenarioName)
         {
-            var feature = JsonHelper.LoadJson<TestFeature>("EducationTestData");
+            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
             var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
             if (scenario != null)
             {
@@ -269,7 +269,7 @@ namespace qa_dotnet_cucumber.Steps
         [When("I enter invalid education details to update from json file with the TestName {string}")]
         public void WhenIEnterInvalidEducationDetailsToUpdateFromJsonFileWithTheTestName(string scenarioName)
         {
-            var feature = JsonHelper.LoadJson<TestFeature>("EducationTestData");
+            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
             var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
             if (scenario != null)
             {
@@ -326,7 +326,7 @@ namespace qa_dotnet_cucumber.Steps
         [When("I enter education details from the Json file with the test name {string}")]
         public void WhenIEnterEducationDetailsFromTheJsonFileWithTheTestName(string scenarioName)
         {
-            var feature = JsonHelper.LoadJson<TestFeature>("EducationTestData");
+            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
             var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
             if (scenario != null)
             {
@@ -350,7 +350,7 @@ namespace qa_dotnet_cucumber.Steps
         [When("I leave either one or all the fields empty and give the data to update from json file with the TestName {string}")]
         public void WhenILeaveEitherOneOrAllTheFieldsEmptyAndGiveTheDataToUpdateFromJsonFileWithTheTestName(string scenarioName)
         {
-            var feature = JsonHelper.LoadJson<TestFeature>("EducationTestData");
+            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
             var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
 
             if (scenario != null)
@@ -376,7 +376,7 @@ namespace qa_dotnet_cucumber.Steps
         [When("I update education details from json file after the session has expired with the TestName {string}")]
         public void WhenIUpdateEducationDetailsFromJsonFileAfterTheSessionHasExpiredWithTheTestName(string scenarioName)
         {
-            var feature = JsonHelper.LoadJson<TestFeature>("EducationTestData");
+            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
             var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
 
             if (scenario != null)
@@ -414,7 +414,7 @@ namespace qa_dotnet_cucumber.Steps
         [When("I delete education details from json file after the session has expired with the TestName {string}")]
         public void WhenIDeleteEducationDetailsFromJsonFileAfterTheSessionHasExpiredWithTheTestName(string scenarioName)
         {
-            var feature = JsonHelper.LoadJson<TestFeature>("EducationTestData");
+            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
             var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
 
             if (scenario != null)
@@ -452,7 +452,7 @@ namespace qa_dotnet_cucumber.Steps
         [When("I update education details with the same existing details from json file with the TestName {string}")]
         public void WhenIUpdateEducationDetailsWithTheSameExistingDetailsFromJsonFileWithTheTestName(string scenarioName)
         {
-            var feature = JsonHelper.LoadJson<TestFeature>("EducationTestData");
+            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
             var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
             var messageResults = new List<(string Message, string Type)>();
             var cleanUpList = new List<string>();

@@ -6,7 +6,7 @@ namespace qa_dotnet_cucumber.Helper
     {
         public static T LoadJson<T>(string fileName)
         {
-            var jsonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"TestData\\{fileName}.json");
+            var jsonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestData",$"{fileName}.json");
             var jsonData = File.ReadAllText(jsonPath);
             return JsonSerializer.Deserialize<T>(jsonData);
         }

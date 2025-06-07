@@ -1,6 +1,6 @@
 ﻿namespace qa_dotnet_cucumber.Entity
 {
-    public class TestFeature
+    public class EducationFeature
     {
         public Scenario[] Scenarios { get; set; }
 

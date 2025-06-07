@@ -11,12 +11,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="TestData\CertificationsTestData.json" />
     <None Remove="TestData\EducationTestData.json" />
     <None Remove="TestData\LoginData.json" />
     <None Remove="TestData\skills.csv" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="TestData\CertificationsTestData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="TestData\EducationTestData.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

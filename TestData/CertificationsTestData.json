@@ -1,0 +1,164 @@
+{
+  "Scenarios": [
+    {
+      "ScenarioName": "Add certification details with valid input",
+      "TestItems": [
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "ISTQB Foundation Level (CTFL)",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2024"
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        },
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "ISTQB Advanced Level (Test Analyst, Technical Test Analyst)",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2024"
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        },
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "Certified Selenium Tester (CST)",
+            "CertifiedFrom": "ATA, CP-SAT",
+            "Year": "2024"
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        },
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "Test Automation Engineer (ISTQB)",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2024"
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Add certification details with invalid Certificate or Award",
+      "TestItems": [
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "fhgfhjgjkhkjn",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2024"
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        },
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "123456789",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2024"
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        },
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "!@#$%^&*",
+            "CertifiedFrom": "ATA, CP-SAT",
+            "Year": "2024"
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        },
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "       ",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2024"
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Add certification details with invalid Certificate from",
+      "TestItems": [
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "ISTQB Foundation Level (CTFL)",
+            "CertifiedFrom": "fbhbvnbvnvnm",
+            "Year": "2024"
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        },
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "ISTQB Advanced Level (Test Analyst, Technical Test Analyst)",
+            "CertifiedFrom": "1223445566",
+            "Year": "2024"
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        },
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "Certified Selenium Tester (CST)",
+            "CertifiedFrom": "@@#$#$$%%",
+            "Year": "2024"
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        },
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "Test Automation Engineer (ISTQB)",
+            "CertifiedFrom": "      ",
+            "Year": "2024"
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": ">250 characters of Certificate or Award",
+      "TestItems": [
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "CertificateText_Length_255",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2024"
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": ">250 characters of Certificate from",
+      "TestItems": [
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "ISTQB Foundation Level (CTFL)",
+            "CertifiedFrom": "CertificateFromText_Length_255",
+            "Year": "2024"
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        }
+      ]
+    }
+
+
+
+
+
+
+
+
+
+      ]
+    }

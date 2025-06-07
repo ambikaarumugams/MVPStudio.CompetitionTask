@@ -103,6 +103,7 @@ namespace qa_dotnet_cucumber.Hooks
             _objectContainer.RegisterInstanceAs(new LanguagePage(_driver));
             _objectContainer.RegisterInstanceAs(new SkillPage(_driver));
             _objectContainer.RegisterInstanceAs(new EducationPage(_driver));
+            _objectContainer.RegisterInstanceAs(new CertificationsPage(_driver));
 
             lock (_reportLock)
             {
@@ -197,6 +198,25 @@ namespace qa_dotnet_cucumber.Hooks
                             else
                             {
                                 Console.WriteLine("Clean up skipped: Education list is empty");
+                            }
+                        }
+                    }
+                    else if (featureContext.FeatureInfo.Tags.Contains("certifications"))
+                    {
+                        if (scenarioContext.TryGetValue("CertificationsToCleanup", out List<string>? certificationsList))
+                        {
+                            if (certificationsList != null && certificationsList.Any())
+                            {
+                                var certificationsPage = _objectContainer.Resolve<CertificationsPage>();
+                                foreach (var certification in certificationsList)
+                                {
+                                    certificationsPage.DeleteSpecificCertification(certification);
+                                }
+                                Console.WriteLine($"Deleted {certificationsList.Count} certifications list for this scenario");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Clean up skipped: Certification list is empty");
                             }
                         }
                     }
