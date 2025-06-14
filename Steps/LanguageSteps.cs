@@ -235,7 +235,9 @@ namespace qa_dotnet_cucumber.Steps
         public void ThenIShouldSeeTheErrorMessage(string expected)
         {
             var actualLanguages = _scenarioContext.Get<string>("ActualLanguages");
-            Assert.That(actualLanguages.Contains(expected), Is.True, $"Expected message contains '{expected}', but got '{actualLanguages}'");
+           
+                Assert.That(actualLanguages.Contains(expected), Is.True,
+                    $"Expected message contains '{expected}', but got '{actualLanguages}'");
         }
 
         [When("I click Add New button, enter the language {string} and it's level {string}")]    //To cancel the add language and level

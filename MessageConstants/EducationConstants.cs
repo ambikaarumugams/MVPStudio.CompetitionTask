@@ -1,6 +1,6 @@
-﻿namespace qa_dotnet_cucumber
+﻿namespace qa_dotnet_cucumber.MessageConstants
 {
-    public static class MessageConstants
+    public static class EducationConstants
     {
         public const string SuccessMessageForAdd = "Education has been added";
         public const string SuccessMessageForUpdate = "Education as been updated";

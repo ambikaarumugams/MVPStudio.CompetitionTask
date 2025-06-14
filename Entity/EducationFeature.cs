@@ -15,7 +15,6 @@
             public EducationDetails EducationDetails { get; set; }
             public EducationDetails EducationDetailsToUpdate { get; set; }
             public EducationDetails EducationDetailsToDelete { get; set; }
-           // public MessageDetails MessageDetails { get; set; }
         }
 
         public class EducationDetails
@@ -26,12 +25,5 @@
             public string Degree { get; set; }
             public string YearOfGraduation { get; set; }
         }
-
-        //public class MessageDetails
-        //{
-        //    public bool IsError { get; set; } 
-        //    public string Message { get; set; }
-        //}
-
     }
 }

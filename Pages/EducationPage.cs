@@ -22,9 +22,6 @@ namespace qa_dotnet_cucumber.Pages
         private readonly By _educationTab = By.XPath("//form[@class='ui form']//a[normalize-space()='Education']");
 
         private readonly By _educationTable = By.XPath("//div[@data-tab='third']//table[@class='ui fixed table']");
-        //private readonly By _educationTable = By.XPath("//div[@class='ui bottom attached tab segment tooltip-target active']//h3[contains(.,'Education')]");
-        // private readonly By _addNewButton = By.XPath("//div[@class='ui teal button' and normalize-space()='Add New']");
-
         private readonly By _collegeUniversityNameField = By.XPath("//input[@placeholder='College/University Name']");
         private readonly By _countryDropDown = By.XPath("//select[@name='country']");
         private readonly By _titleDropDown = By.XPath("//select[@name='title']");
@@ -34,7 +31,6 @@ namespace qa_dotnet_cucumber.Pages
         private readonly By _cancelButton = By.XPath("//input[@value='Cancel']");
 
         //Edit
-        private readonly By _editIcon = By.XPath("//td[@class='right aligned']//i[@class='outline write icon']");
         private readonly By _collegeUniversityNameForUpdate = By.XPath(".//input[@placeholder='College/University Name']");
         private readonly By _countryDropDownForUpdate = By.XPath(".//select[@name='country']");
         private readonly By _titleDropDownForUpdate = By.XPath(".//select[@name='title']");
@@ -110,7 +106,7 @@ namespace qa_dotnet_cucumber.Pages
             }
             catch
             {
-                return String.Empty;
+                return string.Empty;
             }
         }
 
@@ -173,7 +169,6 @@ namespace qa_dotnet_cucumber.Pages
                 var errorMessageElement = _wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-error ns-show']")));
                 return errorMessageElement.Text;
             }
-
         }
 
         public void LeaveEitherOneOrAllTheFieldsEmptyToAdd(string universityName, string countryName, string title, string degree, string year)

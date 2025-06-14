@@ -7,7 +7,8 @@
           "CertificationDetailsToAdd": {
             "CertificateOrAward": "ISTQB Foundation Level (CTFL)",
             "CertifiedFrom": "ISTQB",
-            "Year": "2024"
+            "Year": "2024",
+            "ExpectedMessage": "ISTQB Foundation Level (CTFL) has been added to your certification"
           },
           "CertificationDetailsToUpdate": null,
           "CertificationDetailsToDelete": null
@@ -16,7 +17,8 @@
           "CertificationDetailsToAdd": {
             "CertificateOrAward": "ISTQB Advanced Level (Test Analyst, Technical Test Analyst)",
             "CertifiedFrom": "ISTQB",
-            "Year": "2024"
+            "Year": "2024",
+            "ExpectedMessage": "ISTQB Advanced Level (Test Analyst, Technical Test Analyst) has been added to your certification"
           },
           "CertificationDetailsToUpdate": null,
           "CertificationDetailsToDelete": null
@@ -25,7 +27,8 @@
           "CertificationDetailsToAdd": {
             "CertificateOrAward": "Certified Selenium Tester (CST)",
             "CertifiedFrom": "ATA, CP-SAT",
-            "Year": "2024"
+            "Year": "2024",
+            "ExpectedMessage": "Certified Selenium Tester (CST) has been added to your certification"
           },
           "CertificationDetailsToUpdate": null,
           "CertificationDetailsToDelete": null
@@ -34,7 +37,8 @@
           "CertificationDetailsToAdd": {
             "CertificateOrAward": "Test Automation Engineer (ISTQB)",
             "CertifiedFrom": "ISTQB",
-            "Year": "2024"
+            "Year": "2024",
+            "ExpectedMessage": "Test Automation Engineer (ISTQB) has been added to your certification"
           },
           "CertificationDetailsToUpdate": null,
           "CertificationDetailsToDelete": null
@@ -48,7 +52,8 @@
           "CertificationDetailsToAdd": {
             "CertificateOrAward": "fhgfhjgjkhkjn",
             "CertifiedFrom": "ISTQB",
-            "Year": "2024"
+            "Year": "2024",
+            "ExpectedMessage": "Invalid Certification or Award"
           },
           "CertificationDetailsToUpdate": null,
           "CertificationDetailsToDelete": null
@@ -57,7 +62,8 @@
           "CertificationDetailsToAdd": {
             "CertificateOrAward": "123456789",
             "CertifiedFrom": "ISTQB",
-            "Year": "2024"
+            "Year": "2024",
+            "ExpectedMessage": "Invalid Certification or Award"
           },
           "CertificationDetailsToUpdate": null,
           "CertificationDetailsToDelete": null
@@ -66,7 +72,8 @@
           "CertificationDetailsToAdd": {
             "CertificateOrAward": "!@#$%^&*",
             "CertifiedFrom": "ATA, CP-SAT",
-            "Year": "2024"
+            "Year": "2024",
+            "ExpectedMessage": "Invalid Certification or Award"
           },
           "CertificationDetailsToUpdate": null,
           "CertificationDetailsToDelete": null
@@ -75,7 +82,8 @@
           "CertificationDetailsToAdd": {
             "CertificateOrAward": "       ",
             "CertifiedFrom": "ISTQB",
-            "Year": "2024"
+            "Year": "2024",
+            "ExpectedMessage": "Invalid Certification or Award"
           },
           "CertificationDetailsToUpdate": null,
           "CertificationDetailsToDelete": null
@@ -89,7 +97,8 @@
           "CertificationDetailsToAdd": {
             "CertificateOrAward": "ISTQB Foundation Level (CTFL)",
             "CertifiedFrom": "fbhbvnbvnvnm",
-            "Year": "2024"
+            "Year": "2024",
+            "ExpectedMessage": "Invalid Certificate from"
           },
           "CertificationDetailsToUpdate": null,
           "CertificationDetailsToDelete": null
@@ -98,7 +107,8 @@
           "CertificationDetailsToAdd": {
             "CertificateOrAward": "ISTQB Advanced Level (Test Analyst, Technical Test Analyst)",
             "CertifiedFrom": "1223445566",
-            "Year": "2024"
+            "Year": "2024",
+            "ExpectedMessage": "Invalid Certificate from"
           },
           "CertificationDetailsToUpdate": null,
           "CertificationDetailsToDelete": null
@@ -107,7 +117,8 @@
           "CertificationDetailsToAdd": {
             "CertificateOrAward": "Certified Selenium Tester (CST)",
             "CertifiedFrom": "@@#$#$$%%",
-            "Year": "2024"
+            "Year": "2024",
+            "ExpectedMessage": "Invalid Certificate from"
           },
           "CertificationDetailsToUpdate": null,
           "CertificationDetailsToDelete": null
@@ -116,7 +127,8 @@
           "CertificationDetailsToAdd": {
             "CertificateOrAward": "Test Automation Engineer (ISTQB)",
             "CertifiedFrom": "      ",
-            "Year": "2024"
+            "Year": "2024",
+            "ExpectedMessage": "Invalid Certificate from"
           },
           "CertificationDetailsToUpdate": null,
           "CertificationDetailsToDelete": null
@@ -130,7 +142,8 @@
           "CertificationDetailsToAdd": {
             "CertificateOrAward": "CertificateText_Length_255",
             "CertifiedFrom": "ISTQB",
-            "Year": "2024"
+            "Year": "2024",
+            "ExpectedMessage": "Invalid Certification or Award"
           },
           "CertificationDetailsToUpdate": null,
           "CertificationDetailsToDelete": null
@@ -144,9 +157,524 @@
           "CertificationDetailsToAdd": {
             "CertificateOrAward": "ISTQB Foundation Level (CTFL)",
             "CertifiedFrom": "CertificateFromText_Length_255",
+            "Year": "2024",
+            "ExpectedMessage": "Invalid Certificate from"
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Leave either one or all the fields empty",
+      "TestItems": [
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "",
+            "CertifiedFrom": "",
+            "Year": "",
+            "ExpectedMessage": "Please enter Certification Name, Certification From and Certification Year"
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        },
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "ISTQB Advanced Level (Test Analyst, Technical Test Analyst)",
+            "CertifiedFrom": "",
+            "Year": "",
+            "ExpectedMessage": "Please enter Certification Name, Certification From and Certification Year"
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        },
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "Certified Selenium Tester (CST)",
+            "CertifiedFrom": "ATA, CP-SAT",
+            "Year": "",
+            "ExpectedMessage": "Please enter Certification Name, Certification From and Certification Year"
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Add same certification details multiple times",
+      "TestItems": [
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "ISTQB Foundation Level (CTFL)",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2024",
+            "ExpectedMessage": "ISTQB Foundation Level (CTFL) has been added to your certification"
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        },
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "ISTQB Foundation Level (CTFL)",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2024",
+            "ExpectedMessage": "This information is already exist."
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Add certification details when the session has expired",
+      "TestItems": [
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "ISTQB Foundation Level (CTFL)",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2024",
+            "ExpectedMessage": "undefined"
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Certificate or Award and Certified From (e.g. Adobe) mismatch",
+      "TestItems": [
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "ISTQB Foundation Level (CTFL)",
+            "CertifiedFrom": "Microsoft",
+            "Year": "2024",
+            "ExpectedMessage": "The information is invalid"
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        },
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "Microsoft Azure Networking",
+            "CertifiedFrom": "Cisco",
+            "Year": "2024",
+            "ExpectedMessage": "The information is invalid"
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Cancel add process",
+      "TestItems": [
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "Microsoft Azure Networking",
+            "CertifiedFrom": "Microsoft",
             "Year": "2024"
           },
           "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Update certification details with valid input",
+      "TestItems": [
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "ISTQB Advanced Level (Test Analyst / Technical Test Analyst)",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2024",
+            "ExpectedMessage": "ISTQB Advanced Level (Test Analyst / Technical Test Analyst) has been added to your certification"
+          },
+          "CertificationDetailsToUpdate": {
+            "CertificateOrAward": "Postman Student Expert / API Tester",
+            "CertifiedFrom": "Postman",
+            "Year": "2024",
+            "ExpectedMessage": "Postman Student Expert / API Tester has been updated to your certification"
+          },
+          "CertificationDetailsToDelete": null
+        },
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "CCNA (Cisco Certified Network Associate)",
+            "CertifiedFrom": "Cisco",
+            "Year": "2024",
+            "ExpectedMessage": "CCNA (Cisco Certified Network Associate) has been added to your certification"
+          },
+          "CertificationDetailsToUpdate": {
+            "CertificateOrAward": "Microsoft Azure Networking",
+            "CertifiedFrom": "Microsoft",
+            "Year": "2024",
+            "ExpectedMessage": "Microsoft Azure Networking has been updated to your certification"
+          },
+          "CertificationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Update certification details with invalid Certificate or Award",
+      "TestItems": [
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "ISTQB Advanced Level (Test Analyst / Technical Test Analyst)",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2015",
+            "ExpectedMessage": "ISTQB Advanced Level (Test Analyst / Technical Test Analyst) has been added to your certification"
+          },
+          "CertificationDetailsToUpdate": {
+            "CertificateOrAward": "gfhgjhkkj",
+            "CertifiedFrom": "Postman",
+            "Year": "2020",
+            "ExpectedMessage": "Invalid Certificate Or Award"
+          },
+          "CertificationDetailsToDelete": null
+        },
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "CCNA (Cisco Certified Network Associate)",
+            "CertifiedFrom": "Cisco",
+            "Year": "2017",
+            "ExpectedMessage": "CCNA (Cisco Certified Network Associate) has been added to your certification"
+          },
+          "CertificationDetailsToUpdate": {
+            "CertificateOrAward": "334455667",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2022",
+            "ExpectedMessage": "Invalid Certificate Or Award"
+          },
+          "CertificationDetailsToDelete": null
+        },
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "Microsoft Azure Networking",
+            "CertifiedFrom": "Microsoft",
+            "Year": "2024",
+            "ExpectedMessage": "Microsoft Azure Networking has been added to your certification"
+          },
+          "CertificationDetailsToUpdate": {
+            "CertificateOrAward": "@!#@$$%%^&^",
+            "CertifiedFrom": "Microsoft",
+            "Year": "2025",
+            "ExpectedMessage": "Invalid Certificate Or Award"
+          },
+          "CertificationDetailsToDelete": null
+        },
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "Postman Student Expert / API Tester",
+            "CertifiedFrom": "Postman",
+            "Year": "2024",
+            "ExpectedMessage": "Postman Student Expert / API Tester has been added to your certification"
+          },
+          "CertificationDetailsToUpdate": {
+            "CertificateOrAward": "      ",
+            "CertifiedFrom": "Microsoft",
+            "Year": "2024",
+            "ExpectedMessage": "Invalid Certificate Or Award"
+          },
+          "CertificationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Update certification details with invalid Certificate from",
+      "TestItems": [
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "ISTQB Advanced Level (Test Analyst / Technical Test Analyst)",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2015",
+            "ExpectedMessage": "ISTQB Advanced Level (Test Analyst / Technical Test Analyst) has been added to your certification"
+          },
+          "CertificationDetailsToUpdate": {
+            "CertificateOrAward": "Postman Student Expert / API Tester",
+            "CertifiedFrom": "gfhgjhkkj",
+            "Year": "2020",
+            "ExpectedMessage": "Invalid Certificate from"
+          },
+          "CertificationDetailsToDelete": null
+        },
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "CCNA (Cisco Certified Network Associate)",
+            "CertifiedFrom": "Cisco",
+            "Year": "2017",
+            "ExpectedMessage": "CCNA (Cisco Certified Network Associate) has been added to your certification"
+          },
+          "CertificationDetailsToUpdate": {
+            "CertificateOrAward": "Storage Area Network",
+            "CertifiedFrom": "334455667",
+            "Year": "2022",
+            "ExpectedMessage": "Invalid Certificate from"
+          },
+          "CertificationDetailsToDelete": null
+        },
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "Microsoft Azure Networking",
+            "CertifiedFrom": "Microsoft",
+            "Year": "2024",
+            "ExpectedMessage": "Microsoft Azure Networking has been added to your certification"
+          },
+          "CertificationDetailsToUpdate": {
+            "CertificateOrAward": "Microsoft Power BI",
+            "CertifiedFrom": "@!#@$$%%^&^",
+            "Year": "2025",
+            "ExpectedMessage": "Invalid Certificate from"
+          },
+          "CertificationDetailsToDelete": null
+        },
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "Certified Selenium Tester (CST)",
+            "CertifiedFrom": "ATA, CP-SAT",
+            "Year": "2024",
+            "ExpectedMessage": "Certified Selenium Tester (CST) has been added to your certification"
+          },
+          "CertificationDetailsToUpdate": {
+            "CertificateOrAward": "Postman Student Expert / API Tester",
+            "CertifiedFrom": "         ",
+            "Year": "2024",
+            "ExpectedMessage": "Invalid Certificate from"
+          },
+          "CertificationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": ">250 characters of Certificate or Award to update",
+      "TestItems": [
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "Postman Student Expert / API Tester",
+            "CertifiedFrom": "Postman",
+            "Year": "2024",
+            "ExpectedMessage": "Postman Student Expert / API Tester has been added to your certification"
+          },
+          "CertificationDetailsToUpdate": {
+            "CertificateOrAward": "CertificateText_Length_255",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2024",
+            "ExpectedMessage": "Invalid Certification or Award"
+          },
+          "CertificationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": ">250 characters of Certificate From to update",
+      "TestItems": [
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "ISTQB Foundation Level (CTFL)",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2024",
+            "ExpectedMessage": "ISTQB Foundation Level (CTFL) has been added to your certification"
+          },
+          "CertificationDetailsToUpdate": {
+            "CertificateOrAward": "CCNA",
+            "CertifiedFrom": "CertifiedFrom_Length_255",
+            "Year": "2024",
+            "ExpectedMessage": "Invalid Certificate From"
+          },
+          "CertificationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Leave either one or all the fields empty for update",
+      "TestItems": [
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "ISTQB Foundation Level (CTFL)",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2024",
+            "ExpectedMessage": "ISTQB Foundation Level (CTFL) has been added to your certification"
+          },
+          "CertificationDetailsToUpdate": {
+            "CertificateOrAward": "",
+            "CertifiedFrom": "",
+            "Year": "",
+            "ExpectedMessage": "Please enter Certification Name, Certification From and Certification Year"
+          },
+          "CertificationDetailsToDelete": null
+        },
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "CCNA",
+            "CertifiedFrom": "Cisco",
+            "Year": "2024",
+            "ExpectedMessage": "CCNA has been added to your certification"
+          },
+          "CertificationDetailsToUpdate": {
+            "CertificateOrAward": "AWS Certified Cloud Practitioner Foundational",
+            "CertifiedFrom": "",
+            "Year": "",
+            "ExpectedMessage": "Please enter Certification Name, Certification From and Certification Year"
+          },
+          "CertificationDetailsToDelete": null
+        },
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "AWS Certified AI Practitioner",
+            "CertifiedFrom": "Amazon Web Services (AWS)",
+            "Year": "2024",
+            "ExpectedMessage": "AWS Certified AI Practitioner has been added to your certification"
+          },
+          "CertificationDetailsToUpdate": {
+            "CertificateOrAward": "Certified Agile Tester (CAT)",
+            "CertifiedFrom": "iSQI",
+            "Year": "",
+            "ExpectedMessage": "Please enter Certification Name, Certification From and Certification Year"
+          },
+          "CertificationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Update same certification details multiple times",
+      "TestItems": [
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "ISTQB Foundation Level (CTFL)",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2024",
+            "ExpectedMessage": "ISTQB Foundation Level (CTFL) has been added to your certification"
+          },
+          "CertificationDetailsToUpdate": {
+            "CertificateOrAward": "AWS Certified AI Practitioner",
+            "CertifiedFrom": "AWS",
+            "Year": "2020",
+            "ExpectedMessage": "AWS Certified AI Practitioner has been updated to your certification"
+          },
+          "CertificationDetailsToDelete": null
+        },
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "CCNA",
+            "CertifiedFrom": "Cisco",
+            "Year": "2024",
+            "ExpectedMessage": "CCNA has been added to your certification"
+          },
+          "CertificationDetailsToUpdate": {
+            "CertificateOrAward": "AWS Certified AI Practitioner",
+            "CertifiedFrom": "AWS",
+            "Year": "2020",
+            "ExpectedMessage": "This information is already exist."
+          },
+          "CertificationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Cancel update process",
+      "TestItems": [
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "ISTQB Foundation Level (CTFL)",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2024",
+            "ExpectedMessage": "ISTQB Foundation Level (CTFL) has been added to your certification"
+          },
+          "CertificationDetailsToUpdate": {
+            "CertificateOrAward": "AWS Certified AI Practitioner",
+            "CertifiedFrom": "AWS",
+            "Year": "2020",
+            "ExpectedMessage": null
+          },
+          "CertificationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Update certification details when the session has expired",
+      "TestItems": [
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "ISTQB Foundation Level (CTFL)",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2024",
+            "ExpectedMessage": "ISTQB Foundation Level (CTFL) has been added to your certification"
+          },
+          "CertificationDetailsToUpdate": {
+            "CertificateOrAward": "AWS Certified AI Practitioner",
+            "CertifiedFrom": "AWS",
+            "Year": "2020",
+            "ExpectedMessage": "There is an error when updating certification"
+          },
+          "CertificationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Certificate or Award and Certified From (e.g. Adobe) mismatch for update",
+      "TestItems": [
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "ISTQB Foundation Level (CTFL)",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2024",
+            "ExpectedMessage": "ISTQB Foundation Level (CTFL) has been added to your certification"
+          },
+          "CertificationDetailsToUpdate": {
+            "CertificateOrAward": "AWS Certified AI Practitioner",
+            "CertifiedFrom": "Microsoft",
+            "Year": "2020",
+            "ExpectedMessage": "Invalid Certificate or Award and Certified From (e.g. Adobe)"
+          },
+          "CertificationDetailsToDelete": null
+        },
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "CCNA",
+            "CertifiedFrom": "Cisco",
+            "Year": "2024",
+            "ExpectedMessage": "CCNA has been added to your certification"
+          },
+          "CertificationDetailsToUpdate": {
+            "CertificateOrAward": "Microsoft Power BI",
+            "CertifiedFrom": "AWS",
+            "Year": "2020",
+            "ExpectedMessage": "Invalid Certificate or Award and Certified From (e.g. Adobe)"
+          },
+          "CertificationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Destructive testing for add",
+      "TestItems": [
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "CertificateText_Length_5000",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2024",
+            "ExpectedMessage": "Invalid Certification or Award"
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": null
+        }
+      ]
+    },
+    {
+      "ScenarioName": "Destructive testing for update",
+      "TestItems": [
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "Postman Student Expert / API Tester",
+            "CertifiedFrom": "Postman",
+            "Year": "2024",
+            "ExpectedMessage": "Postman Student Expert / API Tester has been added to your certification"
+          },
+          "CertificationDetailsToUpdate": {
+            "CertificateOrAward": "CertificateText_Length_5000",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2024",
+            "ExpectedMessage": "Invalid Certification or Award"
+          },
           "CertificationDetailsToDelete": null
         }
       ]
@@ -156,9 +684,5 @@
 
 
 
-
-
-
-
-      ]
-    }
+  ] 
+}

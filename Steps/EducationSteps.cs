@@ -1,7 +1,9 @@
-﻿using Reqnroll;
+﻿using AngleSharp.Text;
+using Reqnroll;
 using qa_dotnet_cucumber.Pages;
 using qa_dotnet_cucumber.Entity;
 using qa_dotnet_cucumber.Helper;
+using qa_dotnet_cucumber.MessageConstants;
 
 namespace qa_dotnet_cucumber.Steps
 {
@@ -63,7 +65,7 @@ namespace qa_dotnet_cucumber.Steps
             var actualList = _scenarioContext.Get<List<string>>("ActualSuccessMessageList");
             foreach (var actual in actualList)
             {
-                Assert.That(actual, Is.EqualTo(MessageConstants.SuccessMessageForAdd), $"Actual and Expected are mismatched!");
+                Assert.That(actual, Is.EqualTo(EducationConstants.SuccessMessageForAdd), $"Actual and Expected are mismatched!");
             }
         }
 
@@ -103,7 +105,7 @@ namespace qa_dotnet_cucumber.Steps
                 foreach (var (message, type) in messageResults)
                 {
                     Assert.That(type, Is.EqualTo("error"), "Error message should be shown, But was success!!!");
-                    Assert.That(message, Is.EqualTo(MessageConstants.ErrorMessage), $"Message {MessageConstants.ErrorMessage} is expected.");
+                    Assert.That(message, Is.EqualTo(EducationConstants.ErrorMessage), $"Message {EducationConstants.ErrorMessage} is expected.");
                 }
             });
         }
@@ -114,7 +116,7 @@ namespace qa_dotnet_cucumber.Steps
             var actualMessages = _scenarioContext.Get<List<string>>("ActualSuccessMessageList");
             foreach (var actualMessage in actualMessages)
             {
-                Assert.That(actualMessage, Is.EqualTo(MessageConstants.ErrorMessage), $"Expected message is {MessageConstants.ErrorMessage}, but found {actualMessage}");
+                Assert.That(actualMessage, Is.EqualTo(EducationConstants.ErrorMessage), $"Expected message is {EducationConstants.ErrorMessage}, but found {actualMessage}");
             }
         }
 
@@ -145,7 +147,7 @@ namespace qa_dotnet_cucumber.Steps
             var actualList = _scenarioContext.Get<List<string>>("ActualErrorMessage");
             foreach (var actual in actualList)
             {
-                Assert.That(actual, Is.EqualTo(MessageConstants.ErrorMessageForEmptyField), $"Expected message is {MessageConstants.ErrorMessageForEmptyField}, but not found");
+                Assert.That(actual, Is.EqualTo(EducationConstants.ErrorMessageForEmptyField), $"Expected message is {EducationConstants.ErrorMessageForEmptyField}, but not found");
             }
         }
 
@@ -185,8 +187,8 @@ namespace qa_dotnet_cucumber.Steps
                 foreach (var (message, type) in messageResults)
                 {
                     Assert.That(type, Is.EqualTo("error"), $"Expected message type should be {type},but found error");
-                    Assert.That(message, Is.EqualTo(MessageConstants.ErrorMessageForAddingDuplicateDetails),
-                        $"Message {MessageConstants.ErrorMessageForAddingDuplicateDetails} is expected.");
+                    Assert.That(message, Is.EqualTo(EducationConstants.ErrorMessageForAddingDuplicateDetails),
+                        $"Message {EducationConstants.ErrorMessageForAddingDuplicateDetails} is expected.");
                 }
             });
         }
@@ -218,7 +220,7 @@ namespace qa_dotnet_cucumber.Steps
             var actualList = _scenarioContext.Get<List<string>>("ActualMessageList");
             foreach (var actual in actualList)
             {
-                Assert.That(actual, Is.EqualTo(MessageConstants.ErrorMessageForSessionExpired), $"Expected message is {MessageConstants.ErrorMessageForSessionExpired}, but it wasn't found");
+                Assert.That(actual, Is.EqualTo(EducationConstants.ErrorMessageForSessionExpired), $"Expected message is {EducationConstants.ErrorMessageForSessionExpired}, but it wasn't found");
             }
         }
        
@@ -228,7 +230,7 @@ namespace qa_dotnet_cucumber.Steps
             var actualList = _scenarioContext.Get<List<string>>("ActualSuccessMessageList");
             foreach (var actual in actualList)
             {
-                Assert.That(actual, Is.EqualTo(MessageConstants.ErrorMessage), $"Expected message was '{MessageConstants.ErrorMessage}', but found '{actual}'");
+                Assert.That(actual, Is.EqualTo(EducationConstants.ErrorMessage), $"Expected message was '{EducationConstants.ErrorMessage}', but found '{actual}'");
             }
         }
         
@@ -247,7 +249,7 @@ namespace qa_dotnet_cucumber.Steps
                     var detailsToUpdate = testItem.EducationDetailsToUpdate;
                     _educationPage.AddEducationDetails(existingDetails.CollegeUniversityName, existingDetails.Country, existingDetails.Title, existingDetails.Degree, existingDetails.YearOfGraduation);
                     _educationPage.UpdateEducationDetails(existingDetails.CollegeUniversityName,detailsToUpdate.CollegeUniversityName, detailsToUpdate.Country, detailsToUpdate.Title, detailsToUpdate.Degree, detailsToUpdate.YearOfGraduation);
-                    var successMessage = _educationPage.GetSuccessMessageForUpdate(MessageConstants.SuccessMessageForUpdate);
+                    var successMessage = _educationPage.GetSuccessMessageForUpdate(EducationConstants.SuccessMessageForUpdate);
                     actualUpdateMessages.Add(successMessage);
                     cleanUpList.Add(detailsToUpdate.CollegeUniversityName);
                 }
@@ -262,7 +264,7 @@ namespace qa_dotnet_cucumber.Steps
             var actualList = _scenarioContext.Get<List<string>>("ActualUpdateMessages");
             foreach (var actual in actualList)
             {
-                Assert.That(actual, Is.EqualTo(MessageConstants.SuccessMessageForUpdate), $"Expected message is {MessageConstants.SuccessMessageForUpdate}, but found actual");
+                Assert.That(actual, Is.EqualTo(EducationConstants.SuccessMessageForUpdate), $"Expected message is {EducationConstants.SuccessMessageForUpdate}, but found actual");
             }
         }
 
@@ -307,7 +309,7 @@ namespace qa_dotnet_cucumber.Steps
                 foreach (var (message, type) in messageResults)
                 {
                     Assert.That(type, Is.EqualTo("error"), "Error message should be shown, But was success!!!");
-                    Assert.That(message, Is.EqualTo(MessageConstants.ErrorMessage), $"Message {MessageConstants.ErrorMessage} is expected.");
+                    Assert.That(message, Is.EqualTo(EducationConstants.ErrorMessage), $"Message {EducationConstants.ErrorMessage} is expected.");
                 }
             });
         }
@@ -318,8 +320,8 @@ namespace qa_dotnet_cucumber.Steps
             var actualList = _scenarioContext.Get<List<string>>("ActualUpdateMessages");
             foreach (var actual in actualList)
             {
-                Assert.That(actual, Is.EqualTo(MessageConstants.ErrorMessage),
-                    $"Expected message was {MessageConstants.ErrorMessage},but found {actual}");
+                Assert.That(actual, Is.EqualTo(EducationConstants.ErrorMessage),
+                    $"Expected message was {EducationConstants.ErrorMessage},but found {actual}");
             }
         }
 
@@ -406,8 +408,8 @@ namespace qa_dotnet_cucumber.Steps
             var actualList = _scenarioContext.Get<List<string>>("ActualMessageList");
             foreach (var actual in actualList)
             {
-                Assert.That(actual, Is.EqualTo(MessageConstants.ErrorMessageForSessionExpiredToUpdate),
-                    $"Expected message is {MessageConstants.ErrorMessageForSessionExpiredToUpdate}, but it wasn't found");
+                Assert.That(actual, Is.EqualTo(EducationConstants.ErrorMessageForSessionExpiredToUpdate),
+                    $"Expected message is {EducationConstants.ErrorMessageForSessionExpiredToUpdate}, but it wasn't found");
             }
         }
 
@@ -444,8 +446,8 @@ namespace qa_dotnet_cucumber.Steps
             var actualList = _scenarioContext.Get<List<string>>("ActualMessageList");
             foreach (var actual in actualList)
             {
-                Assert.That(actual, Is.EqualTo(MessageConstants.ErrorMessageForSessionExpiredToDelete),
-                    $"Expected message is {MessageConstants.ErrorMessageForSessionExpiredToDelete}, but it wasn't found");
+                Assert.That(actual, Is.EqualTo(EducationConstants.ErrorMessageForSessionExpiredToDelete),
+                    $"Expected message is {EducationConstants.ErrorMessageForSessionExpiredToDelete}, but it wasn't found");
             }
         }
 
@@ -486,8 +488,52 @@ namespace qa_dotnet_cucumber.Steps
             var actualList = _scenarioContext.Get<List<string>>("ActualUpdateMessages");
             foreach (var actual in actualList)
             {
-                Assert.That(actual, Is.EqualTo(MessageConstants.ErrorMessage), $"Expected message was '{MessageConstants.ErrorMessage}', but found '{actual}'");
+                Assert.That(actual, Is.EqualTo(EducationConstants.ErrorMessage), $"Expected message was '{EducationConstants.ErrorMessage}', but found '{actual}'");
             }
+        }
+        [When("I enter education details for destructive testing from json file with the TestName {string}")]
+        public void WhenIEnterEducationDetailsForDestructiveTestingFromJsonFileWithTheTestName(string scenarioName)
+        {
+            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
+            var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
+            if (scenario != null)
+            {
+                var actualEducationList = new List<string>();
+                var cleanupList = new List<string>();
+                foreach (var testItem in scenario.TestItems)
+                {
+                    var educationDetails = testItem.EducationDetails;
+                    if (educationDetails.CollegeUniversityName.Equals("CollegeName_Text_5000"))
+                    {
+                        educationDetails.CollegeUniversityName = new string('A', 5000);
+                    }
+
+                    _educationPage.AddEducationDetails(educationDetails.CollegeUniversityName, educationDetails.Country,
+                        educationDetails.Title, educationDetails.Degree, educationDetails.YearOfGraduation);
+                    var actualMessage = _educationPage.GetSuccessMessage();
+                    actualEducationList.Add(actualMessage);
+                    cleanupList.Add(educationDetails.CollegeUniversityName);
+                }
+                _scenarioContext.Set(actualEducationList,"ActualEducationList");
+                _scenarioContext.Set(cleanupList, "EducationToCleanup");
+            }
+        }
+
+        [When("I update education details with the existing details for destructive testing from json file with the TestName {string}")]
+        public void WhenIUpdateEducationDetailsWithTheExistingDetailsForDestructiveTestingFromJsonFileWithTheTestName(string p0)
+        {
+            throw new PendingStepException();
+        }
+
+        [Then("I should see the error message for huge data")]
+        public void ThenIShouldSeeTheErrorMessageForHugeData()
+        {
+            var actualList = _scenarioContext.Get<List<string>>("ActualEducationList");
+            foreach (var actual in actualList)
+            {
+                Assert.That(actual,Is.EqualTo(EducationConstants.ErrorMessage), $"Expected message is {EducationConstants.ErrorMessage}, but found {actual}");
+            }
+           
         }
 
 

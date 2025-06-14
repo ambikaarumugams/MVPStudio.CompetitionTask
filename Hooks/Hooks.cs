@@ -103,7 +103,7 @@ namespace qa_dotnet_cucumber.Hooks
             _objectContainer.RegisterInstanceAs(new LanguagePage(_driver));
             _objectContainer.RegisterInstanceAs(new SkillPage(_driver));
             _objectContainer.RegisterInstanceAs(new EducationPage(_driver));
-            _objectContainer.RegisterInstanceAs(new CertificationsPage(_driver));
+            _objectContainer.RegisterInstanceAs(new CertificationPage(_driver));
 
             lock (_reportLock)
             {
@@ -201,18 +201,18 @@ namespace qa_dotnet_cucumber.Hooks
                             }
                         }
                     }
-                    else if (featureContext.FeatureInfo.Tags.Contains("certifications"))
+                    else if (featureContext.FeatureInfo.Tags.Contains("certification"))
                     {
-                        if (scenarioContext.TryGetValue("CertificationsToCleanup", out List<string>? certificationsList))
+                        if (scenarioContext.TryGetValue("CertificationsToCleanup", out List<string>? certificationList))
                         {
-                            if (certificationsList != null && certificationsList.Any())
+                            if (certificationList != null && certificationList.Any())
                             {
-                                var certificationsPage = _objectContainer.Resolve<CertificationsPage>();
-                                foreach (var certification in certificationsList)
+                                var certificationPage = _objectContainer.Resolve<CertificationPage>();
+                                foreach (var certification in certificationList)
                                 {
-                                    certificationsPage.DeleteSpecificCertification(certification);
+                                    certificationPage.DeleteSpecificCertification(certification);
                                 }
-                                Console.WriteLine($"Deleted {certificationsList.Count} certifications list for this scenario");
+                                Console.WriteLine($"Deleted {certificationList.Count} certifications list for this scenario");
                             }
                             else
                             {

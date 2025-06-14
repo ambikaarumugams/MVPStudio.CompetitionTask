@@ -88,9 +88,9 @@ Scenario: Validate if the user is not able to update the education details which
 	Then I should see the error message for updating education details 
 
 	Scenario:Validate if the user is able to add huge data in the education field
-	When I enter education details from json file with the TestName "Add education details with huge text"
-	Then I should see the error message
+	When I enter education details for destructive testing from json file with the TestName "Add education details with huge text"
+	Then I should see the error message for huge data
 
 	Scenario: Validate if the user is able to update education details with huge data
-	When I update education details with the existing details from json file with the TestName "Update education details with huge text"
-	Then I should see the error message
+	When I update education details with the existing details for destructive testing from json file with the TestName "Update education details with huge text"
+	Then I should see the error message for huge data

@@ -965,42 +965,58 @@
         }
       ]
     },
-
-
-
+    {
+      "ScenarioName": "Add education details with huge text",
+      "TestItems": [
         {
-          "ScenarioName": "DeleteEducationDetails",
-          "TestItems": [
-            {
-              "EducationDetails": {
-                "CollegeUniversityName": "Oxford University2",
-                "Country": "Angola",
-                "Title": "B.A",
-                "Degree": "Astrophysics",
-                "YearOfGraduation": "2018"
-              }
-            },
-            {
-              "EducationDetails": {
-                "CollegeUniversityName": "Oxford University3",
-                "Country": "Angola",
-                "Title": "B.A",
-                "Degree": "Astrophysics",
-                "YearOfGraduation": "2018"
-              }
-            },
-            {
-              "EducationDetails": {
-                "CollegeUniversityName": "Oxford University3",
-                "Country": "Angola",
-                "Title": "B.A",
-                "Degree": "Astrophysics",
-                "YearOfGraduation": "2018"
-              }
-            }
+          "EducationDetails": {
+            "CollegeUniversityName": "CollegeName_Text_5000",
+            "Country": "Australia",
+            "Title": "PHD",
+            "Degree": "Master of Science in Interdisciplinary Integration of Quantum Computing",
+            "YearOfGraduation": "2023"
+          },
+          "EducationDetailsToUpdate": null,
+          "EducationDetailsToDelete": null
+        }
+      ]
+    },
 
-          ]
+
+
+    {
+      "ScenarioName": "DeleteEducationDetails",
+      "TestItems": [
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "Oxford University2",
+            "Country": "Angola",
+            "Title": "B.A",
+            "Degree": "Astrophysics",
+            "YearOfGraduation": "2018"
+          }
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "Oxford University3",
+            "Country": "Angola",
+            "Title": "B.A",
+            "Degree": "Astrophysics",
+            "YearOfGraduation": "2018"
+          }
+        },
+        {
+          "EducationDetails": {
+            "CollegeUniversityName": "Oxford University3",
+            "Country": "Angola",
+            "Title": "B.A",
+            "Degree": "Astrophysics",
+            "YearOfGraduation": "2018"
+          }
         }
 
       ]
+    }
+
+  ]
     }
