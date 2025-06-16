@@ -646,5 +646,34 @@ namespace qa_dotnet_cucumber.Steps
             }
         }
 
+        [When("I delete certification details from json file after the session has expired with the TestName {string}")] //Delete during session expired
+        public void WhenIDeleteCertificationDetailsFromJsonFileAfterTheSessionHasExpiredWithTheTestName(string scenarioName)
+        {
+            var feature = JsonHelper.LoadJson<CertificationFeature>("CertificationsTestData");
+            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            if (scenario != null)
+            {
+                var actualMessageList = new List<string>();
+                var cleanUpList = new List<string>();
+                var expectedMessageList = new List<string>();
+                foreach (var testItem in scenario.TestItems)
+                {
+                    var detailsToAdd = testItem.CertificationDetailsToAdd;
+                    var detailsToDelete = testItem.CertificationDetailsToDelete;
+                    _certificationPage.AddCertifications(detailsToAdd.CertificateOrAward, detailsToAdd.CertifiedFrom, detailsToAdd.Year);
+                    var successMessage = _certificationPage.GetSuccessMessage();
+                    Console.WriteLine(successMessage);
+                    _certificationPage.ExpireSession();
+                    _certificationPage.DeleteSpecificCertification(detailsToDelete.CertificateOrAward);
+                    expectedMessageList.Add(detailsToDelete.ExpectedMessage);
+                    var actualMessage = _certificationPage.GetErrorMessage();
+                    actualMessageList.Add(actualMessage);
+                    cleanUpList.Add(detailsToDelete.CertificateOrAward);
+                }
+                _scenarioContext.Set(cleanUpList, "CertificationsToCleanup");
+                _scenarioContext.Set(actualMessageList, "ActualMessageList");
+                _scenarioContext.Set(expectedMessageList, "ExpectedMessageList");
+            }
+        }
     }
 }

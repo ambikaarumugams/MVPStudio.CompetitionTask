@@ -16,7 +16,7 @@ namespace qa_dotnet_cucumber.Steps
         private readonly ScenarioContext _scenarioContext;
         private readonly EducationPage _educationPage;
 
-        public EducationSteps(LoginPage loginPage, NavigationHelper navigationHelper, ScenarioContext scenarioContext,EducationPage educationPage)
+        public EducationSteps(LoginPage loginPage, NavigationHelper navigationHelper, ScenarioContext scenarioContext,EducationPage educationPage) //Constructor
         {
             _loginPage = loginPage;
             _navigationHelper = navigationHelper;
@@ -35,11 +35,11 @@ namespace qa_dotnet_cucumber.Steps
             _educationPage.NavigateToTheProfilePage();
         }
 
-        [When("I enter education details from json file with the TestName {string}")]  //Add education details
+        [When("I enter education details from json file with the TestName {string}")]  //Add education details, >250 characters length, negative testing with valid input
         public void WhenIEnterEducationDetailsFromJsonFileWithTheTestName(string scenarioName) 
         {
             var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);  //Filter the scenario using the scenario name 
+            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName,scenarioName,StringComparison.OrdinalIgnoreCase));  //Filter the scenario using the scenario name 
 
             if (scenario != null)
             {
@@ -48,32 +48,32 @@ namespace qa_dotnet_cucumber.Steps
 
                 foreach (var testItem in scenario.TestItems)
                 {
-                    var details = testItem.EducationDetails;
-                    _educationPage.AddEducationDetails(details.CollegeUniversityName, details.Country, details.Title, details.Degree, details.YearOfGraduation);
+                    var detailsToAdd = testItem.EducationDetails;
+                    _educationPage.AddEducationDetails(detailsToAdd.CollegeUniversityName, detailsToAdd.Country, detailsToAdd.Title, detailsToAdd.Degree, detailsToAdd.YearOfGraduation);
                     var successMessage = _educationPage.GetSuccessMessage();
                     actualEducationList.Add(successMessage);
-                    cleanupList.Add(details.CollegeUniversityName);
+                    cleanupList.Add(detailsToAdd.CollegeUniversityName);
                 }
                 _scenarioContext.Set(cleanupList, "EducationToCleanup");
-                _scenarioContext.Set(actualEducationList, "ActualSuccessMessageList");
+                _scenarioContext.Set(actualEducationList, "ActualMessageList");
             }
         }
 
-        [Then("I should see the success message")]
+        [Then("I should see the success message")] //Validation for valid input
         public void ThenIShouldSeeTheSuccessMessage()
         {
-            var actualList = _scenarioContext.Get<List<string>>("ActualSuccessMessageList");
+            var actualList = _scenarioContext.Get<List<string>>("ActualMessageList");
             foreach (var actual in actualList)
             {
-                Assert.That(actual, Is.EqualTo(EducationConstants.SuccessMessageForAdd), $"Actual and Expected are mismatched!");
+                Assert.That(actual, Is.EqualTo(EducationConstants.SuccessMessageForAdd), $"Actual and Expected are mismatched!"); 
             }
         }
 
-        [When("I enter invalid education details from json file with the TestName {string}")]
+        [When("I enter invalid education details from json file with the TestName {string}")] //Add invalid input
         public void WhenIEnterInvalidEducationDetailsFromJsonFileWithTheTestName(string scenarioName)
         {
             var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
+            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
 
             if (scenario != null)
             {
@@ -81,14 +81,14 @@ namespace qa_dotnet_cucumber.Steps
                 var cleanUpList = new List<string>();
                 foreach (var testItem in scenario.TestItems)
                 {
-                    var details = testItem.EducationDetails;
-                    _educationPage.AddEducationDetails(details.CollegeUniversityName, details.Country, details.Title, details.Degree, details.YearOfGraduation);
+                    var detailsToAdd = testItem.EducationDetails;
+                    _educationPage.AddEducationDetails(detailsToAdd.CollegeUniversityName, detailsToAdd.Country, detailsToAdd.Title, detailsToAdd.Degree, detailsToAdd.YearOfGraduation);
                     var (messageText, messageType) = _educationPage.GetToastMessage();
                     messageResults.Add((messageText, messageType));
                     Thread.Sleep(5000);
                     if (string.Equals(messageType, "SUCCESS", StringComparison.OrdinalIgnoreCase))
                     {
-                        cleanUpList.Add(details.CollegeUniversityName);
+                        cleanUpList.Add(detailsToAdd.CollegeUniversityName);
                     }
                 }
                 _scenarioContext.Set(messageResults, "ActualMessageList");
@@ -96,7 +96,7 @@ namespace qa_dotnet_cucumber.Steps
             }
         }
 
-        [Then("I should see the error message")]
+        [Then("I should see the error message")]  //Validation for invalid input
         public void ThenIShouldSeeTheErrorMessage()
         {
             var messageResults = _scenarioContext.Get<List<(string Message, string Type)>>("ActualMessageList");
@@ -110,21 +110,21 @@ namespace qa_dotnet_cucumber.Steps
             });
         }
 
-        [Then("I should see the error message for adding huge string")]
+        [Then("I should see the error message for adding huge string")]  //Lengthy text
         public void ThenIShouldSeeTheErrorMessageForAddingHugeString()
         {
-            var actualMessages = _scenarioContext.Get<List<string>>("ActualSuccessMessageList");
+            var actualMessages = _scenarioContext.Get<List<string>>("ActualMessageList");
             foreach (var actualMessage in actualMessages)
             {
                 Assert.That(actualMessage, Is.EqualTo(EducationConstants.ErrorMessage), $"Expected message is {EducationConstants.ErrorMessage}, but found {actualMessage}");
             }
         }
 
-        [When("I leave either one or all the fields empty and give the data from json file with the TestName {string}")]
+        [When("I leave either one or all the fields empty and give the data from json file with the TestName {string}")] //Leave either one or all the fields empty for add
         public void WhenILeaveEitherOneOrAllTheFieldsEmptyAndGiveTheDataFromJsonFileWithTheTestName(string scenarioName)
         {
             var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
+            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
 
             if (scenario != null)
             {
@@ -132,44 +132,44 @@ namespace qa_dotnet_cucumber.Steps
 
                 foreach (var testItem in scenario.TestItems)
                 {
-                    var details = testItem.EducationDetails;
-                    _educationPage.LeaveEitherOneOrAllTheFieldsEmptyToAdd(details.CollegeUniversityName, details.Country, details.Title, details.Degree, details.YearOfGraduation);
-                    var message = _educationPage.GetErrorMessage();
-                    actualMessageList.Add(message);
+                    var detailsToAdd = testItem.EducationDetails;
+                    _educationPage.LeaveEitherOneOrAllTheFieldsEmptyToAdd(detailsToAdd.CollegeUniversityName, detailsToAdd.Country, detailsToAdd.Title, detailsToAdd.Degree, detailsToAdd.YearOfGraduation);
+                    var errorMessage = _educationPage.GetErrorMessage();
+                    actualMessageList.Add(errorMessage);
                 }
-                _scenarioContext.Set(actualMessageList, "ActualErrorMessage");
+                _scenarioContext.Set(actualMessageList, "ActualMessageList");
             }
         }
 
-        [Then("I should see the error message for empty fields")]
+        [Then("I should see the error message for empty fields")]//Validation for empty fields add and update (share)
         public void ThenIShouldSeeTheErrorMessageForEmptyFields()
         {
-            var actualList = _scenarioContext.Get<List<string>>("ActualErrorMessage");
+            var actualList = _scenarioContext.Get<List<string>>("ActualMessageList");
             foreach (var actual in actualList)
             {
                 Assert.That(actual, Is.EqualTo(EducationConstants.ErrorMessageForEmptyField), $"Expected message is {EducationConstants.ErrorMessageForEmptyField}, but not found");
             }
         }
 
-        [When("I enter same education details twice from json file with the TestName {string}")]
+        [When("I enter same education details twice from json file with the TestName {string}")]  //Duplicate data
         public void WhenIEnterSameEducationDetailsTwiceFromJsonFileWithTheTestName(string scenarioName)
         {
             var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
+            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
             var messageResults = new List<(string Message, string Type)>();
             var cleanUpList = new List<string>();
             if (scenario != null)
             {
                 foreach (var testItem in scenario.TestItems)
                 {
-                    var details = testItem.EducationDetails;
-                    _educationPage.AddEducationDetails(details.CollegeUniversityName, details.Country, details.Title, details.Degree, details.YearOfGraduation);
+                    var detailsToAdd = testItem.EducationDetails;
+                    _educationPage.AddEducationDetails(detailsToAdd.CollegeUniversityName, detailsToAdd.Country, detailsToAdd.Title, detailsToAdd.Degree, detailsToAdd.YearOfGraduation);
                     var (messageText, messageType) = _educationPage.GetToastMessage();
                     messageResults.Add((messageText, messageType));
                     Thread.Sleep(5000);
                     if (string.Equals(messageType, "SUCCESS", StringComparison.OrdinalIgnoreCase))
                     {
-                        cleanUpList.Add(details.CollegeUniversityName);
+                        cleanUpList.Add(detailsToAdd.CollegeUniversityName);
                     }
                     messageResults.Remove(("Education has been added", "success"));
                 }
@@ -178,7 +178,7 @@ namespace qa_dotnet_cucumber.Steps
             _scenarioContext.Set(cleanUpList, "EducationToCleanup");
         }
 
-        [Then("I should see the error message for duplicate data")]
+        [Then("I should see the error message for duplicate data")]  //Validation for duplicate data
         public void ThenIShouldSeeTheErrorMessageForDuplicateData()
         {
             var messageResults = _scenarioContext.Get<List<(string Message, string Type)>>("ActualMessageList");
@@ -193,20 +193,20 @@ namespace qa_dotnet_cucumber.Steps
             });
         }
 
-        [When("I enter education details from json file after the session has expired with the TestName {string}")]
+        [When("I enter education details from json file after the session has expired with the TestName {string}")]  //Add during session expired
         public void WhenIEnterEducationDetailsFromJsonFileAfterTheSessionHasExpiredWithTheTestName(string scenarioName)
         {
             var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
+            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
 
             if (scenario != null)
             {
                 var actualMessageList = new List<string>();
                 foreach (var testItem in scenario.TestItems)
                 {
-                    var details = testItem.EducationDetails;
+                    var detailsToAdd = testItem.EducationDetails;
                     _educationPage.ExpireSession();
-                    _educationPage.AddEducationDetails(details.CollegeUniversityName, details.Country, details.Title, details.Degree, details.YearOfGraduation);
+                    _educationPage.AddEducationDetails(detailsToAdd.CollegeUniversityName, detailsToAdd.Country, detailsToAdd.Title, detailsToAdd.Degree, detailsToAdd.YearOfGraduation);
                     var errorMessage = _educationPage.GetErrorMessage();
                     actualMessageList.Add(errorMessage);
                 }
@@ -214,7 +214,7 @@ namespace qa_dotnet_cucumber.Steps
             }
         }
 
-        [Then("I should see the error message for session expired")]
+        [Then("I should see the error message for session expired")]  //Validation for session expired
         public void ThenIShouldSeeTheErrorMessageForSessionExpired()
         {
             var actualList = _scenarioContext.Get<List<string>>("ActualMessageList");
@@ -223,22 +223,46 @@ namespace qa_dotnet_cucumber.Steps
                 Assert.That(actual, Is.EqualTo(EducationConstants.ErrorMessageForSessionExpired), $"Expected message is {EducationConstants.ErrorMessageForSessionExpired}, but it wasn't found");
             }
         }
-       
+
+        [When("I enter education details from the Json file with the test name {string}")]   //Add education details for cancel
+        public void WhenIEnterEducationDetailsFromTheJsonFileWithTheTestName(string scenarioName)
+        {
+            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
+            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName,scenarioName,StringComparison.OrdinalIgnoreCase));
+            if (scenario != null)
+            {
+                var actualList = new List<string>();
+                foreach (var testItem in scenario.TestItems)
+                {
+                    var details = testItem.EducationDetails;
+                    _educationPage.CancelAddEducationDetails(details.CollegeUniversityName, details.Country, details.Title, details.Degree, details.YearOfGraduation);
+                }
+                _scenarioContext.Set(actualList, "ActualListAfterCancel");
+            }
+        }
+
+        [Then("I should see the education details shouldn't be added")]  //Validation message for cancel add
+        public void ThenIShouldSeeTheEducationDetailsShouldntBeAdded()
+        {
+            var actualList = _scenarioContext.Get<List<string>>("ActualListAfterCancel");
+            Assert.That(actualList, Is.Empty, $"Expected list should be empty, but found list with added details");
+        }
+
         [Then("I should see the error message for adding education details")]
         public void ThenIShouldSeeTheErrorMessageForAddingEducationDetails()
         {
-            var actualList = _scenarioContext.Get<List<string>>("ActualSuccessMessageList");
+            var actualList = _scenarioContext.Get<List<string>>("ActualMessageList");
             foreach (var actual in actualList)
             {
                 Assert.That(actual, Is.EqualTo(EducationConstants.ErrorMessage), $"Expected message was '{EducationConstants.ErrorMessage}', but found '{actual}'");
             }
         }
         
-        [When("I update education details with the existing details from json file with the TestName {string}")]
+        [When("I update education details with the existing details from json file with the TestName {string}")] //Update with valid input
         public void WhenIUpdateEducationDetailsWithTheExistingDetailsFromJsonFileWithTheTestName(string scenarioName)
         {
             var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
+            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
             if (scenario != null)
             {
                 var actualUpdateMessages = new List<string>();
@@ -258,7 +282,7 @@ namespace qa_dotnet_cucumber.Steps
             }
         }
 
-        [Then("I should see the success message for update")]
+        [Then("I should see the success message for update")]  //Validation for update
         public void ThenIShouldSeeTheSuccessMessageForUpdate()
         {
             var actualList = _scenarioContext.Get<List<string>>("ActualUpdateMessages");
@@ -268,11 +292,11 @@ namespace qa_dotnet_cucumber.Steps
             }
         }
 
-        [When("I enter invalid education details to update from json file with the TestName {string}")]
+        [When("I enter invalid education details to update from json file with the TestName {string}")] //Update with invalid input
         public void WhenIEnterInvalidEducationDetailsToUpdateFromJsonFileWithTheTestName(string scenarioName)
         {
             var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
+            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
             if (scenario != null)
             {
                 var cleanUpList = new List<string>();
@@ -282,7 +306,7 @@ namespace qa_dotnet_cucumber.Steps
                     var existingDetails = testItem.EducationDetails;
                     var detailsToUpdate = testItem.EducationDetailsToUpdate;
                     _educationPage.AddEducationDetails(existingDetails.CollegeUniversityName, existingDetails.Country, existingDetails.Title, existingDetails.Degree, existingDetails.YearOfGraduation);
-                    Thread.Sleep(3000);
+                    Thread.Sleep(5000);
                     _educationPage.UpdateEducationDetails(existingDetails.CollegeUniversityName,detailsToUpdate.CollegeUniversityName, detailsToUpdate.Country, detailsToUpdate.Title, detailsToUpdate.Degree, detailsToUpdate.YearOfGraduation);
                     var (messageText, messageType) = _educationPage.GetToastMessage();
                     messageResults.Add((messageText, messageType));
@@ -295,12 +319,13 @@ namespace qa_dotnet_cucumber.Steps
                         cleanUpList.Add(existingDetails.CollegeUniversityName);
                     }
                 }
+                _educationPage.ClickCancelUpdateButton();
                 _scenarioContext.Set(messageResults, "ActualMessageList");
                 _scenarioContext.Set(cleanUpList, "EducationToCleanup");
             }
         }
 
-        [Then("I should see the error message for update invalid data")]
+        [Then("I should see the error message for update invalid data")]  //Validation for invalid input
         public void ThenIShouldSeeTheErrorMessageForUpdateInvalidData()
         {
             var messageResults = _scenarioContext.Get<List<(string Message, string Type)>>("ActualMessageList");
@@ -309,12 +334,12 @@ namespace qa_dotnet_cucumber.Steps
                 foreach (var (message, type) in messageResults)
                 {
                     Assert.That(type, Is.EqualTo("error"), "Error message should be shown, But was success!!!");
-                    Assert.That(message, Is.EqualTo(EducationConstants.ErrorMessage), $"Message {EducationConstants.ErrorMessage} is expected.");
+                    Assert.That(message, Is.EqualTo(EducationConstants.ErrorMessage), $"Message: {EducationConstants.ErrorMessage} is expected.");
                 }
             });
         }
 
-        [Then("I should see the error message for updating huge string")]
+        [Then("I should see the error message for updating huge string")]  //Validation for lengthy text
         public void ThenIShouldSeeTheErrorMessageForUpdatingHugeString()
         {
             var actualList = _scenarioContext.Get<List<string>>("ActualUpdateMessages");
@@ -325,35 +350,11 @@ namespace qa_dotnet_cucumber.Steps
             }
         }
 
-        [When("I enter education details from the Json file with the test name {string}")]
-        public void WhenIEnterEducationDetailsFromTheJsonFileWithTheTestName(string scenarioName)
-        {
-            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
-            if (scenario != null)
-            {
-                var actualList = new List<string>();
-                foreach (var testItem in scenario.TestItems)
-                {
-                    var details = testItem.EducationDetails;
-                    _educationPage.CancelAddEducationDetails(details.CollegeUniversityName, details.Country, details.Title, details.Degree, details.YearOfGraduation);
-                }
-                _scenarioContext.Set(actualList, "ActualListAfterCancel");
-            }
-        }
-
-        [Then("I should see the education details shouldn't be added")]
-        public void ThenIShouldSeeTheEducationDetailsShouldntBeAdded()
-        {
-            var actualList = _scenarioContext.Get<List<string>>("ActualListAfterCancel");
-            Assert.That(actualList, Is.Empty, $"Expected list should be empty, but found list with added details");
-        }
-
-        [When("I leave either one or all the fields empty and give the data to update from json file with the TestName {string}")]
+       [When("I leave either one or all the fields empty and give the data to update from json file with the TestName {string}")]  //Leave either one or all the fields empty
         public void WhenILeaveEitherOneOrAllTheFieldsEmptyAndGiveTheDataToUpdateFromJsonFileWithTheTestName(string scenarioName)
         {
             var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
+            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
 
             if (scenario != null)
             {
@@ -370,16 +371,16 @@ namespace qa_dotnet_cucumber.Steps
                     _educationPage.ClickCancelUpdateButton();
                     cleanUpList.Add(existingDetails.CollegeUniversityName);
                 }
-                _scenarioContext.Set(actualMessageList, "ActualErrorMessage");
+                _scenarioContext.Set(actualMessageList, "ActualMessageList");
                 _scenarioContext.Set(cleanUpList, "EducationToCleanup");
             }
         }
 
-        [When("I update education details from json file after the session has expired with the TestName {string}")]
+        [When("I update education details from json file after the session has expired with the TestName {string}")]  //update during session expired
         public void WhenIUpdateEducationDetailsFromJsonFileAfterTheSessionHasExpiredWithTheTestName(string scenarioName)
         {
             var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
+            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
 
             if (scenario != null)
             {
@@ -402,7 +403,7 @@ namespace qa_dotnet_cucumber.Steps
             }
         }
         
-        [Then("I should see the error message to update for session expired")]
+        [Then("I should see the error message to update for session expired")]    //Validation for session expired
         public void ThenIShouldSeeTheErrorMessageToUpdateForSessionExpired()
         {
             var actualList = _scenarioContext.Get<List<string>>("ActualMessageList");
@@ -413,11 +414,22 @@ namespace qa_dotnet_cucumber.Steps
             }
         }
 
-        [When("I delete education details from json file after the session has expired with the TestName {string}")]
+        [Then("I should login again to perform cleanup")]    //Login to clean up
+        public void ThenIShouldLoginAgainToPerformCleanup()
+        {
+            _navigationHelper.NavigateTo("Home");
+            var loginDetails = JsonHelper.LoadJson<LoginDetails>("LoginData");
+            var username = loginDetails.UserName;
+            var password = loginDetails.Password;
+            _loginPage.Login(username, password);
+            _educationPage.NavigateToTheProfilePage();
+        }
+
+        [When("I delete education details from json file after the session has expired with the TestName {string}")]  //delete during session expired
         public void WhenIDeleteEducationDetailsFromJsonFileAfterTheSessionHasExpiredWithTheTestName(string scenarioName)
         {
             var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
+            var scenario = feature.Scenarios.FirstOrDefault(s =>string.Equals(s.ScenarioName,scenarioName,StringComparison.OrdinalIgnoreCase));
 
             if (scenario != null)
             {
@@ -440,7 +452,7 @@ namespace qa_dotnet_cucumber.Steps
             }
         }
 
-        [Then("I should see the error message to delete for session expired")]
+        [Then("I should see the error message to delete for session expired")] //Validation for session expired (delete)
         public void ThenIShouldSeeTheErrorMessageToDeleteForSessionExpired()
         {
             var actualList = _scenarioContext.Get<List<string>>("ActualMessageList");
@@ -451,11 +463,11 @@ namespace qa_dotnet_cucumber.Steps
             }
         }
 
-        [When("I update education details with the same existing details from json file with the TestName {string}")]
+        [When("I update education details with the same existing details from json file with the TestName {string}")]  //Duplicate data
         public void WhenIUpdateEducationDetailsWithTheSameExistingDetailsFromJsonFileWithTheTestName(string scenarioName)
         {
             var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
+            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName,scenarioName,StringComparison.OrdinalIgnoreCase));
             var messageResults = new List<(string Message, string Type)>();
             var cleanUpList = new List<string>();
             if (scenario != null)
@@ -482,20 +494,24 @@ namespace qa_dotnet_cucumber.Steps
             _scenarioContext.Set(cleanUpList, "EducationToCleanup");
         }
 
-        [Then("I should see the error message for updating education details")]
+        [Then("I should see the error message for updating education details")]   //Validation for valid input for update (negative testing)
         public void ThenIShouldSeeTheErrorMessageForUpdatingEducationDetails()
         {
             var actualList = _scenarioContext.Get<List<string>>("ActualUpdateMessages");
-            foreach (var actual in actualList)
+            Assert.Multiple(() =>
             {
-                Assert.That(actual, Is.EqualTo(EducationConstants.ErrorMessage), $"Expected message was '{EducationConstants.ErrorMessage}', but found '{actual}'");
-            }
+                foreach (var actual in actualList)
+                {
+                    Assert.That(actual, Is.EqualTo(EducationConstants.ErrorMessage), $"Expected message was '{EducationConstants.ErrorMessage}', but found '{actual}'");
+                }
+            });
         }
-        [When("I enter education details for destructive testing from json file with the TestName {string}")]
+
+        [When("I enter education details for destructive testing from json file with the TestName {string}")] //destructive testing for add
         public void WhenIEnterEducationDetailsForDestructiveTestingFromJsonFileWithTheTestName(string scenarioName)
         {
             var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => s.ScenarioName == scenarioName);
+            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName,scenarioName,StringComparison.OrdinalIgnoreCase));
             if (scenario != null)
             {
                 var actualEducationList = new List<string>();
@@ -525,7 +541,7 @@ namespace qa_dotnet_cucumber.Steps
             throw new PendingStepException();
         }
 
-        [Then("I should see the error message for huge data")]
+        [Then("I should see the error message for huge data")] //Validation for destructive testing
         public void ThenIShouldSeeTheErrorMessageForHugeData()
         {
             var actualList = _scenarioContext.Get<List<string>>("ActualEducationList");
@@ -533,7 +549,6 @@ namespace qa_dotnet_cucumber.Steps
             {
                 Assert.That(actual,Is.EqualTo(EducationConstants.ErrorMessage), $"Expected message is {EducationConstants.ErrorMessage}, but found {actual}");
             }
-           
         }
 
 

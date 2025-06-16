@@ -89,13 +89,18 @@ Scenario: Validate if the user is not able to update the Certificate or Award an
 	Then I should see the error message for certificate and provider mismatch
 
 Scenario: Validate if the user is able to add huge data in the"Certificate or Award" and  "Certified From (e.g. Adobe)" field
-When I enter huge Certificate or Award details to perform add from json file with the TestName "Destructive testing for add"
-Then I should see the error message
+	When I enter huge Certificate or Award details to perform add from json file with the TestName "Destructive testing for add"
+	Then I should see the error message
 
 Scenario: Validate if the user is able to add and update huge data in the"Certificate or Award" and  "Certified From (e.g. Adobe)" field
-When I enter huge Certificate or Award details to perform update from json file with the TestName "Destructive testing for update"
-Then I should see the error message
+	When I enter huge Certificate or Award details to perform update from json file with the TestName "Destructive testing for update"
+	Then I should see the error message
+
+Scenario: Validate if the user is not able to delete the certification details during session expired
+    When I delete certification details from json file after the session has expired with the TestName "Delete certification details when the session has expired"
+	Then I should see the error message for session expired
+	Then I should log in again to perform clean up
 
 
 
-
+	 

@@ -87,7 +87,6 @@
         }
       ]
     },
-
     {
       "ScenarioName": "Add education details with invalid Degree",
       "TestItems": [
@@ -229,7 +228,6 @@
         }
       ]
     },
-
     {
       "ScenarioName": "Add same education details multiple times",
       "TestItems": [
@@ -506,7 +504,7 @@
             "YearOfGraduation": "2025"
           },
           "EducationDetailsToUpdate": {
-            "CollegeUniversityName": " ",
+            "CollegeUniversityName": "     ",
             "Country": "United Kingdom",
             "Title": "PHD",
             "Degree": "Computer Science",
@@ -981,6 +979,9 @@
         }
       ]
     },
+
+
+
 
 
 

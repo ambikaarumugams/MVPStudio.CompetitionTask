@@ -678,11 +678,26 @@
           "CertificationDetailsToDelete": null
         }
       ]
+    },
+    {
+      "ScenarioName": "Delete certification details when the session has expired",
+      "TestItems": [
+        {
+          "CertificationDetailsToAdd": {
+            "CertificateOrAward": "ISTQB Foundation Level (CTFL)",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2024",
+            "ExpectedMessage": "ISTQB Foundation Level (CTFL) has been added to your certification"
+          },
+          "CertificationDetailsToUpdate": null,
+          "CertificationDetailsToDelete": {
+            "CertificateOrAward": "ISTQB Foundation Level (CTFL)",
+            "CertifiedFrom": "ISTQB",
+            "Year": "2024",
+            "ExpectedMessage": "There is an error when deleting certification"
+          }
+        }
+      ]
     }
-
-
-
-
-
-  ] 
+  ]
 }

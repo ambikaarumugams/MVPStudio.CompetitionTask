@@ -74,23 +74,25 @@ Scenario: Validate if the user is not able to update education details by giving
 Scenario: Validate if the user is not able to update education details when the session has expired
 	When I update education details from json file after the session has expired with the TestName "Update education details when the session has expired"
 	Then I should see the error message to update for session expired
+	Then I should login again to perform cleanup
 
 Scenario: Validate if the user is not able to delete education details when the session has expired
 	When I delete education details from json file after the session has expired with the TestName "Delete education details when the session has expired"
 	Then I should see the error message to delete for session expired
+	Then I should login again to perform cleanup
 
 Scenario: Validate if the user is not able to update the education details which already exists in the list (Duplicate data)
 	When I update education details with the same existing details from json file with the TestName "Update the education details as same as the existing one"
 	Then I should see the error message for duplicate data
 
-	Scenario:Validate if the user is not able to update education details with valid input
+Scenario:Validate if the user is not able to update education details with valid input
 	When I update education details with the existing details from json file with the TestName "Negative testing with valid input for update"
 	Then I should see the error message for updating education details 
 
-	Scenario:Validate if the user is able to add huge data in the education field
+Scenario:Validate if the user is able to add huge data in the education field
 	When I enter education details for destructive testing from json file with the TestName "Add education details with huge text"
 	Then I should see the error message for huge data
 
-	Scenario: Validate if the user is able to update education details with huge data
+Scenario: Validate if the user is able to update education details with huge data
 	When I update education details with the existing details for destructive testing from json file with the TestName "Update education details with huge text"
 	Then I should see the error message for huge data

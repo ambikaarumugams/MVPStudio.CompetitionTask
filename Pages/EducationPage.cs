@@ -10,7 +10,7 @@ namespace qa_dotnet_cucumber.Pages
         private readonly WebDriverWait _wait;
 
         //Constructor
-        public EducationPage(IWebDriver driver)
+        public EducationPage(IWebDriver driver)  //Inject the driver directly (BoDi)
         {
             _driver = driver;
             _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
@@ -42,7 +42,7 @@ namespace qa_dotnet_cucumber.Pages
 
         //Action Methods
 
-        public void NavigateToTheProfilePage()
+        public void NavigateToTheProfilePage()  //Navigate to the education page
         {
             var profileElement = _wait.Until(ExpectedConditions.ElementToBeClickable(_profileTab));
             profileElement.Click();
@@ -58,7 +58,7 @@ namespace qa_dotnet_cucumber.Pages
             addNewElement.Click();
         }
 
-        public void AddEducationDetails(string universityName, string countryName, string title, string degree, string year)
+        public void AddEducationDetails(string universityName, string countryName, string title, string degree, string year) //Add education details
         {
             ClickAddNewButton();
             //Enter College/University Name
@@ -89,14 +89,14 @@ namespace qa_dotnet_cucumber.Pages
             ClickAddButton();
         }
 
-        public void ClickAddButton()
+        public void ClickAddButton() 
         {
             //Click "Add" button
             var addButton = _wait.Until(ExpectedConditions.ElementToBeClickable(_addButton));
             addButton.Click();
         }
 
-        public string GetSuccessMessage()
+        public string GetSuccessMessage() //Get success Message
         {
             try
             {
@@ -110,7 +110,7 @@ namespace qa_dotnet_cucumber.Pages
             }
         }
 
-        public void DeleteSpecificEducation(string educationToBeDeleted)
+        public void DeleteSpecificEducation(string educationToBeDeleted)  //Delete specific education
         {
             var educationTable = _wait.Until(ExpectedConditions.ElementIsVisible(_educationTable));
             var row = educationTable.FindElement(By.XPath($".//tr[td[2]='{educationToBeDeleted}']")); //University name is in the second column
@@ -118,7 +118,7 @@ namespace qa_dotnet_cucumber.Pages
             deleteIcon.Click();
         }
 
-        public string GetErrorMessage()
+        public string GetErrorMessage()  //Get error message
         {
             try
             {
@@ -131,7 +131,7 @@ namespace qa_dotnet_cucumber.Pages
             }
         }
 
-        public (string MessageText, string MessageType) GetToastMessage()
+        public (string MessageText, string MessageType) GetToastMessage()  //Tuples to get both success and error 
         {
             try
             {
@@ -157,21 +157,7 @@ namespace qa_dotnet_cucumber.Pages
             }
         }
 
-        public string GetMessage()
-        {
-            try
-            {
-                var successMessageElement = _wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-success ns-show']")));
-                return successMessageElement.Text;
-            }
-            catch (WebDriverTimeoutException)
-            {
-                var errorMessageElement = _wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-error ns-show']")));
-                return errorMessageElement.Text;
-            }
-        }
-
-        public void LeaveEitherOneOrAllTheFieldsEmptyToAdd(string universityName, string countryName, string title, string degree, string year)
+        public void LeaveEitherOneOrAllTheFieldsEmptyToAdd(string universityName, string countryName, string title, string degree, string year)  //Leave either one or all the fields empty
         {
             ClickAddNewButton();
 
@@ -181,7 +167,6 @@ namespace qa_dotnet_cucumber.Pages
             {
                 enterCollegeUniversityName.SendKeys(universityName);
             }
-
             //Select the country name using drop down
             var selectCountryDropDown = _wait.Until(ExpectedConditions.ElementToBeClickable(_countryDropDown));
 
@@ -206,14 +191,12 @@ namespace qa_dotnet_cucumber.Pages
             {
                 selectTitle.SelectByIndex(0);
             }
-
             //Enter the degree
             var degreeElement = _wait.Until(ExpectedConditions.ElementExists(_degreeField));
             if (!string.IsNullOrWhiteSpace(degree))
             {
                 degreeElement.SendKeys(degree);
             }
-
             //Select the year of graduation drop down
             var selectYearOfGraduationDropDown = _wait.Until(ExpectedConditions.ElementIsVisible(_yearOfGraduationDropDown));
 
@@ -226,12 +209,11 @@ namespace qa_dotnet_cucumber.Pages
             {
                 selectYear.SelectByIndex(0);
             }
-
             ClickAddButton();
             ClickCancelButton();
         }
 
-        public void ClickCancelButton()
+        public void ClickCancelButton()  //Click cancel button
         {
             var cancelElement = _wait.Until(ExpectedConditions.ElementToBeClickable(_cancelButton));
             cancelElement.Click();
@@ -249,7 +231,7 @@ namespace qa_dotnet_cucumber.Pages
             }
         }
 
-        public void UpdateEducationDetails(string existingUniversityName, string universityName, string countryName, string title, string degree, string year)
+        public void UpdateEducationDetails(string existingUniversityName, string universityName, string countryName, string title, string degree, string year)  //Update the education details
         {
             var educationTable = _wait.Until(ExpectedConditions.ElementIsVisible(_educationTable));
             var row = educationTable.FindElement(By.XPath($".//tr[td[normalize-space(text())='{existingUniversityName}']]"));
@@ -294,9 +276,7 @@ namespace qa_dotnet_cucumber.Pages
         {
             try
             {
-                var successMessageForUpdateElement =
-                    _wait.Until(ExpectedConditions.ElementIsVisible(
-                        By.XPath($"//div[@class='ns-box-inner' and  contains(text(), '{successMessage}')]")));
+                var successMessageForUpdateElement = _wait.Until(ExpectedConditions.ElementIsVisible(By.XPath($"//div[@class='ns-box-inner' and  contains(text(), '{successMessage}')]")));
                 return successMessageForUpdateElement.Text;
             }
             catch
@@ -305,8 +285,7 @@ namespace qa_dotnet_cucumber.Pages
             }
         }
 
-
-        public void CancelAddEducationDetails(string universityName, string countryName, string title, string degree, string year)
+        public void CancelAddEducationDetails(string universityName, string countryName, string title, string degree, string year) //Cancel add education details
         {
             ClickAddNewButton();
             //Enter College/University Name
@@ -337,7 +316,7 @@ namespace qa_dotnet_cucumber.Pages
             ClickCancelButton();
         }
 
-        public void LeaveEitherOneOrAllTheFieldsEmptyToUpdate(string existingUniversityName, string universityName, string countryName, string title, string degree, string year)
+        public void LeaveEitherOneOrAllTheFieldsEmptyToUpdate(string existingUniversityName, string universityName, string countryName, string title, string degree, string year)  //Leave either one or all the fields empty
         {
             var educationTable = _wait.Until(ExpectedConditions.ElementIsVisible(_educationTable));
             var row = educationTable.FindElement(By.XPath($".//tr[td[normalize-space(text())='{existingUniversityName}']]"));
@@ -367,8 +346,6 @@ namespace qa_dotnet_cucumber.Pages
             {
                 selectCountry.SelectByIndex(0);
             }
-           
-
             //Select the title using drop down
             var titleDropDownForUpdate = _wait.Until(ExpectedConditions.ElementToBeClickable(_titleDropDownForUpdate));
 
@@ -381,8 +358,6 @@ namespace qa_dotnet_cucumber.Pages
             {
                 selectTitle.SelectByIndex(0);
             }
-           
-
             //Enter the degree
             var degreeForUpdate = _wait.Until(ExpectedConditions.ElementExists(_degreeFieldForUpdate));
             degreeForUpdate.SendKeys(Keys.Control + "a" + Keys.Delete);
@@ -390,8 +365,6 @@ namespace qa_dotnet_cucumber.Pages
             {
                 degreeForUpdate.SendKeys(degree);
             }
-           
-
             //Select the year of graduation drop down
             var selectYearOfGraduationDropDownForUpdate = _wait.Until(ExpectedConditions.ElementIsVisible(_yearOfGraduationDropDownForUpdate));
 
@@ -404,19 +377,16 @@ namespace qa_dotnet_cucumber.Pages
             {
                 selectYear.SelectByIndex(0);
             }
-
             var updateButtonElement = _wait.Until(ExpectedConditions.ElementToBeClickable(_updateButton));
             updateButtonElement.Click();
         }
 
-        public void ClickCancelUpdateButton()
+        public void ClickCancelUpdateButton()  //Click cancel update
         {
             var cancelUpdateElement = _wait.Until(ExpectedConditions.ElementToBeClickable(_cancelUpdateButton));
             cancelUpdateElement.Click();
         }
     }
-
-
 }
     
 

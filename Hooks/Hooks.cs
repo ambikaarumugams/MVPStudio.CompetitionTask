@@ -18,10 +18,7 @@ namespace qa_dotnet_cucumber.Hooks
     public class Hooks
     {
         private readonly IObjectContainer _objectContainer;
-        private static ExtentReports? _extent;
-        private static ExtentSparkReporter? _htmlReporter;
         private static TestSettings _settings;
-        private ExtentTest? _test;
         private static readonly object _reportLock = new object();
         private IWebDriver _driver;
 
@@ -45,11 +42,7 @@ namespace qa_dotnet_cucumber.Hooks
             string reportFileName = _settings.Report.Path.TrimStart('/'); // e.g., "TestReport.html"
             string reportPath = Path.Combine(projectRoot, reportFileName);
 
-            _htmlReporter = new ExtentSparkReporter(reportPath);
-            _extent = new ExtentReports();
-            _extent.AttachReporter(_htmlReporter);
-            _extent.AddSystemInfo("Environment", _settings.Environment.BaseUrl);
-            _extent.AddSystemInfo("Browser", _settings.Browser.Type);
+           
             Console.WriteLine($"BeforeTestRun started at {DateTime.Now}, Report Path: {reportPath}");
         }
 
@@ -105,10 +98,7 @@ namespace qa_dotnet_cucumber.Hooks
             _objectContainer.RegisterInstanceAs(new EducationPage(_driver));
             _objectContainer.RegisterInstanceAs(new CertificationPage(_driver));
 
-            lock (_reportLock)
-            {
-                _test = _extent!.CreateTest(scenarioContext.ScenarioInfo.Title);
-            }
+            
             Console.WriteLine($"Created test: {scenarioContext.ScenarioInfo.Title} on Thread {Thread.CurrentThread.ManagedThreadId} at {DateTime.Now}");
         }
 
@@ -117,23 +107,7 @@ namespace qa_dotnet_cucumber.Hooks
         {
             var stepType = scenarioContext.StepContext.StepInfo.StepDefinitionType.ToString();
             var stepText = scenarioContext.StepContext.StepInfo.Text;
-            lock (_reportLock)
-            {
-                if (scenarioContext.TestError == null)
-                {
-                    _test!.Log(Status.Pass, $"{stepType} {stepText}");
-                    Console.WriteLine($"Logged pass: {stepType} {stepText} on Thread {Thread.CurrentThread.ManagedThreadId} at {DateTime.Now}");
-                }
-                else
-                {
-                    var driver = _objectContainer.Resolve<IWebDriver>();
-                    var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
-                    var screenshotPath = Path.Combine(Directory.GetCurrentDirectory(), $"Screenshot_{DateTime.Now.Ticks}_{Thread.CurrentThread.ManagedThreadId}.png");
-                    screenshot.SaveAsFile(screenshotPath);
-                    _test!.Log(Status.Fail, $"{stepType} {stepText}", MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPath).Build());
-                    Console.WriteLine($"Logged fail with screenshot: {screenshotPath} on Thread {Thread.CurrentThread.ManagedThreadId} at {DateTime.Now}");
-                }
-            }
+          
         }
 
         [AfterScenario]
@@ -247,7 +221,7 @@ namespace qa_dotnet_cucumber.Hooks
             lock (_reportLock)
             {
                 Console.WriteLine("AfterTestRun executed - Flushing report to: " + _settings.Report.Path + " at " + DateTime.Now);
-                _extent!.Flush();
+            
             }
         }
     }
