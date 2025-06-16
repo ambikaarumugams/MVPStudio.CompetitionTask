@@ -6,9 +6,12 @@
   },
   "Report": {
     "Path": "TestReport.html",
-    "Title": "Test Report"
+    "Title": "Mars Project Report"
   },
   "Environment": {
-    "BaseUrl": "http://localhost:5003/"
+    "BaseUrl": "http://localhost:5003/",
+    "TestingEnvironment": "QA",
+    "Author": "Ambika",
+    "OS": "Windows 12"
   }
 }

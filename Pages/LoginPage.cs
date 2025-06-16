@@ -64,11 +64,11 @@ namespace qa_dotnet_cucumber.Pages
             }
         }
 
-        public bool IsValidationMsgDisplayed(string validationMeassage) //To check the validation message is displayed or not
+        public bool IsValidationMsgDisplayed(string validationMessage) //To check the validation message is displayed or not
         {
             try
             {
-                _wait.Until(d => d.FindElement(By.XPath($"//div[contains(text(),'{validationMeassage}')]")));
+                _wait.Until(d => d.FindElement(By.XPath($"//div[contains(text(),'{validationMessage}')]")));
                 return true; // Found the validation message
             }
             catch
@@ -82,7 +82,7 @@ namespace qa_dotnet_cucumber.Pages
             try
             {
                 _wait.Until(d => d.FindElement(By.XPath($"//button[@id='submit-btn' and normalize-space(text())='{verificationOption}']")));
-                return true;// Found the veification 
+                return true;// Found the verification 
             }
             catch
             {
