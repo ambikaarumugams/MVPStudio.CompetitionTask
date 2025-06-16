@@ -155,7 +155,6 @@ namespace qa_dotnet_cucumber.Pages
             {
                 messageType = "none";
             }
-
             return (messageText, messageType);
         }
 
@@ -284,7 +283,6 @@ namespace qa_dotnet_cucumber.Pages
             var certificationYearElement = _wait.Until(ExpectedConditions.ElementToBeClickable(_certificationYearDropDown));
             SelectElement selectCertificationYear = new SelectElement(certificationYearElement);
             selectCertificationYear.SelectByText(certificationYear);
-            var updateButtonElement = _wait.Until(ExpectedConditions.ElementToBeClickable(_updateButton));
             ClickCancelUpdate();
         }
     }
