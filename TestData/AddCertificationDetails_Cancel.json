@@ -1,0 +1,13 @@
+{
+    "TestItems": [
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "Microsoft Azure Networking",
+                "CertifiedFrom": "Microsoft",
+                "Year": "2024"
+            },
+            "CertificationDetailsToUpdate": null,
+            "CertificationDetailsToDelete": null
+        }
+    ]
+}

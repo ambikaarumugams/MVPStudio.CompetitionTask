@@ -1,4 +1,5 @@
 ﻿using qa_dotnet_cucumber.Entity;
+using qa_dotnet_cucumber.Features;
 using qa_dotnet_cucumber.Helper;
 using qa_dotnet_cucumber.Pages;
 using Reqnroll;
@@ -35,10 +36,9 @@ namespace qa_dotnet_cucumber.Steps
         }
 
         [When("I enter certification details from json file with the TestName {string}")] //Add valid certification details, Certificate or Award and Certificate From mismatch,
-        public void WhenIEnterCertificationDetailsFromJsonFileWithTheTestName(string scenarioName)
+        public void WhenIEnterCertificationDetailsFromJsonFileWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<CertificationFeature>("CertificationsTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName,scenarioName,StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
             if (scenario != null)
             {
                 var actualCertificationList = new List<string>();
@@ -71,10 +71,10 @@ namespace qa_dotnet_cucumber.Steps
         }
 
         [When("I enter invalid certification details from json file with the TestName {string}")]  //Enter invalid certification details (both Certificate Or Award and Certificate From share the same steps)
-        public void WhenIEnterInvalidCertificationDetailsFromJsonFileWithTheTestName(string scenarioName)
+        public void WhenIEnterInvalidCertificationDetailsFromJsonFileWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<CertificationFeature>("CertificationsTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
+          
             if (scenario != null)
             {
                 var actualCertificationsList = new List<string>();
@@ -96,10 +96,9 @@ namespace qa_dotnet_cucumber.Steps
         }
 
         [When("I enter lengthy Certificate or Award details from json file with the TestName {string}")] // Enter the length of the Certificate or Award text >250 
-        public void WhenIEnterLengthyCertificateOrAwardDetailsFromJsonFileWithTheTestName(string scenarioName)
+        public void WhenIEnterLengthyCertificateOrAwardDetailsFromJsonFileWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<CertificationFeature>("CertificationsTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s =>string.Equals(s.ScenarioName, scenarioName,StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
             if (scenario != null)
             {
                 var actualCertificationsList = new List<string>();
@@ -125,10 +124,9 @@ namespace qa_dotnet_cucumber.Steps
         }
 
         [When("I enter lengthy Certificate from details from json file with the TestName {string}")]  // Enter the length of the Certificate from text >250 
-        public void WhenIEnterLengthyCertificateFromDetailsFromJsonFileWithTheTestName(string scenarioName)
+        public void WhenIEnterLengthyCertificateFromDetailsFromJsonFileWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<CertificationFeature>("CertificationsTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
             if (scenario != null)
             {
                 var actualCertificationsList = new List<string>();
@@ -157,7 +155,7 @@ namespace qa_dotnet_cucumber.Steps
         {
             var actualList = _scenarioContext.Get<List<string>>("ActualMessageList");
             var expectedList = _scenarioContext.Get<List<string>>("ExpectedMessageList");
-            Assert.Multiple(() =>   
+            Assert.Multiple(() =>
             {
                 foreach (var actual in actualList)
                 {
@@ -167,10 +165,10 @@ namespace qa_dotnet_cucumber.Steps
         }
 
         [When("I leave either one or all the fields empty and give the data from json file with the TestName {string}")]  //Leave either one or all the fields are empty for add
-        public void WhenILeaveEitherOneOrAllTheFieldsEmptyAndGiveTheDataFromJsonFileWithTheTestName(string scenarioName)
+        public void WhenILeaveEitherOneOrAllTheFieldsEmptyAndGiveTheDataFromJsonFileWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<CertificationFeature>("CertificationsTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
+          
             if (scenario != null)
             {
                 var actualCertificationsList = new List<string>();
@@ -185,7 +183,7 @@ namespace qa_dotnet_cucumber.Steps
                     _certificationPage.ClickCancelButton();
                 }
                 _scenarioContext.Set(actualCertificationsList, "ActualMessageList");
-                _scenarioContext.Set(expectedCertificationsList,"ExpectedMessageList");
+                _scenarioContext.Set(expectedCertificationsList, "ExpectedMessageList");
             }
         }
 
@@ -196,15 +194,15 @@ namespace qa_dotnet_cucumber.Steps
             var expectedList = _scenarioContext.Get<List<string>>("ExpectedMessageList");
             Assert.Multiple(() =>
             {
-                Assert.That(expectedList,Is.EqualTo(actualList),$"Expected and actual lists are not equal");
+                Assert.That(expectedList, Is.EqualTo(actualList), $"Expected and actual lists are not equal");
             });
         }
-        
+
         [When("I enter same certification details twice from json file with the TestName {string}")]   //Add duplicate data 
-        public void WhenIEnterSameCertificationDetailsTwiceFromJsonFileWithTheTestName(string scenarioName)
+        public void WhenIEnterSameCertificationDetailsTwiceFromJsonFileWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<CertificationFeature>("CertificationsTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
+            
             var actualMessages = new List<(string Message, string Type)>();
             var expectedMessages = new List<string>();
             var cleanUpList = new List<string>();
@@ -228,7 +226,7 @@ namespace qa_dotnet_cucumber.Steps
                 }
             }
             _scenarioContext.Set(actualMessages, "ActualMessageList");
-            _scenarioContext.Set(expectedMessages,"ExpectedMessageList");
+            _scenarioContext.Set(expectedMessages, "ExpectedMessageList");
             _scenarioContext.Set(cleanUpList, "CertificationsToCleanup");
         }
 
@@ -243,16 +241,16 @@ namespace qa_dotnet_cucumber.Steps
                 foreach (var (message, type) in actualList)
                 {
                     Assert.That(type, Is.EqualTo("error"), $"Expected message type should be {type},but found error");
-                    Assert.That(expectedList.Contains(message),Is.True, $"Expected list don't contain the actual message");
+                    Assert.That(expectedList.Contains(message), Is.True, $"Expected list don't contain the actual message");
                 }
             });
         }
-        
+
         [When("I enter certification details from json file after the session has expired with the TestName {string}")]   //Add certification details during session expired
-        public void WhenIEnterCertificationDetailsFromJsonFileAfterTheSessionHasExpiredWithTheTestName(string scenarioName)
+        public void WhenIEnterCertificationDetailsFromJsonFileAfterTheSessionHasExpiredWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<CertificationFeature>("CertificationsTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
+          
             if (scenario != null)
             {
                 var actualMessageList = new List<string>();
@@ -267,7 +265,7 @@ namespace qa_dotnet_cucumber.Steps
                     expectedMessageList.Add(detailsToAdd.ExpectedMessage);
                 }
                 _scenarioContext.Set(actualMessageList, "ActualMessageList");
-                _scenarioContext.Set(expectedMessageList,"ExpectedMessageList");
+                _scenarioContext.Set(expectedMessageList, "ExpectedMessageList");
             }
         }
 
@@ -278,7 +276,7 @@ namespace qa_dotnet_cucumber.Steps
             var expectedMessageList = _scenarioContext.Get<List<string>>("ExpectedMessageList");
             foreach (var actual in actualMessageList)
             {
-                Assert.That(expectedMessageList.Contains(actual),Is.True, $"Expected message list don't contain {actual}");
+                Assert.That(expectedMessageList.Contains(actual), Is.True, $"Expected message list don't contain {actual}");
             }
         }
 
@@ -291,16 +289,16 @@ namespace qa_dotnet_cucumber.Steps
             {
                 foreach (var actual in actualMessageList)
                 {
-                    Assert.That(expectedMessageList.Contains(actual),Is.True,$"Expected message list don't contain the {actual}");
+                    Assert.That(expectedMessageList.Contains(actual), Is.True, $"Expected message list don't contain the {actual}");
                 }
             });
         }
 
         [When("I enter certification details from json file and cancel the add with the TestName {string}")]   //Cancel the Add certification details
-        public void WhenIEnterCertificationDetailsFromJsonFileAndCancelTheAddWithTheTestName(string scenarioName)
+        public void WhenIEnterCertificationDetailsFromJsonFileAndCancelTheAddWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<CertificationFeature>("CertificationsTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
+           
             if (scenario != null)
             {
                 var actualList = new List<string>();
@@ -321,12 +319,11 @@ namespace qa_dotnet_cucumber.Steps
         }
 
         [When("I update certification details with the existing details from json file with the TestName {string}")]   //Update valid input, invalid input, mismatch Certificate or Award and Certificate From
-        public void WhenIUpdateCertificationDetailsWithTheExistingDetailsFromJsonFileWithTheTestName(string scenarioName)
+        public void WhenIUpdateCertificationDetailsWithTheExistingDetailsFromJsonFileWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<CertificationFeature>("CertificationsTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
             if (scenario != null)
-            {
+            { 
                 var actualUpdateMessages = new List<string>();
                 var expectedUpdateMessages = new List<string>();
                 var cleanUpList = new List<string>();
@@ -342,7 +339,7 @@ namespace qa_dotnet_cucumber.Steps
                     cleanUpList.Add(detailsToUpdate.CertificateOrAward);
                 }
                 _scenarioContext.Set(actualUpdateMessages, "ActualMessageList");
-                _scenarioContext.Set(expectedUpdateMessages,"ExpectedMessageList");
+                _scenarioContext.Set(expectedUpdateMessages, "ExpectedMessageList");
                 _scenarioContext.Set(cleanUpList, "CertificationsToCleanup");
             }
         }
@@ -353,7 +350,7 @@ namespace qa_dotnet_cucumber.Steps
             var actualMessages = _scenarioContext.Get<List<string>>("ActualMessageList");
             var expectedMessages = _scenarioContext.Get<List<string>>("ExpectedMessageList");
 
-            Assert.That(expectedMessages,Is.EqualTo(actualMessages),$"Expected and actual messages are not equal");
+            Assert.That(expectedMessages, Is.EqualTo(actualMessages), $"Expected and actual messages are not equal");
         }
 
         [Then("I should see the error message for update invalid data")]  //Validation for invalid input (update)
@@ -365,16 +362,16 @@ namespace qa_dotnet_cucumber.Steps
             {
                 foreach (var actual in actualMessages)
                 {
-                    Assert.That(expectedMessages.Contains(actual),Is.True,$"Expected message list don't contain '{actual}'");
+                    Assert.That(expectedMessages.Contains(actual), Is.True, $"Expected message list don't contain '{actual}'");
                 }
             });
         }
 
         [When("I update lengthy Certificate or Award details with the existing details from json file with the TestName {string}")]  //Update Certificate or Award text length >250 characters
-        public void WhenIUpdateLengthyCertificateOrAwardDetailsWithTheExistingDetailsFromJsonFileWithTheTestName(string scenarioName)
+        public void WhenIUpdateLengthyCertificateOrAwardDetailsWithTheExistingDetailsFromJsonFileWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<CertificationFeature>("CertificationsTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
+            
             if (scenario != null)
             {
                 var actualCertificationsListForUpdate = new List<string>();
@@ -402,11 +399,10 @@ namespace qa_dotnet_cucumber.Steps
         }
 
         [When("I update lengthy Certificate From details with the existing details from json file with the TestName {string}")] //Update Certificate From text length >250
-        public void WhenIUpdateLengthyCertificateFromDetailsWithTheExistingDetailsFromJsonFileWithTheTestName(
-            string scenarioName)
+        public void WhenIUpdateLengthyCertificateFromDetailsWithTheExistingDetailsFromJsonFileWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<CertificationFeature>("CertificationsTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
+            
             if (scenario != null)
             {
                 var actualCertificationsListForUpdate = new List<string>();
@@ -440,15 +436,14 @@ namespace qa_dotnet_cucumber.Steps
             var expectedMessages = _scenarioContext.Get<List<string>>("ExpectedMessageList");
             foreach (var actual in actualMessages)
             {
-                Assert.That(expectedMessages.Contains(actual),Is.True,$"Expected message not found, instead found {actual}");
+                Assert.That(expectedMessages.Contains(actual), Is.True, $"Expected message not found, instead found {actual}");
             }
         }
 
         [When("I leave either one or all the fields empty and give the data to update from json file with the TestName {string}")] //Leave either one or all the fields empty for update
-        public void WhenILeaveEitherOneOrAllTheFieldsEmptyAndGiveTheDataToUpdateFromJsonFileWithTheTestName(string scenarioName)
+        public void WhenILeaveEitherOneOrAllTheFieldsEmptyAndGiveTheDataToUpdateFromJsonFileWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<CertificationFeature>("CertificationsTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
             if (scenario != null)
             {
                 var actualUpdateMessages = new List<string>();
@@ -459,7 +454,7 @@ namespace qa_dotnet_cucumber.Steps
                     var existingDetails = testItem.CertificationDetailsToAdd;
                     var detailsToUpdate = testItem.CertificationDetailsToUpdate;
                     _certificationPage.AddCertifications(existingDetails.CertificateOrAward, existingDetails.CertifiedFrom, existingDetails.Year);
-                    _certificationPage.LeaveEitherOneOrAllTheFieldsEmptyForUpdate(existingDetails.CertificateOrAward,detailsToUpdate.CertificateOrAward, detailsToUpdate.CertifiedFrom, detailsToUpdate.Year);
+                    _certificationPage.LeaveEitherOneOrAllTheFieldsEmptyForUpdate(existingDetails.CertificateOrAward, detailsToUpdate.CertificateOrAward, detailsToUpdate.CertifiedFrom, detailsToUpdate.Year);
                     var actualMessage = _certificationPage.GetErrorMessage();
                     actualUpdateMessages.Add(actualMessage);
                     _certificationPage.ClickCancelUpdate();
@@ -473,10 +468,10 @@ namespace qa_dotnet_cucumber.Steps
         }
 
         [When("I update same certification details twice from json file with the TestName {string}")]  //Update duplicate data
-        public void WhenIUpdateSameCertificationDetailsTwiceFromJsonFileWithTheTestName(string scenarioName)
+        public void WhenIUpdateSameCertificationDetailsTwiceFromJsonFileWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<CertificationFeature>("CertificationsTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
+           
             if (scenario != null)
             {
                 var actualMessages = new List<(string Message, string Type)>();
@@ -486,8 +481,8 @@ namespace qa_dotnet_cucumber.Steps
                 {
                     var existingDetails = testItem.CertificationDetailsToAdd;
                     var detailsToUpdate = testItem.CertificationDetailsToUpdate;
-                    _certificationPage.AddCertifications(existingDetails.CertificateOrAward,existingDetails.CertifiedFrom,existingDetails.Year);
-                    _certificationPage.UpdateCertificationDetails(existingDetails.CertificateOrAward,detailsToUpdate.CertificateOrAward,detailsToUpdate.CertifiedFrom,detailsToUpdate.Year);
+                    _certificationPage.AddCertifications(existingDetails.CertificateOrAward, existingDetails.CertifiedFrom, existingDetails.Year);
+                    _certificationPage.UpdateCertificationDetails(existingDetails.CertificateOrAward, detailsToUpdate.CertificateOrAward, detailsToUpdate.CertifiedFrom, detailsToUpdate.Year);
                     var (messageText, messageType) = _certificationPage.GetToastMessage();
                     if (string.Equals(messageType, "error", StringComparison.OrdinalIgnoreCase))
                     {
@@ -511,10 +506,10 @@ namespace qa_dotnet_cucumber.Steps
         }
 
         [When("I enter certification details from json file and cancel the update with the TestName {string}")]  //Cancel update process
-        public void WhenIEnterCertificationDetailsFromJsonFileAndCancelTheUpdateWithTheTestName(string scenarioName)
+        public void WhenIEnterCertificationDetailsFromJsonFileAndCancelTheUpdateWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<CertificationFeature>("CertificationsTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
+           
             if (scenario != null)
             {
                 var actualMessages = new List<string>();
@@ -528,7 +523,7 @@ namespace qa_dotnet_cucumber.Steps
                     _certificationPage.AddCertifications(existingDetails.CertificateOrAward, existingDetails.CertifiedFrom, existingDetails.Year);
                     var actualMessage = _certificationPage.GetSuccessMessage();
                     actualMessages.Add(actualMessage);
-                    _certificationPage.CancelUpdateCertificationDetails(existingDetails.CertificateOrAward,detailsToUpdate.CertificateOrAward,detailsToUpdate.CertifiedFrom,detailsToUpdate.Year);
+                    _certificationPage.CancelUpdateCertificationDetails(existingDetails.CertificateOrAward, detailsToUpdate.CertificateOrAward, detailsToUpdate.CertifiedFrom, detailsToUpdate.Year);
                     cleanUpList.Add(existingDetails.CertificateOrAward);
                 }
                 _scenarioContext.Set(actualMessages, "ActualMessageList");
@@ -542,15 +537,15 @@ namespace qa_dotnet_cucumber.Steps
         {
             var actualList = _scenarioContext.Get<List<string>>("ActualMessageList");
             var expectedList = _scenarioContext.Get<List<string>>("ExpectedMessageList");
-           
-            Assert.That(expectedList,Is.EqualTo(actualList), $"Expected list is not equal to actualList");
+
+            Assert.That(expectedList, Is.EqualTo(actualList), $"Expected list is not equal to actualList");
         }
 
         [When("I update certification details from json file after the session has expired with the TestName {string}")]  //Update during session expired
-        public void WhenIUpdateCertificationDetailsFromJsonFileAfterTheSessionHasExpiredWithTheTestName(string scenarioName)
+        public void WhenIUpdateCertificationDetailsFromJsonFileAfterTheSessionHasExpiredWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<CertificationFeature>("CertificationsTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
+           
             if (scenario != null)
             {
                 var actualMessageList = new List<string>();
@@ -560,9 +555,9 @@ namespace qa_dotnet_cucumber.Steps
                 {
                     var existingDetails = testItem.CertificationDetailsToAdd;
                     var detailsToUpdate = testItem.CertificationDetailsToUpdate;
-                    _certificationPage.AddCertifications(existingDetails.CertificateOrAward,existingDetails.CertifiedFrom, existingDetails.Year);
+                    _certificationPage.AddCertifications(existingDetails.CertificateOrAward, existingDetails.CertifiedFrom, existingDetails.Year);
                     _certificationPage.ExpireSession();
-                    _certificationPage.UpdateCertificationDetails(existingDetails.CertificateOrAward,detailsToUpdate.CertificateOrAward, detailsToUpdate.CertifiedFrom, detailsToUpdate.Year);
+                    _certificationPage.UpdateCertificationDetails(existingDetails.CertificateOrAward, detailsToUpdate.CertificateOrAward, detailsToUpdate.CertifiedFrom, detailsToUpdate.Year);
                     var actualMessage = _certificationPage.GetErrorMessage();
                     actualMessageList.Add(actualMessage);
                     _certificationPage.ClickCancelUpdate();
@@ -587,11 +582,10 @@ namespace qa_dotnet_cucumber.Steps
         }
 
         [When("I enter huge Certificate or Award details to perform add from json file with the TestName {string}")]  //Destructive testing for add
-        public void WhenIEnterHugeCertificateOrAwardDetailsToPerformAddFromJsonFileWithTheTestName(string scenarioName)
+        public void WhenIEnterHugeCertificateOrAwardDetailsToPerformAddFromJsonFileWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<CertificationFeature>("CertificationsTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
-            if (scenario != null)
+            var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
+           if (scenario != null)
             {
                 var actualMessagesList = new List<string>();
                 var cleanUpList = new List<string>();
@@ -616,10 +610,10 @@ namespace qa_dotnet_cucumber.Steps
         }
 
         [When("I enter huge Certificate or Award details to perform update from json file with the TestName {string}")] //Destructive testing for update
-        public void WhenIEnterHugeCertificateOrAwardDetailsToPerformUpdateFromJsonFileWithTheTestName(string scenarioName)
+        public void WhenIEnterHugeCertificateOrAwardDetailsToPerformUpdateFromJsonFileWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<CertificationFeature>("CertificationsTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
+          
             if (scenario != null)
             {
                 var actualMessageList = new List<string>();
@@ -629,13 +623,13 @@ namespace qa_dotnet_cucumber.Steps
                 {
                     var existingDetails = testItem.CertificationDetailsToAdd;
                     var detailsToUpdate = testItem.CertificationDetailsToUpdate;
-                   _certificationPage.AddCertifications(existingDetails.CertificateOrAward, existingDetails.CertifiedFrom, existingDetails.Year);
-                   if (detailsToUpdate.CertificateOrAward.Equals("CertificateText_Length_5000"))
-                   {
-                       detailsToUpdate.CertificateOrAward = new string('K', 5000);
-                   }
-                   _certificationPage.UpdateCertificationDetails(existingDetails.CertificateOrAward,detailsToUpdate.CertificateOrAward,detailsToUpdate.CertifiedFrom,detailsToUpdate.Year);
-                   var actualMessage = _certificationPage.GetSuccessMessageForUpdate(detailsToUpdate.CertificateOrAward);
+                    _certificationPage.AddCertifications(existingDetails.CertificateOrAward, existingDetails.CertifiedFrom, existingDetails.Year);
+                    if (detailsToUpdate.CertificateOrAward.Equals("CertificateText_Length_5000"))
+                    {
+                        detailsToUpdate.CertificateOrAward = new string('K', 5000);
+                    }
+                    _certificationPage.UpdateCertificationDetails(existingDetails.CertificateOrAward, detailsToUpdate.CertificateOrAward, detailsToUpdate.CertifiedFrom, detailsToUpdate.Year);
+                    var actualMessage = _certificationPage.GetSuccessMessageForUpdate(detailsToUpdate.CertificateOrAward);
                     actualMessageList.Add(actualMessage);
                     expectedMessageList.Add(detailsToUpdate.ExpectedMessage);
                     cleanUpList.Add(detailsToUpdate.CertificateOrAward);
@@ -647,10 +641,10 @@ namespace qa_dotnet_cucumber.Steps
         }
 
         [When("I delete certification details from json file after the session has expired with the TestName {string}")] //Delete during session expired
-        public void WhenIDeleteCertificationDetailsFromJsonFileAfterTheSessionHasExpiredWithTheTestName(string scenarioName)
+        public void WhenIDeleteCertificationDetailsFromJsonFileAfterTheSessionHasExpiredWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<CertificationFeature>("CertificationsTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
+          
             if (scenario != null)
             {
                 var actualMessageList = new List<string>();
@@ -674,6 +668,38 @@ namespace qa_dotnet_cucumber.Steps
                 _scenarioContext.Set(actualMessageList, "ActualMessageList");
                 _scenarioContext.Set(expectedMessageList, "ExpectedMessageList");
             }
+        }
+
+        [When("I delete certification details from json file with the TestName {string}")]
+        public void WhenIDeleteCertificationDetailsFromJsonFileWithTheTestName(string fileName)
+        {
+            var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
+
+            if (scenario != null)
+            {
+                var actualMessageList = new List<string>();
+                var expectedMessageList = new List<string>();
+                foreach (var testItem in scenario.TestItems)
+                {
+                    var detailsToAdd = testItem.CertificationDetailsToAdd;
+                    var detailsToDelete = testItem.CertificationDetailsToDelete;
+                    _certificationPage.AddCertifications(detailsToAdd.CertificateOrAward, detailsToAdd.CertifiedFrom, detailsToAdd.Year);
+                    _certificationPage.DeleteSpecificCertification(detailsToDelete.CertificateOrAward);
+                    expectedMessageList.Add(detailsToDelete.ExpectedMessage);
+                    var actualMessage = _certificationPage.GetSuccessMessage();
+                    actualMessageList.Add(actualMessage);
+                }
+                _scenarioContext.Set(actualMessageList, "ActualMessageList");
+                _scenarioContext.Set(expectedMessageList, "ExpectedMessageList");
+            }
+        }
+
+        [Then("I should see the success message for delete")]
+        public void ThenIShouldSeeTheSuccessMessageForDelete()
+        {
+            var actualList =_scenarioContext.Get<List<string>>("ActualMessageList");
+            var expectedList = _scenarioContext.Get<List<string>>("ExpectedMessageList");
+            Assert.That(actualList, Is.EquivalentTo(expectedList), "Lists contain different elements");
         }
     }
 }

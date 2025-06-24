@@ -123,7 +123,7 @@ namespace qa_dotnet_cucumber.Hooks
             {
                 _test = _extent.CreateTest(scenarioContext.ScenarioInfo.Title);
                 scenarioContext.Set(_test, "ExtentTest");
-                Console.WriteLine($"[BeforeScenario] Created test: {scenarioContext.ScenarioInfo.Title} on Thread {Thread.CurrentThread.ManagedThreadId} at {DateTime.Now}");
+                Console.WriteLine($"Created test: {scenarioContext.ScenarioInfo.Title} on Thread {Thread.CurrentThread.ManagedThreadId} at {DateTime.Now}");
             }
         }
 
@@ -134,21 +134,19 @@ namespace qa_dotnet_cucumber.Hooks
             var stepType = scenarioContext.StepContext.StepInfo.StepDefinitionType.ToString();
             var stepText = scenarioContext.StepContext.StepInfo.Text;
 
-            Console.WriteLine($"[AfterStep] {stepType}:{stepText} on Thread {Thread.CurrentThread.ManagedThreadId} at {DateTime.Now}");
+            Console.WriteLine($"{stepType}:{stepText} on Thread {Thread.CurrentThread.ManagedThreadId} at {DateTime.Now}");
             if (scenarioContext.TestError == null)
             {
                 test.Log(Status.Pass, $"<b>{stepType}</b>   {stepText}");
-                Console.WriteLine($"[AfterStep] Step Passed: {stepText}");
+                Console.WriteLine($"Step Passed: {stepText}");
             }
             else
             {
                 var screenshot = ((ITakesScreenshot) _driver).GetScreenshot();
                 string base64Screenshot = screenshot.AsBase64EncodedString;
-              
-                test.Log(Status.Fail,
-                        $"<b>{stepType}</b>   {stepText}")
-                    .AddScreenCaptureFromBase64String(base64Screenshot, "Failure Screenshot");
-                Console.WriteLine($"[AfterStep] Step failed: {stepText}");
+                
+                test.Log(Status.Fail, $"<b>{stepType}</b>   {stepText} ").AddScreenCaptureFromBase64String(base64Screenshot, "Failure Screenshot");
+                Console.WriteLine($"Step failed: {stepText}");
             }
         }
 
@@ -170,11 +168,11 @@ namespace qa_dotnet_cucumber.Hooks
                                 {
                                     languagePage.DeleteSpecificLanguage(language);
                                 }
-                                Console.WriteLine($"[AfterScenario] Cleanup:Deleted {languages.Count} languages for this scenario");  //Check the count of languages deleted
+                                Console.WriteLine($"Cleanup:Deleted {languages.Count} languages for this scenario");  //Check the count of languages deleted
                             }
                             else
                             {
-                                Console.WriteLine("[AfterScenario] Clean up skipped: Language list is empty."); //Clean up skipped
+                                Console.WriteLine("Clean up skipped: Language list is empty."); //Clean up skipped
                             }
                         }
                     }
@@ -189,11 +187,11 @@ namespace qa_dotnet_cucumber.Hooks
                                 {
                                     skillsPage.DeleteSpecificSkill(skill);
                                 }
-                                Console.WriteLine($"[AfterScenario] Cleanup:Deleted {skills.Count} skills for this scenario");
+                                Console.WriteLine($"Cleanup:Deleted {skills.Count} skills for this scenario");
                             }
                             else
                             {
-                                Console.WriteLine("[AfterScenario] Clean up skipped: Skill list is empty");
+                                Console.WriteLine("Clean up skipped: Skill list is empty");
                             }
                         }
                     }
@@ -209,11 +207,11 @@ namespace qa_dotnet_cucumber.Hooks
                                     educationPage.DeleteSpecificEducation(education);
                                 }
 
-                                Console.WriteLine($"[AfterScenario] Cleanup:Deleted {educationList.Count} education list for this scenario");
+                                Console.WriteLine($"Cleanup:Deleted {educationList.Count} education list for this scenario");
                             }
                             else
                             {
-                                Console.WriteLine("[AfterScenario] Clean up skipped: Education list is empty");
+                                Console.WriteLine("Clean up skipped: Education list is empty");
                             }
                         }
                     }
@@ -228,11 +226,11 @@ namespace qa_dotnet_cucumber.Hooks
                                 {
                                     certificationPage.DeleteSpecificCertification(certification);
                                 }
-                                Console.WriteLine($"[AfterScenario] Cleanup: Deleted {certificationList.Count} certifications list for this scenario");
+                                Console.WriteLine($"Cleanup: Deleted {certificationList.Count} certifications list for this scenario");
                             }
                             else
                             {
-                                Console.WriteLine("[AfterScenario] Clean up skipped: Certification list is empty");
+                                Console.WriteLine("Clean up skipped: Certification list is empty");
                             }
                         }
                     }
@@ -252,7 +250,7 @@ namespace qa_dotnet_cucumber.Hooks
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[AfterScenario] Clean up failed:{ex.Message}");
+                Console.WriteLine($"Clean up failed:{ex.Message}");
             }
         }
 

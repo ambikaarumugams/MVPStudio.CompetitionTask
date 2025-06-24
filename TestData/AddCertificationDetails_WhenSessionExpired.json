@@ -1,0 +1,14 @@
+{
+    "TestItems": [
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "Certified Tester AI Testing (CT-AI)",
+                "CertifiedFrom": "ISTQB",
+                "Year": "2024",
+                "ExpectedMessage": "undefined"
+            },
+            "CertificationDetailsToUpdate": null,
+            "CertificationDetailsToDelete": null
+        }
+    ]
+}

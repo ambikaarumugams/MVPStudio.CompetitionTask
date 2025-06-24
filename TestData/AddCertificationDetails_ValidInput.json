@@ -1,0 +1,44 @@
+{
+   "TestItems": [
+    {
+      "CertificationDetailsToAdd": {
+        "CertificateOrAward": "ISTQB Foundation Level (CTFL)",
+        "CertifiedFrom": "ISTQB",
+        "Year": "2024",
+        "ExpectedMessage": "ISTQB Foundation Level (CTFL) has been added to your certification"
+      },
+      "CertificationDetailsToUpdate": null,
+      "CertificationDetailsToDelete": null
+    },
+    {
+      "CertificationDetailsToAdd": {
+        "CertificateOrAward": "ISTQB Advanced Level (Test Analyst, Technical Test Analyst)",
+        "CertifiedFrom": "ISTQB",
+        "Year": "2024",
+        "ExpectedMessage": "ISTQB Advanced Level (Test Analyst, Technical Test Analyst) has been added to your certification"
+      },
+      "CertificationDetailsToUpdate": null,
+      "CertificationDetailsToDelete": null
+    },
+    {
+      "CertificationDetailsToAdd": {
+        "CertificateOrAward": "Certified Selenium Tester (CST)",
+        "CertifiedFrom": "ATA, CP-SAT",
+        "Year": "2024",
+        "ExpectedMessage": "Certified Selenium Tester (CST) has been added to your certification"
+      },
+      "CertificationDetailsToUpdate": null,
+      "CertificationDetailsToDelete": null
+    },
+    {
+      "CertificationDetailsToAdd": {
+        "CertificateOrAward": "Test Automation Engineer (ISTQB)",
+        "CertifiedFrom": "ISTQB",
+        "Year": "2024",
+        "ExpectedMessage": "Test Automation Engineer (ISTQB) has been added to your certification"
+      },
+      "CertificationDetailsToUpdate": null,
+      "CertificationDetailsToDelete": null
+    }
+  ]
+}

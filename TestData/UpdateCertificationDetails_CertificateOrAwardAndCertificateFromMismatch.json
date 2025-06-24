@@ -1,0 +1,34 @@
+{
+    "TestItems": [
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "ISTQB Foundation Level 6 (CTFL)",
+                "CertifiedFrom": "ISTQB",
+                "Year": "2024",
+                "ExpectedMessage": "ISTQB Foundation Level 6 (CTFL) has been added to your certification"
+            },
+            "CertificationDetailsToUpdate": {
+                "CertificateOrAward": "AWS Certified AI Practitioner 5",
+                "CertifiedFrom": "Microsoft",
+                "Year": "2020",
+                "ExpectedMessage": "Invalid Certificate or Award and Certified From (e.g. Adobe)"
+            },
+            "CertificationDetailsToDelete": null
+        },
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "CCNA",
+                "CertifiedFrom": "Cisco",
+                "Year": "2024",
+                "ExpectedMessage": "CCNA has been added to your certification"
+            },
+            "CertificationDetailsToUpdate": {
+                "CertificateOrAward": "Microsoft Power BI",
+                "CertifiedFrom": "AWS",
+                "Year": "2020",
+                "ExpectedMessage": "Invalid Certificate or Award and Certified From (e.g. Adobe)"
+            },
+            "CertificationDetailsToDelete": null
+        }
+    ]
+}
