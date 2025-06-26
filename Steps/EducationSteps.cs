@@ -15,7 +15,7 @@ namespace qa_dotnet_cucumber.Steps
         private readonly ScenarioContext _scenarioContext;
         private readonly EducationPage _educationPage;
 
-        public EducationSteps(LoginPage loginPage, NavigationHelper navigationHelper, ScenarioContext scenarioContext,EducationPage educationPage) //Constructor
+        public EducationSteps(LoginPage loginPage, NavigationHelper navigationHelper, ScenarioContext scenarioContext, EducationPage educationPage) //Constructor
         {
             _loginPage = loginPage;
             _navigationHelper = navigationHelper;
@@ -27,7 +27,7 @@ namespace qa_dotnet_cucumber.Steps
         public void GivenINavigateToTheProfilePageAsARegisteredUser()
         {
             _navigationHelper.NavigateTo("Home");
-            var loginDetails = JsonHelper.LoadJson<LoginDetails>("LoginData");  
+            var loginDetails = JsonHelper.LoadJson<LoginDetails>("LoginData");
             var username = loginDetails.UserName;
             var password = loginDetails.Password;
             _loginPage.Login(username, password);
@@ -35,10 +35,9 @@ namespace qa_dotnet_cucumber.Steps
         }
 
         [When("I enter education details from json file with the TestName {string}")]  //Add education details, >250 characters length, negative testing with valid input
-        public void WhenIEnterEducationDetailsFromJsonFileWithTheTestName(string scenarioName) 
+        public void WhenIEnterEducationDetailsFromJsonFileWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName,scenarioName,StringComparison.OrdinalIgnoreCase));  //Filter the scenario using the scenario name 
+            var scenario = JsonHelper.LoadJson<EducationFeature>(fileName);
 
             if (scenario != null)
             {
@@ -64,15 +63,14 @@ namespace qa_dotnet_cucumber.Steps
             var actualList = _scenarioContext.Get<List<string>>("ActualMessageList");
             foreach (var actual in actualList)
             {
-                Assert.That(actual, Does.Contain(EducationConstants.SuccessMessageForAdd), $"Actual and Expected are mismatched!"); 
+                Assert.That(actual, Does.Contain(EducationConstants.SuccessMessageForAdd), $"Actual and Expected are mismatched!");
             }
         }
 
         [When("I enter invalid education details from json file with the TestName {string}")] //Add invalid input
-        public void WhenIEnterInvalidEducationDetailsFromJsonFileWithTheTestName(string scenarioName)
+        public void WhenIEnterInvalidEducationDetailsFromJsonFileWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<EducationFeature>(fileName);
 
             if (scenario != null)
             {
@@ -120,10 +118,9 @@ namespace qa_dotnet_cucumber.Steps
         }
 
         [When("I leave either one or all the fields empty and give the data from json file with the TestName {string}")] //Leave either one or all the fields empty for add
-        public void WhenILeaveEitherOneOrAllTheFieldsEmptyAndGiveTheDataFromJsonFileWithTheTestName(string scenarioName)
+        public void WhenILeaveEitherOneOrAllTheFieldsEmptyAndGiveTheDataFromJsonFileWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<EducationFeature>(fileName);
 
             if (scenario != null)
             {
@@ -151,10 +148,10 @@ namespace qa_dotnet_cucumber.Steps
         }
 
         [When("I enter same education details twice from json file with the TestName {string}")]  //Duplicate data
-        public void WhenIEnterSameEducationDetailsTwiceFromJsonFileWithTheTestName(string scenarioName)
+        public void WhenIEnterSameEducationDetailsTwiceFromJsonFileWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<EducationFeature>(fileName);
+
             var messageResults = new List<(string Message, string Type)>();
             var cleanUpList = new List<string>();
             if (scenario != null)
@@ -193,10 +190,10 @@ namespace qa_dotnet_cucumber.Steps
         }
 
         [When("I enter education details from json file after the session has expired with the TestName {string}")]  //Add during session expired
-        public void WhenIEnterEducationDetailsFromJsonFileAfterTheSessionHasExpiredWithTheTestName(string scenarioName)
+        public void WhenIEnterEducationDetailsFromJsonFileAfterTheSessionHasExpiredWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<EducationFeature>(fileName);
+
 
             if (scenario != null)
             {
@@ -224,10 +221,10 @@ namespace qa_dotnet_cucumber.Steps
         }
 
         [When("I enter education details from the Json file with the test name {string}")]   //Add education details for cancel
-        public void WhenIEnterEducationDetailsFromTheJsonFileWithTheTestName(string scenarioName)
+        public void WhenIEnterEducationDetailsFromTheJsonFileWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName,scenarioName,StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<EducationFeature>(fileName);
+
             if (scenario != null)
             {
                 var actualList = new List<string>();
@@ -256,12 +253,12 @@ namespace qa_dotnet_cucumber.Steps
                 Assert.That(actual, Does.Contain(EducationConstants.ErrorMessage), $"Expected message was '{EducationConstants.ErrorMessage}', but found '{actual}'");
             }
         }
-        
+
         [When("I update education details with the existing details from json file with the TestName {string}")] //Update with valid input
-        public void WhenIUpdateEducationDetailsWithTheExistingDetailsFromJsonFileWithTheTestName(string scenarioName)
+        public void WhenIUpdateEducationDetailsWithTheExistingDetailsFromJsonFileWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<EducationFeature>(fileName);
+
             if (scenario != null)
             {
                 var actualUpdateMessages = new List<string>();
@@ -271,7 +268,7 @@ namespace qa_dotnet_cucumber.Steps
                     var existingDetails = testItem.EducationDetails;
                     var detailsToUpdate = testItem.EducationDetailsToUpdate;
                     _educationPage.AddEducationDetails(existingDetails.CollegeUniversityName, existingDetails.Country, existingDetails.Title, existingDetails.Degree, existingDetails.YearOfGraduation);
-                    _educationPage.UpdateEducationDetails(existingDetails.CollegeUniversityName,detailsToUpdate.CollegeUniversityName, detailsToUpdate.Country, detailsToUpdate.Title, detailsToUpdate.Degree, detailsToUpdate.YearOfGraduation);
+                    _educationPage.UpdateEducationDetails(existingDetails.CollegeUniversityName, detailsToUpdate.CollegeUniversityName, detailsToUpdate.Country, detailsToUpdate.Title, detailsToUpdate.Degree, detailsToUpdate.YearOfGraduation);
                     var successMessage = _educationPage.GetSuccessMessageForUpdate(EducationConstants.SuccessMessageForUpdate);
                     actualUpdateMessages.Add(successMessage);
                     cleanUpList.Add(detailsToUpdate.CollegeUniversityName);
@@ -292,10 +289,10 @@ namespace qa_dotnet_cucumber.Steps
         }
 
         [When("I enter invalid education details to update from json file with the TestName {string}")] //Update with invalid input
-        public void WhenIEnterInvalidEducationDetailsToUpdateFromJsonFileWithTheTestName(string scenarioName)
+        public void WhenIEnterInvalidEducationDetailsToUpdateFromJsonFileWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<EducationFeature>(fileName);
+
             if (scenario != null)
             {
                 var cleanUpList = new List<string>();
@@ -306,7 +303,7 @@ namespace qa_dotnet_cucumber.Steps
                     var detailsToUpdate = testItem.EducationDetailsToUpdate;
                     _educationPage.AddEducationDetails(existingDetails.CollegeUniversityName, existingDetails.Country, existingDetails.Title, existingDetails.Degree, existingDetails.YearOfGraduation);
                     Thread.Sleep(5000);
-                    _educationPage.UpdateEducationDetails(existingDetails.CollegeUniversityName,detailsToUpdate.CollegeUniversityName, detailsToUpdate.Country, detailsToUpdate.Title, detailsToUpdate.Degree, detailsToUpdate.YearOfGraduation);
+                    _educationPage.UpdateEducationDetails(existingDetails.CollegeUniversityName, detailsToUpdate.CollegeUniversityName, detailsToUpdate.Country, detailsToUpdate.Title, detailsToUpdate.Degree, detailsToUpdate.YearOfGraduation);
                     var (messageText, messageType) = _educationPage.GetToastMessage();
                     messageResults.Add((messageText, messageType));
                     if (string.Equals(messageType, "SUCCESS", StringComparison.OrdinalIgnoreCase))
@@ -349,11 +346,10 @@ namespace qa_dotnet_cucumber.Steps
             }
         }
 
-       [When("I leave either one or all the fields empty and give the data to update from json file with the TestName {string}")]  //Leave either one or all the fields empty
-        public void WhenILeaveEitherOneOrAllTheFieldsEmptyAndGiveTheDataToUpdateFromJsonFileWithTheTestName(string scenarioName)
+        [When("I leave either one or all the fields empty and give the data to update from json file with the TestName {string}")]  //Leave either one or all the fields empty
+        public void WhenILeaveEitherOneOrAllTheFieldsEmptyAndGiveTheDataToUpdateFromJsonFileWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<EducationFeature>(fileName);
 
             if (scenario != null)
             {
@@ -376,10 +372,9 @@ namespace qa_dotnet_cucumber.Steps
         }
 
         [When("I update education details from json file after the session has expired with the TestName {string}")]  //update during session expired
-        public void WhenIUpdateEducationDetailsFromJsonFileAfterTheSessionHasExpiredWithTheTestName(string scenarioName)
+        public void WhenIUpdateEducationDetailsFromJsonFileAfterTheSessionHasExpiredWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<EducationFeature>(fileName);
 
             if (scenario != null)
             {
@@ -401,7 +396,7 @@ namespace qa_dotnet_cucumber.Steps
                 _scenarioContext.Set(cleanUpList, "EducationToCleanup");
             }
         }
-        
+
         [Then("I should see the error message to update for session expired")]    //Validation for session expired
         public void ThenIShouldSeeTheErrorMessageToUpdateForSessionExpired()
         {
@@ -425,10 +420,9 @@ namespace qa_dotnet_cucumber.Steps
         }
 
         [When("I delete education details from json file after the session has expired with the TestName {string}")]  //delete during session expired
-        public void WhenIDeleteEducationDetailsFromJsonFileAfterTheSessionHasExpiredWithTheTestName(string scenarioName)
+        public void WhenIDeleteEducationDetailsFromJsonFileAfterTheSessionHasExpiredWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s =>string.Equals(s.ScenarioName,scenarioName,StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<EducationFeature>(fileName);
 
             if (scenario != null)
             {
@@ -439,7 +433,7 @@ namespace qa_dotnet_cucumber.Steps
                 {
                     var details = testItem.EducationDetails;
                     var detailsToDelete = testItem.EducationDetailsToDelete;
-                   _educationPage.AddEducationDetails(details.CollegeUniversityName, details.Country, details.Title, details.Degree, details.YearOfGraduation);
+                    _educationPage.AddEducationDetails(details.CollegeUniversityName, details.Country, details.Title, details.Degree, details.YearOfGraduation);
                     _educationPage.ExpireSession();
                     _educationPage.DeleteSpecificEducation(detailsToDelete.CollegeUniversityName);
                     var errorMessage = _educationPage.GetErrorMessage();
@@ -447,7 +441,7 @@ namespace qa_dotnet_cucumber.Steps
                     cleanUpList.Add(details.CollegeUniversityName);
                 }
                 _scenarioContext.Set(actualMessageList, "ActualMessageList");
-                _scenarioContext.Set(cleanUpList,"EducationToCleanup");
+                _scenarioContext.Set(cleanUpList, "EducationToCleanup");
             }
         }
 
@@ -463,10 +457,10 @@ namespace qa_dotnet_cucumber.Steps
         }
 
         [When("I update education details with the same existing details from json file with the TestName {string}")]  //Duplicate data
-        public void WhenIUpdateEducationDetailsWithTheSameExistingDetailsFromJsonFileWithTheTestName(string scenarioName)
+        public void WhenIUpdateEducationDetailsWithTheSameExistingDetailsFromJsonFileWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName,scenarioName,StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<EducationFeature>(fileName);
+
             var messageResults = new List<(string Message, string Type)>();
             var cleanUpList = new List<string>();
             if (scenario != null)
@@ -475,7 +469,7 @@ namespace qa_dotnet_cucumber.Steps
                 {
                     var existingDetails = testItem.EducationDetails;
                     var detailsToUpdate = testItem.EducationDetailsToUpdate;
-                    _educationPage.AddEducationDetails(existingDetails.CollegeUniversityName,existingDetails.Country, existingDetails.Title, existingDetails.Degree,
+                    _educationPage.AddEducationDetails(existingDetails.CollegeUniversityName, existingDetails.Country, existingDetails.Title, existingDetails.Degree,
                         existingDetails.YearOfGraduation);
                     var successMessage = _educationPage.GetSuccessMessage();
                     Console.WriteLine(successMessage);
@@ -507,10 +501,9 @@ namespace qa_dotnet_cucumber.Steps
         }
 
         [When("I enter education details for destructive testing from json file with the TestName {string}")] //destructive testing for add
-        public void WhenIEnterEducationDetailsForDestructiveTestingFromJsonFileWithTheTestName(string scenarioName)
+        public void WhenIEnterEducationDetailsForDestructiveTestingFromJsonFileWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s => string.Equals(s.ScenarioName,scenarioName,StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<EducationFeature>(fileName);
             if (scenario != null)
             {
                 var actualEducationList = new List<string>();
@@ -529,17 +522,16 @@ namespace qa_dotnet_cucumber.Steps
                     actualEducationList.Add(actualMessage);
                     cleanupList.Add(educationDetails.CollegeUniversityName);
                 }
-                _scenarioContext.Set(actualEducationList,"ActualEducationList");
+                _scenarioContext.Set(actualEducationList, "ActualEducationList");
                 _scenarioContext.Set(cleanupList, "EducationToCleanup");
             }
         }
 
         [When("I update education details with the existing details for destructive testing from json file with the TestName {string}")]
-        public void WhenIUpdateEducationDetailsWithTheExistingDetailsForDestructiveTestingFromJsonFileWithTheTestName(string scenarioName)
+        public void WhenIUpdateEducationDetailsWithTheExistingDetailsForDestructiveTestingFromJsonFileWithTheTestName(string fileName)
         {
-            var feature = JsonHelper.LoadJson<EducationFeature>("EducationTestData");
-            var scenario = feature.Scenarios.FirstOrDefault(s =>
-                string.Equals(s.ScenarioName, scenarioName, StringComparison.OrdinalIgnoreCase));
+            var scenario = JsonHelper.LoadJson<EducationFeature>(fileName);
+
             if (scenario != null)
             {
                 var actualEducationList = new List<string>();
@@ -563,7 +555,7 @@ namespace qa_dotnet_cucumber.Steps
                     cleanupList.Add(detailsToUpdate.CollegeUniversityName);
                 }
                 _scenarioContext.Set(actualEducationList, "ActualEducationList");
-                _scenarioContext.Set(cleanupList, "EducationToCleanup"); 
+                _scenarioContext.Set(cleanupList, "EducationToCleanup");
             }
         }
 
@@ -573,7 +565,37 @@ namespace qa_dotnet_cucumber.Steps
             var actualList = _scenarioContext.Get<List<string>>("ActualEducationList");
             foreach (var actual in actualList)
             {
-                Assert.That(actual,Does.Contain(EducationConstants.ErrorMessage), $"Expected message is {EducationConstants.ErrorMessage}, but found '{actual}'.");
+                Assert.That(actual, Does.Contain(EducationConstants.ErrorMessage), $"Expected message is {EducationConstants.ErrorMessage}, but found '{actual}'.");
+            }
+        }
+
+        [When("I delete education details from json file with the TestName {string}")]
+        public void WhenIDeleteEducationDetailsFromJsonFileWithTheTestName(string fileName)
+        {
+            var scenario = JsonHelper.LoadJson<EducationFeature>(fileName);
+            if (scenario != null)
+            {
+                var actualMessageList = new List<string>();
+                foreach (var testItem in scenario.TestItems)
+                {
+                    var details = testItem.EducationDetails;
+                    var detailsToDelete = testItem.EducationDetailsToDelete;
+                    _educationPage.AddEducationDetails(details.CollegeUniversityName, details.Country, details.Title, details.Degree, details.YearOfGraduation);
+                    _educationPage.DeleteSpecificEducation(detailsToDelete.CollegeUniversityName);
+                    var successMessage = _educationPage.GetSuccessMessage();
+                    actualMessageList.Add(successMessage);
+                }
+                _scenarioContext.Set(actualMessageList, "ActualMessageList");
+            }
+        }
+
+        [Then("I should see the success message for delete")]
+        public void ThenIShouldSeeTheSuccessMessageForDelete()
+        {
+            var actualList = _scenarioContext.Get<List<string>>("ActualMessageList");
+            foreach (var actual in actualList)
+            {
+                Assert.That(actual, Is.EqualTo(EducationConstants.SuccessMessageForDelete), $"Actual and expected are not equal");
             }
         }
     }

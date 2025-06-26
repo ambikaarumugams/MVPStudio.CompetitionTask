@@ -1,0 +1,48 @@
+{
+    "TestItems": [
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "fdhjfhghjkjm",
+                "Country": "Australia",
+                "Title": "B.A",
+                "Degree": "Astrophysics",
+                "YearOfGraduation": "2018"
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "123567890",
+                "Country": "United States",
+                "Title": "M.B.A",
+                "Degree": "Master of Business Administration",
+                "YearOfGraduation": "2021"
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "!@#$%&**&%",
+                "Country": "United Kingdom",
+                "Title": "PHD",
+                "Degree": "Computer Science",
+                "YearOfGraduation": "2023"
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": " ",
+                "Country": "United Kingdom",
+                "Title": "PHD",
+                "Degree": "Computer Science",
+                "YearOfGraduation": "2025"
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        }
+    ]
+}

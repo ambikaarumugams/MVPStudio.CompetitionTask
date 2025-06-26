@@ -1,0 +1,21 @@
+ {
+   "TestItems": [
+     {
+       "EducationDetails": {
+         "CollegeUniversityName": "Oxford University",
+         "Country": "Angola",
+         "Title": "B.A",
+         "Degree": "Astrophysics",
+         "YearOfGraduation": "2018"
+       },
+       "EducationDetailsToUpdate": null,
+       "EducationDetailsToDelete": {
+         "CollegeUniversityName": "Oxford University",
+         "Country": "Angola",
+         "Title": "B.A",
+         "Degree": "Astrophysics",
+         "YearOfGraduation": "2018"
+       }
+     }
+   ]
+ }

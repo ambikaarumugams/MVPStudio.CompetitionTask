@@ -1,0 +1,72 @@
+{
+    "TestItems": [
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "University of Sydney",
+                "Country": "Australia",
+                "Title": "B.A",
+                "Degree": "Astrophysics",
+                "YearOfGraduation": "2018"
+            },
+            "EducationDetailsToUpdate": {
+                "CollegeUniversityName": "fdhjfhghjkjm",
+                "Country": "Australia",
+                "Title": "B.A",
+                "Degree": "Astrophysics",
+                "YearOfGraduation": "2018"
+            },
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "University of California",
+                "Country": "United States",
+                "Title": "M.B.A",
+                "Degree": "Master of Business Administration",
+                "YearOfGraduation": "2021"
+            },
+            "EducationDetailsToUpdate": {
+                "CollegeUniversityName": "123567890",
+                "Country": "United States",
+                "Title": "M.B.A",
+                "Degree": "Master of Business Administration",
+                "YearOfGraduation": "2021"
+            },
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "University of Cambridge",
+                "Country": "United Kingdom",
+                "Title": "PHD",
+                "Degree": "Computer Science",
+                "YearOfGraduation": "2023"
+            },
+            "EducationDetailsToUpdate": {
+                "CollegeUniversityName": "!@#$%&**&%",
+                "Country": "United Kingdom",
+                "Title": "PHD",
+                "Degree": "Computer Science",
+                "YearOfGraduation": "2023"
+            },
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "University of Edinburgh",
+                "Country": "United Kingdom",
+                "Title": "PHD",
+                "Degree": "Computer Science",
+                "YearOfGraduation": "2025"
+            },
+            "EducationDetailsToUpdate": {
+                "CollegeUniversityName": "     ",
+                "Country": "United Kingdom",
+                "Title": "PHD",
+                "Degree": "Computer Science",
+                "YearOfGraduation": "2025"
+            },
+            "EducationDetailsToDelete": null
+        }
+    ]
+}

@@ -1,0 +1,59 @@
+{
+    "TestItems": [
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "",
+                "Country": "",
+                "Title": "",
+                "Degree": "",
+                "YearOfGraduation": ""
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "NIT",
+                "Country": "",
+                "Title": "",
+                "Degree": "",
+                "YearOfGraduation": ""
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "NIT",
+                "Country": "India",
+                "Title": "",
+                "Degree": "",
+                "YearOfGraduation": ""
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "NIT",
+                "Country": "India",
+                "Title": "M.Tech",
+                "Degree": "",
+                "YearOfGraduation": ""
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "NIT",
+                "Country": "India",
+                "Title": "M.Tech",
+                "Degree": "Power Electronics",
+                "YearOfGraduation": ""
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        }
+    ]
+}

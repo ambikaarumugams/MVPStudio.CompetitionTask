@@ -1,0 +1,21 @@
+{
+    "TestItems": [
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "NIT",
+                "Country": "India",
+                "Title": "BArch",
+                "Degree": "Architecture",
+                "YearOfGraduation": "2005"
+            },
+            "EducationDetailsToUpdate": {
+                "CollegeUniversityName": "Oxford University",
+                "Country": "United Kingdom",
+                "Title": "PHD",
+                "Degree": "Computer Science",
+                "YearOfGraduation": "2023"
+            },
+            "EducationDetailsToDelete": null
+        }
+    ]
+}

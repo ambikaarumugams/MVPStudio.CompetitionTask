@@ -1,0 +1,174 @@
+{
+    "TestItems": [
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "University of Melbourne",
+                "Country": "Australia",
+                "Title": "B.Tech",
+                "Degree": "Computer science and information technology",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToUpdate": {
+                "CollegeUniversityName": "University of Sydney",
+                "Country": "Australia",
+                "Title": "B.Tech",
+                "Degree": "Computer science and information technology",
+                "YearOfGraduation": "2013"
+            },
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "University of New South Wales",
+                "Country": "Australia",
+                "Title": "BFA",
+                "Degree": "Acting",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToUpdate": {
+                "CollegeUniversityName": "University of Western Australia",
+                "Country": "Australia",
+                "Title": "BFA",
+                "Degree": "Acting",
+                "YearOfGraduation": "2013"
+            },
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "University of Queensland",
+                "Country": "Australia",
+                "Title": "M.A",
+                "Degree": "Psychology",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToUpdate": {
+                "CollegeUniversityName": "University of New South Wales",
+                "Country": "Australia",
+                "Title": "BFA",
+                "Degree": "Acting",
+                "YearOfGraduation": "2013"
+            },
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "Monash University",
+                "Country": "Australia",
+                "Title": "B.Tech",
+                "Degree": "Biomedical engineering",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToUpdate": {
+                "CollegeUniversityName": "University of Melbourne",
+                "Country": "Austria",
+                "Title": "BFA",
+                "Degree": "Acting",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "University of Newcastle",
+                "Country": "Australia",
+                "Title": "B.Tech",
+                "Degree": "Computer science and information technology",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToUpdate": {
+                "CollegeUniversityName": "Australian National University",
+                "Country": "India",
+                "Title": "BFA",
+                "Degree": "Acting",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "University of Newzealand",
+                "Country": "New Zealand",
+                "Title": "BFA",
+                "Degree": "Acting",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToUpdate": {
+                "CollegeUniversityName": "University of Technology, Sydney",
+                "Country": "United States",
+                "Title": "BFA",
+                "Degree": "Acting",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "University of Melbourne",
+                "Country": "Australia",
+                "Title": "M.A",
+                "Degree": "Psychology",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToUpdate": {
+                "CollegeUniversityName": "University of Melbourne",
+                "Country": "United Kingdom",
+                "Title": "BFA",
+                "Degree": "Acting",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "Anna University",
+                "Country": "India",
+                "Title": "M.B.A",
+                "Degree": "Computer science and information technology",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToUpdate": {
+                "CollegeUniversityName": "MIT",
+                "Country": "India",
+                "Title": "BFA",
+                "Degree": "Acting",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "Oxford University",
+                "Country": "United Kingdom",
+                "Title": "MFA",
+                "Degree": "Acting",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToUpdate": {
+                "CollegeUniversityName": "University of Adelaide",
+                "Country": "United States",
+                "Title": "B.Sc",
+                "Degree": "Acting",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "University of Melbourne",
+                "Country": "Australia",
+                "Title": "M.A",
+                "Degree": "Phychology",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToUpdate": {
+                "CollegeUniversityName": "NIT",
+                "Country": "United Kingdom",
+                "Title": "BFA",
+                "Degree": "Computer Science",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToDelete": null
+        }
+    ]
+}

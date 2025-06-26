@@ -1,0 +1,15 @@
+ {
+   "TestItems": [
+     {
+       "EducationDetails": {
+         "CollegeUniversityName": "Global Center for Innovation and Research",
+         "Country": "Australia",
+         "Title": "PHD",
+         "Degree": "Master of Science in Interdisciplinary Integration of Quantum Computing, Artificial Intelligence, Nanotechnology, Ethical Bioengineering, and Advanced Sustainable Systems for Climate-Resilient Infrastructural Development and Future Technologies",
+         "YearOfGraduation": "2023"
+       },
+       "EducationDetailsToUpdate": null,
+       "EducationDetailsToDelete": null
+     }
+   ]
+ }

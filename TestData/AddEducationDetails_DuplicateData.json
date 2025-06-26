@@ -1,0 +1,26 @@
+{
+    "TestItems": [
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "NIT",
+                "Country": "India",
+                "Title": "M.Tech",
+                "Degree": "Power Systems",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "NIT",
+                "Country": "India",
+                "Title": "M.Tech",
+                "Degree": "Power Systems",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        }
+    ]
+}
