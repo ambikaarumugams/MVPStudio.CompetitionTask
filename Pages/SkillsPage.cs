@@ -243,7 +243,6 @@ namespace qa_dotnet_cucumber.Pages
   
         public void LeaveTheSkillAndLevelEmptyWithCombinationsForUpdate(string existingSkill,string skillToUpdate,string skillLevelToUpdate)    //To leave the skill field empty for updating skill
         {   
-                   
             try
             {
                 var skillsTable = _wait.Until(ExpectedConditions.ElementIsVisible(_skillsTable));

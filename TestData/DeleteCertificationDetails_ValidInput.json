@@ -1,0 +1,19 @@
+{
+    "TestItems": [
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "ISTQB Foundation Level 8 (CTFL)",
+                "CertifiedFrom": "ISTQB",
+                "Year": "2024",
+                "ExpectedMessage": "ISTQB Foundation Level 8 (CTFL) has been added to your certification"
+            },
+            "CertificationDetailsToUpdate": null,
+            "CertificationDetailsToDelete": {
+                "CertificateOrAward": "ISTQB Foundation Level 8 (CTFL)",
+                "CertifiedFrom": "ISTQB",
+                "Year": "2024",
+                "ExpectedMessage": "ISTQB Foundation Level 8 (CTFL) has been deleted from your certification"
+            }
+        }
+    ]
+}

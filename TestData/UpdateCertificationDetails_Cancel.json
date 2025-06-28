@@ -1,0 +1,19 @@
+{
+    "TestItems": [
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "ISTQB Foundation Level 4 (CTFL)",
+                "CertifiedFrom": "ISTQB",
+                "Year": "2024",
+                "ExpectedMessage": "ISTQB Foundation Level 4 (CTFL) has been added to your certification"
+            },
+            "CertificationDetailsToUpdate": {
+                "CertificateOrAward": "AWS Certified AI Practitioner 3",
+                "CertifiedFrom": "AWS",
+                "Year": "2020",
+                "ExpectedMessage": null
+            },
+            "CertificationDetailsToDelete": null
+        }
+    ]
+}

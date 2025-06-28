@@ -1,0 +1,34 @@
+{
+    "TestItems": [
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "",
+                "CertifiedFrom": "",
+                "Year": "",
+                "ExpectedMessage": "Please enter Certification Name, Certification From and Certification Year"
+            },
+            "CertificationDetailsToUpdate": null,
+            "CertificationDetailsToDelete": null
+        },
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "ISTQB Advanced Level (Test Analyst, Technical Test Analyst)",
+                "CertifiedFrom": "",
+                "Year": "",
+                "ExpectedMessage": "Please enter Certification Name, Certification From and Certification Year"
+            },
+            "CertificationDetailsToUpdate": null,
+            "CertificationDetailsToDelete": null
+        },
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "Certified Tester Agile Test Leadership at Scale",
+                "CertifiedFrom": "ISTQB",
+                "Year": "",
+                "ExpectedMessage": "Please enter Certification Name, Certification From and Certification Year"
+            },
+            "CertificationDetailsToUpdate": null,
+            "CertificationDetailsToDelete": null
+        }
+    ]
+}

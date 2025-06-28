@@ -1,0 +1,48 @@
+{
+    "TestItems": [
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "The University of Sydney",
+                "Country": "Australia",
+                "Title": "B.A",
+                "Degree": "fdhjfhghjkjm",
+                "YearOfGraduation": "2018"
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "Stanford University",
+                "Country": "United States",
+                "Title": "M.B.A",
+                "Degree": "123567890",
+                "YearOfGraduation": "2021"
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "Oxford University",
+                "Country": "United Kingdom",
+                "Title": "PHD",
+                "Degree": "!@#$%&**&%",
+                "YearOfGraduation": "2023"
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "University of Cambridge",
+                "Country": "United Kingdom",
+                "Title": "PHD",
+                "Degree": " ",
+                "YearOfGraduation": "2025"
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        }
+    ]
+}

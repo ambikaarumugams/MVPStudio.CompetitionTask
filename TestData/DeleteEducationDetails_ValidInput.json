@@ -1,0 +1,21 @@
+{
+  "TestItems": [
+    {
+      "EducationDetails": {
+        "CollegeUniversityName": "Bharathidasan University",
+        "Country": "India",
+        "Title": "B.A",
+        "Degree": "Astrophysics",
+        "YearOfGraduation": "2018"
+      },
+      "EducationDetailsToUpdate": null,
+      "EducationDetailsToDelete": {
+        "CollegeUniversityName": "Bharathidasan University",
+        "Country": "India",
+        "Title": "B.A",
+        "Degree": "Astrophysics",
+        "YearOfGraduation": "2018"
+      }
+    }
+  ]
+}

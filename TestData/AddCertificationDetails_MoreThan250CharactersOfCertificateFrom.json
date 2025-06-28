@@ -1,0 +1,14 @@
+{
+    "TestItems": [
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "Certified Tester Advanced Level Test Management",
+                "CertifiedFrom": "CertificateFromText_Length_255",
+                "Year": "2024",
+                "ExpectedMessage": "Invalid Certificate from"
+            },
+            "CertificationDetailsToUpdate": null,
+            "CertificationDetailsToDelete": null
+        }
+    ]
+}

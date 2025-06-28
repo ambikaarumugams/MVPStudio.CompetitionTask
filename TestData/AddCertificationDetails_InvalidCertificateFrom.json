@@ -1,0 +1,44 @@
+ {
+    "TestItems": [
+     {
+       "CertificationDetailsToAdd": {
+         "CertificateOrAward": "Certified Tester Mobile",
+         "CertifiedFrom": "fbhbvnbvnvnm",
+         "Year": "2024",
+         "ExpectedMessage": "Invalid Certificate from"
+       },
+       "CertificationDetailsToUpdate": null,
+       "CertificationDetailsToDelete": null
+     },
+     {
+       "CertificationDetailsToAdd": {
+         "CertificateOrAward": "Advanced Level Agile Technical Tester",
+         "CertifiedFrom": "1223445566",
+         "Year": "2024",
+         "ExpectedMessage": "Invalid Certificate from"
+       },
+       "CertificationDetailsToUpdate": null,
+       "CertificationDetailsToDelete": null
+     },
+     {
+       "CertificationDetailsToAdd": {
+         "CertificateOrAward": "Certified Tester Advanced Level Test Automation Engineering",
+         "CertifiedFrom": "@@#$#$$%%",
+         "Year": "2024",
+         "ExpectedMessage": "Invalid Certificate from"
+       },
+       "CertificationDetailsToUpdate": null,
+       "CertificationDetailsToDelete": null
+     },
+     {
+       "CertificationDetailsToAdd": {
+         "CertificateOrAward": "Certified Tester Advanced Level Technical Test Analyst",
+         "CertifiedFrom": "      ",
+         "Year": "2024",
+         "ExpectedMessage": "Invalid Certificate from"
+       },
+       "CertificationDetailsToUpdate": null,
+       "CertificationDetailsToDelete": null
+     }
+   ]
+ }

@@ -1,0 +1,34 @@
+{
+    "TestItems": [
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "Certified Tester Acceptance Testing (CT-AcT)",
+                "CertifiedFrom": "ISTQB",
+                "Year": "2024",
+                "ExpectedMessage": "Certified Tester Acceptance Testing (CT-AcT) has been added to your certification"
+            },
+            "CertificationDetailsToUpdate": {
+                "CertificateOrAward": "Postman Student Expert 1 / API Tester",
+                "CertifiedFrom": "Postman",
+                "Year": "2024",
+                "ExpectedMessage": "Postman Student Expert 1 / API Tester has been updated to your certification"
+            },
+            "CertificationDetailsToDelete": null
+        },
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "CCNA (Cisco Certified Network Associate 1)",
+                "CertifiedFrom": "Cisco",
+                "Year": "2024",
+                "ExpectedMessage": "CCNA (Cisco Certified Network Associate 1) has been added to your certification"
+            },
+            "CertificationDetailsToUpdate": {
+                "CertificateOrAward": "Certified Tester Performance Testing (CT-PT)",
+                "CertifiedFrom": "ISTQB",
+                "Year": "2024",
+                "ExpectedMessage": "Certified Tester Performance Testing (CT-PT) has been updated to your certification"
+            },
+            "CertificationDetailsToDelete": null
+        }
+    ]
+}

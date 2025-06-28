@@ -1,0 +1,89 @@
+{
+    "TestItems": [
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "NIT",
+                "Country": "India",
+                "Title": "BArch",
+                "Degree": "Architecture",
+                "YearOfGraduation": "2005"
+            },
+            "EducationDetailsToUpdate": {
+                "CollegeUniversityName": "",
+                "Country": "",
+                "Title": "",
+                "Degree": "",
+                "YearOfGraduation": ""
+            },
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "University of Edinburgh",
+                "Country": "United Kingdom",
+                "Title": "PHD",
+                "Degree": "Computer Science",
+                "YearOfGraduation": "2025"
+            },
+            "EducationDetailsToUpdate": {
+                "CollegeUniversityName": "University of California",
+                "Country": "",
+                "Title": "",
+                "Degree": "",
+                "YearOfGraduation": ""
+            },
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "Anna University",
+                "Country": "India",
+                "Title": "B.Tech",
+                "Degree": "Computer Science",
+                "YearOfGraduation": "2015"
+            },
+            "EducationDetailsToUpdate": {
+                "CollegeUniversityName": "University of Adelaide",
+                "Country": "Australia",
+                "Title": "",
+                "Degree": "",
+                "YearOfGraduation": ""
+            },
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "Stanford University",
+                "Country": "United States",
+                "Title": "M.B.A",
+                "Degree": "Master of Business Administration",
+                "YearOfGraduation": "2021"
+            },
+            "EducationDetailsToUpdate": {
+                "CollegeUniversityName": "University of Western Australia",
+                "Country": "Australia",
+                "Title": "MFA",
+                "Degree": "",
+                "YearOfGraduation": ""
+            },
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "Oxford University",
+                "Country": "United Kingdom",
+                "Title": "PHD",
+                "Degree": "Computer Science",
+                "YearOfGraduation": "2023"
+            },
+            "EducationDetailsToUpdate": {
+                "CollegeUniversityName": "University of Queensland",
+                "Country": "Australia",
+                "Title": "B.Tech",
+                "Degree": "Mechanical Engineering",
+                "YearOfGraduation": ""
+            },
+            "EducationDetailsToDelete": null
+        }
+    ]
+}

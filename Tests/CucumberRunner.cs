@@ -1,6 +1,3 @@
-using NUnit.Framework;
-using Reqnroll;
-
 namespace qa_dotnet_cucumber.Tests
 {
     [TestFixture]

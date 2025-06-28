@@ -1,0 +1,14 @@
+{
+    "TestItems": [
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "CertificateText_Length_5000",
+                "CertifiedFrom": "ISTQB",
+                "Year": "2024",
+                "ExpectedMessage": "Invalid Certification or Award"
+            },
+            "CertificationDetailsToUpdate": null,
+            "CertificationDetailsToDelete": null
+        }
+    ]
+}

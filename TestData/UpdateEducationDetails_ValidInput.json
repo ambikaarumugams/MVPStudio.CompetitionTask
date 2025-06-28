@@ -1,0 +1,38 @@
+{
+    "TestItems": [
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "Anna University",
+                "Country": "India",
+                "Title": "B.Tech",
+                "Degree": "Computer Science",
+                "YearOfGraduation": "2015"
+            },
+            "EducationDetailsToUpdate": {
+                "CollegeUniversityName": "IIT",
+                "Country": "India",
+                "Title": "M.Tech",
+                "Degree": "Mechanics",
+                "YearOfGraduation": "2016"
+            },
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "MIT",
+                "Country": "United States",
+                "Title": "M.Tech",
+                "Degree": "AI & Robotics",
+                "YearOfGraduation": "2020"
+            },
+            "EducationDetailsToUpdate": {
+                "CollegeUniversityName": "Harvard University",
+                "Country": "United States",
+                "Title": "M.Tech",
+                "Degree": "Quantum Computing",
+                "YearOfGraduation": "2022"
+            },
+            "EducationDetailsToDelete": null
+        }
+    ]
+}

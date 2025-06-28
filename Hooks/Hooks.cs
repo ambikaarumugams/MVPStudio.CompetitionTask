@@ -18,13 +18,13 @@ namespace qa_dotnet_cucumber.Hooks
     public class Hooks
     {
         private readonly IObjectContainer _objectContainer;
-        private static ExtentReports? _extent;
-        private static ExtentSparkReporter? _htmlReporter;
         private static TestSettings _settings;
-        private ExtentTest? _test;
         private static readonly object _reportLock = new object();
-        private IWebDriver _driver;
+        private static ExtentSparkReporter? _htmlReporter;
+        private static ExtentReports? _extent;
+        private static ExtentTest _test;
 
+        private IWebDriver _driver;
         public static TestSettings Settings => _settings;
 
         public Hooks(IObjectContainer objectContainer)
@@ -35,22 +35,36 @@ namespace qa_dotnet_cucumber.Hooks
         [BeforeTestRun]
         public static void BeforeTestRun()
         {
-            string currentDir = Directory.GetCurrentDirectory();
-            string settingsPath = Path.Combine(currentDir, "settings.json");
+            Console.WriteLine($"[BeforeTestRun] Starting test run at {DateTime.Now}");
+            string currentDir = Directory.GetCurrentDirectory();  //Get the current working directory
+            //Load settings.json from the current directory
+            string settingsPath = Path.Combine(currentDir, "settings.json");  
             string json = File.ReadAllText(settingsPath);
             _settings = JsonSerializer.Deserialize<TestSettings>(json);
 
-            // Get project root by navigating up from bin/Debug/net8.0
+            //Get project root by navigating up from bin/ Debug / net8.0
             string projectRoot = Path.GetFullPath(Path.Combine(currentDir, "..", ".."));
             string reportFileName = _settings.Report.Path.TrimStart('/'); // e.g., "TestReport.html"
             string reportPath = Path.Combine(projectRoot, reportFileName);
+             
+            Console.WriteLine($"[BeforeTestRun] Report path resolved: {reportPath}");
 
-            _htmlReporter = new ExtentSparkReporter(reportPath);
-            _extent = new ExtentReports();
+            //Initialize Extent spark reporter
+            _htmlReporter = new ExtentSparkReporter(reportPath);  
+            _htmlReporter.Config.Theme = AventStack.ExtentReports.Reporter.Config.Theme.Dark;
+
+            //Attach the reporter to the extent reports
+            _extent = new ExtentReports();  
             _extent.AttachReporter(_htmlReporter);
-            _extent.AddSystemInfo("Environment", _settings.Environment.BaseUrl);
-            _extent.AddSystemInfo("Browser", _settings.Browser.Type);
-            Console.WriteLine($"BeforeTestRun started at {DateTime.Now}, Report Path: {reportPath}");
+
+            _extent.AddSystemInfo("Title",_settings.Report.Title);
+            _extent.AddSystemInfo("BaseUrl", _settings.Environment.BaseUrl);
+            _extent.AddSystemInfo("Testing Environment", _settings.Environment.TestingEnvironment);
+            _extent.AddSystemInfo("BrowserType",_settings.Browser.Type);
+            _extent.AddSystemInfo("OS", _settings.Environment.OS);
+            _extent.AddSystemInfo("Author", _settings.Environment.Author);
+
+            Console.WriteLine($"[BeforeTestRun] Extent report configured and attached.");
         }
 
         [BeforeScenario]
@@ -88,7 +102,7 @@ namespace qa_dotnet_cucumber.Hooks
                     {
                         edgeOptions.AddArgument("--headless");
                     }
-                    _driver = new EdgeDriver();
+                    _driver = new EdgeDriver(edgeOptions);
                     break;
 
                 default:
@@ -102,35 +116,37 @@ namespace qa_dotnet_cucumber.Hooks
             _objectContainer.RegisterInstanceAs(new LoginPage(_driver));
             _objectContainer.RegisterInstanceAs(new LanguagePage(_driver));
             _objectContainer.RegisterInstanceAs(new SkillPage(_driver));
+            _objectContainer.RegisterInstanceAs(new EducationPage(_driver));
+            _objectContainer.RegisterInstanceAs(new CertificationPage(_driver));
 
-            lock (_reportLock)
+            lock (_reportLock) 
             {
-                _test = _extent!.CreateTest(scenarioContext.ScenarioInfo.Title);
+                _test = _extent.CreateTest(scenarioContext.ScenarioInfo.Title);
+                scenarioContext.Set(_test, "ExtentTest");
+                Console.WriteLine($"Created test: {scenarioContext.ScenarioInfo.Title} on Thread {Thread.CurrentThread.ManagedThreadId} at {DateTime.Now}");
             }
-            Console.WriteLine($"Created test: {scenarioContext.ScenarioInfo.Title} on Thread {Thread.CurrentThread.ManagedThreadId} at {DateTime.Now}");
         }
 
         [AfterStep]
         public void AfterStep(ScenarioContext scenarioContext)
         {
+            var test = scenarioContext.Get<ExtentTest>("ExtentTest");
             var stepType = scenarioContext.StepContext.StepInfo.StepDefinitionType.ToString();
             var stepText = scenarioContext.StepContext.StepInfo.Text;
-            lock (_reportLock)
+
+            Console.WriteLine($"{stepType}:{stepText} on Thread {Thread.CurrentThread.ManagedThreadId} at {DateTime.Now}");
+            if (scenarioContext.TestError == null)
             {
-                if (scenarioContext.TestError == null)
-                {
-                    _test!.Log(Status.Pass, $"{stepType} {stepText}");
-                    Console.WriteLine($"Logged pass: {stepType} {stepText} on Thread {Thread.CurrentThread.ManagedThreadId} at {DateTime.Now}");
-                }
-                else
-                {
-                    var driver = _objectContainer.Resolve<IWebDriver>();
-                    var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
-                    var screenshotPath = Path.Combine(Directory.GetCurrentDirectory(), $"Screenshot_{DateTime.Now.Ticks}_{Thread.CurrentThread.ManagedThreadId}.png");
-                    screenshot.SaveAsFile(screenshotPath);
-                    _test!.Log(Status.Fail, $"{stepType} {stepText}", MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPath).Build());
-                    Console.WriteLine($"Logged fail with screenshot: {screenshotPath} on Thread {Thread.CurrentThread.ManagedThreadId} at {DateTime.Now}");
-                }
+                test.Log(Status.Pass, $"<b>{stepType}</b>   {stepText}");
+                Console.WriteLine($"Step Passed: {stepText}");
+            }
+            else
+            {
+                var screenshot = ((ITakesScreenshot) _driver).GetScreenshot();
+                string base64Screenshot = screenshot.AsBase64EncodedString;
+                
+                test.Log(Status.Fail, $"<b>{stepType}</b>   {stepText} ").AddScreenCaptureFromBase64String(base64Screenshot, "Failure Screenshot");
+                Console.WriteLine($"Step failed: {stepText}");
             }
         }
 
@@ -152,7 +168,7 @@ namespace qa_dotnet_cucumber.Hooks
                                 {
                                     languagePage.DeleteSpecificLanguage(language);
                                 }
-                                Console.WriteLine($"Deleted {languages.Count} languages for this scenario");  //Check the count of languages deleted
+                                Console.WriteLine($"Cleanup:Deleted {languages.Count} languages for this scenario");  //Check the count of languages deleted
                             }
                             else
                             {
@@ -171,11 +187,50 @@ namespace qa_dotnet_cucumber.Hooks
                                 {
                                     skillsPage.DeleteSpecificSkill(skill);
                                 }
-                                Console.WriteLine($"Deleted {skills.Count} skills for this scenario");
+                                Console.WriteLine($"Cleanup:Deleted {skills.Count} skills for this scenario");
                             }
                             else
                             {
                                 Console.WriteLine("Clean up skipped: Skill list is empty");
+                            }
+                        }
+                    }
+                    else if (featureContext.FeatureInfo.Tags.Contains("education"))
+                    {
+                        if (scenarioContext.TryGetValue("EducationToCleanup", out List<string>? educationList))
+                        {
+                            if (educationList != null && educationList.Any())
+                            {
+                                var educationPage = _objectContainer.Resolve<EducationPage>();
+                                foreach (var education in educationList)
+                                {
+                                    educationPage.DeleteSpecificEducation(education);
+                                }
+
+                                Console.WriteLine($"Cleanup:Deleted {educationList.Count} education list for this scenario");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Clean up skipped: Education list is empty");
+                            }
+                        }
+                    }
+                    else if (featureContext.FeatureInfo.Tags.Contains("certification"))
+                    {
+                        if (scenarioContext.TryGetValue("CertificationsToCleanup", out List<string>? certificationList))
+                        {
+                            if (certificationList != null && certificationList.Any())
+                            {
+                                var certificationPage = _objectContainer.Resolve<CertificationPage>();
+                                foreach (var certification in certificationList)
+                                {
+                                    certificationPage.DeleteSpecificCertification(certification);
+                                }
+                                Console.WriteLine($"Cleanup: Deleted {certificationList.Count} certifications list for this scenario");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Clean up skipped: Certification list is empty");
                             }
                         }
                     }
@@ -186,12 +241,11 @@ namespace qa_dotnet_cucumber.Hooks
                 }
 
                 var driver = _objectContainer.Resolve<IWebDriver>();
+
                 if (driver != null)
                 {
-                    Console.WriteLine($"Cleaning up on Thread{Thread.CurrentThread.ManagedThreadId} at {DateTime.Now}");
-                    driver?.Quit();
-                    driver?.Dispose();
-                    Console.WriteLine($"Finished scenario on Thread {Thread.CurrentThread.ManagedThreadId} at {DateTime.Now}");
+                   driver?.Quit();
+                   Console.WriteLine($"Finished scenario on Thread {Thread.CurrentThread.ManagedThreadId} at {DateTime.Now}");
                 }
             }
             catch (Exception ex)
@@ -205,8 +259,9 @@ namespace qa_dotnet_cucumber.Hooks
         {
             lock (_reportLock)
             {
-                Console.WriteLine("AfterTestRun executed - Flushing report to: " + _settings.Report.Path + " at " + DateTime.Now);
-                _extent!.Flush();
+                Console.WriteLine($"[AfterTestRun] Flushing report at {DateTime.Now}");
+                _extent?.Flush();  //Write logs, steps, test results from memory into html report
+                Console.WriteLine("[AfterTestRun] Report flushed successfully.");
             }
         }
     }

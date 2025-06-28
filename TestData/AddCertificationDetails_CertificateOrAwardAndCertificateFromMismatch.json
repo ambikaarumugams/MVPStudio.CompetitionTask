@@ -1,0 +1,28 @@
+{
+    "TestItems": [
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "Certified Tester Test Automation Strategy",
+                "CertifiedFrom": "Microsoft",
+                "Year": "2024",
+                "ExpectedMessage": "The information is invalid"
+            },
+            "CertificationDetailsToUpdate": null,
+            "CertificationDetailsToDelete": null
+        },
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "Microsoft Azure Networking",
+                "CertifiedFrom": "Cisco",
+                "Year": "2024",
+                "ExpectedMessage": "The information is invalid"
+            },
+            "CertificationDetailsToUpdate": null,
+            "CertificationDetailsToDelete": null
+        }
+    ]
+}
+
+
+
+ 

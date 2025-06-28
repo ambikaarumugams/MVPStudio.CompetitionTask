@@ -1,0 +1,64 @@
+{
+    "TestItems": [
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "ISTQB Advanced Level (Test Analyst / Technical Test Analyst)",
+                "CertifiedFrom": "ISTQB",
+                "Year": "2015",
+                "ExpectedMessage": "ISTQB Advanced Level (Test Analyst / Technical Test Analyst) has been added to your certification"
+            },
+            "CertificationDetailsToUpdate": {
+                "CertificateOrAward": "Postman Student Expert 3 / API Tester",
+                "CertifiedFrom": "gfhgjhkkj",
+                "Year": "2020",
+                "ExpectedMessage": "Invalid Certificate from"
+            },
+            "CertificationDetailsToDelete": null
+        },
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "CCNA (Cisco Certified Network Associate 3)",
+                "CertifiedFrom": "Cisco",
+                "Year": "2017",
+                "ExpectedMessage": "CCNA (Cisco Certified Network Associate 3) has been added to your certification"
+            },
+            "CertificationDetailsToUpdate": {
+                "CertificateOrAward": "Storage Area Network",
+                "CertifiedFrom": "334455667",
+                "Year": "2022",
+                "ExpectedMessage": "Invalid Certificate from"
+            },
+            "CertificationDetailsToDelete": null
+        },
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "Microsoft Azure Networking",
+                "CertifiedFrom": "Microsoft",
+                "Year": "2024",
+                "ExpectedMessage": "Microsoft Azure Networking has been added to your certification"
+            },
+            "CertificationDetailsToUpdate": {
+                "CertificateOrAward": "Microsoft Power BI",
+                "CertifiedFrom": "@!#@$$%%^&^",
+                "Year": "2025",
+                "ExpectedMessage": "Invalid Certificate from"
+            },
+            "CertificationDetailsToDelete": null
+        },
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "Certified Selenium Tester (CST)",
+                "CertifiedFrom": "ATA, CP-SAT",
+                "Year": "2024",
+                "ExpectedMessage": "Certified Selenium Tester (CST) has been added to your certification"
+            },
+            "CertificationDetailsToUpdate": {
+                "CertificateOrAward": "Postman Student Expert 4 / API Tester",
+                "CertifiedFrom": "         ",
+                "Year": "2024",
+                "ExpectedMessage": "Invalid Certificate from"
+            },
+            "CertificationDetailsToDelete": null
+        }
+    ]
+}

@@ -1,0 +1,49 @@
+{
+    "TestItems": [
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "ISTQB Foundation Level 2 (CTFL)",
+                "CertifiedFrom": "ISTQB",
+                "Year": "2024",
+                "ExpectedMessage": "ISTQB Foundation Level 2 (CTFL) has been added to your certification"
+            },
+            "CertificationDetailsToUpdate": {
+                "CertificateOrAward": "",
+                "CertifiedFrom": "",
+                "Year": "",
+                "ExpectedMessage": "Please enter Certification Name, Certification From and Certification Year"
+            },
+            "CertificationDetailsToDelete": null
+        },
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "CCNA",
+                "CertifiedFrom": "Cisco",
+                "Year": "2024",
+                "ExpectedMessage": "CCNA has been added to your certification"
+            },
+            "CertificationDetailsToUpdate": {
+                "CertificateOrAward": "AWS Certified Cloud Practitioner Foundational",
+                "CertifiedFrom": "",
+                "Year": "",
+                "ExpectedMessage": "Please enter Certification Name, Certification From and Certification Year"
+            },
+            "CertificationDetailsToDelete": null
+        },
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "AWS Certified AI Practitioner 1",
+                "CertifiedFrom": "Amazon Web Services (AWS)",
+                "Year": "2024",
+                "ExpectedMessage": "AWS Certified AI Practitioner 1 has been added to your certification"
+            },
+            "CertificationDetailsToUpdate": {
+                "CertificateOrAward": "Certified Agile Tester (CAT)",
+                "CertifiedFrom": "iSQI",
+                "Year": "",
+                "ExpectedMessage": "Please enter Certification Name, Certification From and Certification Year"
+            },
+            "CertificationDetailsToDelete": null
+        }
+    ]
+}

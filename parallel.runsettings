@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RunSettings>
   <RunConfiguration>
-    <MaxCpuCount>0</MaxCpuCount> <!-- Use all cores -->
+    <MaxCpuCount>0</MaxCpuCount> <!-- Use all available cores --> 
   </RunConfiguration>
   <NUnit>
-    <NumberOfTestWorkers>6</NumberOfTestWorkers> <!-- Max workers -->
+    <NumberOfTestWorkers>4</NumberOfTestWorkers> <!-- Max workers - Run 6 tests in parallel-->
   </NUnit>
 </RunSettings>

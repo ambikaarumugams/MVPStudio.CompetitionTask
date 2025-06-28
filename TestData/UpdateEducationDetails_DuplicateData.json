@@ -1,0 +1,21 @@
+{
+  "TestItems": [
+    {
+      "EducationDetails": {
+        "CollegeUniversityName": "University of Sydney",
+        "Country": "Australia",
+        "Title": "B.A",
+        "Degree": "Astrophysics",
+        "YearOfGraduation": "2018"
+      },
+      "EducationDetailsToUpdate": {
+        "CollegeUniversityName": "University of Sydney",
+        "Country": "Australia",
+        "Title": "B.A",
+        "Degree": "Astrophysics",
+        "YearOfGraduation": "2018"
+      },
+      "EducationDetailsToDelete": null
+    }
+  ]
+}

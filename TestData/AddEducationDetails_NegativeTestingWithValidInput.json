@@ -1,0 +1,114 @@
+{
+    "TestItems": [
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "University of Sydney",
+                "Country": "Australia",
+                "Title": "B.Tech",
+                "Degree": "Computer science and information technology",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "University of New South Wales",
+                "Country": "Australia",
+                "Title": "BFA",
+                "Degree": "Acting",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "University of Melbourne",
+                "Country": "Australia",
+                "Title": "M.A",
+                "Degree": "Psychology",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "Monash University",
+                "Country": "Australia",
+                "Title": "B.Tech",
+                "Degree": "Biomedical engineering",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "University of Sydney",
+                "Country": "India",
+                "Title": "B.Tech",
+                "Degree": "Computer science and information technology",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "University of New South Wales",
+                "Country": "United States",
+                "Title": "BFA",
+                "Degree": "Acting",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "University of Melbourne",
+                "Country": "United Kingdom",
+                "Title": "M.A",
+                "Degree": "Psychology",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "University of Sydney",
+                "Country": "India",
+                "Title": "M.B.A",
+                "Degree": "Computer science and information technology",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "University of New South Wales",
+                "Country": "United States",
+                "Title": "B.Sc",
+                "Degree": "Acting",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        },
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "University of Melbourne",
+                "Country": "United Kingdom",
+                "Title": "M.A",
+                "Degree": "Computer Science",
+                "YearOfGraduation": "2009"
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        }
+    ]
+}

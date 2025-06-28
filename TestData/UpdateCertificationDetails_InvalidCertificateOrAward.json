@@ -1,0 +1,64 @@
+{
+    "TestItems": [
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "ISTQB Advanced Level (Test Analyst / Technical Test Analyst)",
+                "CertifiedFrom": "ISTQB",
+                "Year": "2015",
+                "ExpectedMessage": "ISTQB Advanced Level (Test Analyst / Technical Test Analyst) has been added to your certification"
+            },
+            "CertificationDetailsToUpdate": {
+                "CertificateOrAward": "gfhgjhkkj",
+                "CertifiedFrom": "Postman",
+                "Year": "2020",
+                "ExpectedMessage": "Invalid Certificate Or Award"
+            },
+            "CertificationDetailsToDelete": null
+        },
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "CCNA (Cisco Certified Network Associate 2)",
+                "CertifiedFrom": "Cisco",
+                "Year": "2017",
+                "ExpectedMessage": "CCNA (Cisco Certified Network Associate 2) has been added to your certification"
+            },
+            "CertificationDetailsToUpdate": {
+                "CertificateOrAward": "334455667",
+                "CertifiedFrom": "ISTQB",
+                "Year": "2022",
+                "ExpectedMessage": "Invalid Certificate Or Award"
+            },
+            "CertificationDetailsToDelete": null
+        },
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "Microsoft Azure Networking",
+                "CertifiedFrom": "Microsoft",
+                "Year": "2024",
+                "ExpectedMessage": "Microsoft Azure Networking has been added to your certification"
+            },
+            "CertificationDetailsToUpdate": {
+                "CertificateOrAward": "@!#@$$%%^&^",
+                "CertifiedFrom": "Microsoft",
+                "Year": "2025",
+                "ExpectedMessage": "Invalid Certificate Or Award"
+            },
+            "CertificationDetailsToDelete": null
+        },
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "Postman Student Expert 2 / API Tester",
+                "CertifiedFrom": "Postman",
+                "Year": "2024",
+                "ExpectedMessage": "Postman Student Expert 2 / API Tester has been added to your certification"
+            },
+            "CertificationDetailsToUpdate": {
+                "CertificateOrAward": "      ",
+                "CertifiedFrom": "Microsoft",
+                "Year": "2024",
+                "ExpectedMessage": "Invalid Certificate Or Award"
+            },
+            "CertificationDetailsToDelete": null
+        }
+    ]
+}

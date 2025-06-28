@@ -11,18 +11,203 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="parallel.runsettings" />
+    <None Remove="TestData\AddCertificationDetails_DestructiveTesting.json" />
+    <None Remove="TestData\AddCertificationDetails_InvalidCertificateFrom.json" />
+    <None Remove="TestData\AddCertificationDetails_InvalidCertificateOrAward.json" />
+    <None Remove="TestData\AddCertificationDetails_LeaveEitherOneOrAllTheFieldsEmpty.json" />
+    <None Remove="TestData\AddCertificationDetails_ValidInput.json" />
+    <None Remove="TestData\AddCertificationDetails_WhenSessionExpired.json" />
+    <None Remove="TestData\AddEducationDetails_Cancel.json" />
+    <None Remove="TestData\AddEducationDetails_DestructiveTesting.json" />
+    <None Remove="TestData\AddEducationDetails_DuplicateData.json" />
+    <None Remove="TestData\AddEducationDetails_InvalidCollegeUniversityName.json" />
+    <None Remove="TestData\AddEducationDetails_InvalidDegree.json" />
+    <None Remove="TestData\AddEducationDetails_LeaveEitherOneOrAllTheFieldsEmpty.json" />
+    <None Remove="TestData\AddEducationDetails_MoreThan250CharactersOfCollegeUniversityName.json" />
+    <None Remove="TestData\AddEducationDetails_MoreThan250CharactersOfDegreeName.json" />
+    <None Remove="TestData\AddEducationDetails_NegativeTestingWithValidInput.json" />
+    <None Remove="TestData\AddEducationDetails_ValidInput.json" />
+    <None Remove="TestData\AddEducationDetails_WhenSessionExpired.json" />
+    <None Remove="TestData\DeleteCertificationDetails_ValidInput.json" />
+    <None Remove="TestData\DeleteCertificationDetails_WhenSessionExpired.json" />
+    <None Remove="TestData\DeleteEducationDetails_ValidInput.json" />
+    <None Remove="TestData\DeleteEducationDetails_WhenSessionExpired.json" />
+    <None Remove="TestData\LoginData.json" />
     <None Remove="TestData\skills.csv" />
+    <None Remove="TestData\UpdateCertificationDetails_Cancel.json" />
+    <None Remove="TestData\UpdateCertificationDetails_CertificateOrAwardAndCertificateFromMismatch.json" />
+    <None Remove="TestData\UpdateCertificationDetails_DestructiveTesting.json" />
+    <None Remove="TestData\UpdateCertificationDetails_DuplicateData.json" />
+    <None Remove="TestData\UpdateCertificationDetails_InvalidCertificateFrom.json" />
+    <None Remove="TestData\UpdateCertificationDetails_LeaveEitherOneOrAllTheFieldsEmpty.json" />
+    <None Remove="TestData\UpdateCertificationDetails_MoreThan250CharactersOfCertificateFrom.json" />
+    <None Remove="TestData\UpdateCertificationDetails_MoreThan250CharactersOfCertificateOrAward.json" />
+    <None Remove="TestData\UpdateCertificationDetails_ValidInput.json" />
+    <None Remove="TestData\UpdateCertificationDetails_WhenSessionExpired.json" />
+    <None Remove="TestData\UpdateEducationDetails_DestructiveTesting.json" />
+    <None Remove="TestData\UpdateEducationDetails_DuplicateData.json" />
+    <None Remove="TestData\UpdateEducationDetails_InvalidCollegeUniversityName.json" />
+    <None Remove="TestData\UpdateEducationDetails_InvalidDegreeName.json" />
+    <None Remove="TestData\UpdateEducationDetails_LeaveEitherOneOrAllTheFieldsEmpty.json" />
+    <None Remove="TestData\UpdateEducationDetails_MoreThan250CharactersOfCollegeUniversityName.json" />
+    <None Remove="TestData\UpdateEducationDetails_MoreThan250CharactersOfDegreeName.json" />
+    <None Remove="TestData\UpdateEducationDetails_NegativeTestingWithValidInput.json" />
+    <None Remove="TestData\UpdateEducationDetails_ValidInput.json" />
+    <None Remove="TestData\UpdateEducationDetails_WhenSessionExpired.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="TestData\skills.csv">
+    <Content Include="parallel.runsettings">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\AddCertificationDetails_Cancel.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\AddCertificationDetails_CertificateOrAwardAndCertificateFromMismatch.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\AddCertificationDetails_DestructiveTesting.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\AddCertificationDetails_DuplicateData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\AddCertificationDetails_InvalidCertificateFrom.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\AddCertificationDetails_InvalidCertificateOrAward.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\AddCertificationDetails_LeaveEitherOneOrAllTheFieldsEmpty.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\AddCertificationDetails_MoreThan250CharactersOfCertificateFrom.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\AddCertificationDetails_MoreThan250CharactersOfCertificateOrAward.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\AddCertificationDetails_ValidInput.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="parallel.runsettings">
+    <Content Include="TestData\AddCertificationDetails_WhenSessionExpired.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
+    <Content Include="TestData\AddEducationDetails_Cancel.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\AddEducationDetails_DestructiveTesting.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\AddEducationDetails_DuplicateData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\AddEducationDetails_InvalidCollegeUniversityName.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\AddEducationDetails_InvalidDegree.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\AddEducationDetails_LeaveEitherOneOrAllTheFieldsEmpty.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\AddEducationDetails_MoreThan250CharactersOfCollegeUniversityName.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\AddEducationDetails_MoreThan250CharactersOfDegreeName.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\AddEducationDetails_NegativeTestingWithValidInput.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\AddEducationDetails_ValidInput.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\AddEducationDetails_WhenSessionExpired.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\DeleteCertificationDetails_ValidInput.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\DeleteCertificationDetails_WhenSessionExpired.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\DeleteEducationDetails_ValidInput.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\DeleteEducationDetails_WhenSessionExpired.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\LoginData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\skills.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\UpdateCertificationDetails_Cancel.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\UpdateCertificationDetails_CertificateOrAwardAndCertificateFromMismatch.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\UpdateCertificationDetails_DestructiveTesting.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\UpdateCertificationDetails_DuplicateData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\UpdateCertificationDetails_InvalidCertificateFrom.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\UpdateCertificationDetails_InvalidCertificateOrAward.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\UpdateCertificationDetails_LeaveEitherOneOrAllTheFieldsEmpty.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\UpdateCertificationDetails_MoreThan250CharactersOfCertificateFrom.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\UpdateCertificationDetails_MoreThan250CharactersOfCertificateOrAward.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\UpdateCertificationDetails_ValidInput.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\UpdateCertificationDetails_WhenSessionExpired.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\UpdateEducationDetails_DestructiveTesting.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\UpdateEducationDetails_DuplicateData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\UpdateEducationDetails_InvalidCollegeUniversityName.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\UpdateEducationDetails_InvalidDegreeName.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\UpdateEducationDetails_LeaveEitherOneOrAllTheFieldsEmpty.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\UpdateEducationDetails_MoreThan250CharactersOfCollegeUniversityName.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\UpdateEducationDetails_MoreThan250CharactersOfDegreeName.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\UpdateEducationDetails_NegativeTestingWithValidInput.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\UpdateEducationDetails_ValidInput.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\UpdateEducationDetails_WhenSessionExpired.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Update="reqnroll.json">

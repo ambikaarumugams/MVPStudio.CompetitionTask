@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium.BiDi.Modules.Log;
-using qa_dotnet_cucumber.Pages;
+﻿using qa_dotnet_cucumber.Pages;
 using Reqnroll;
 
 namespace qa_dotnet_cucumber.Steps

@@ -1,0 +1,15 @@
+{
+    "TestItems": [
+        {
+            "EducationDetails": {
+                "CollegeUniversityName": "CollegeName_Text_5000",
+                "Country": "Australia",
+                "Title": "PHD",
+                "Degree": "Master of Science in Interdisciplinary Integration of Quantum Computing",
+                "YearOfGraduation": "2023"
+            },
+            "EducationDetailsToUpdate": null,
+            "EducationDetailsToDelete": null
+        }
+    ]
+}

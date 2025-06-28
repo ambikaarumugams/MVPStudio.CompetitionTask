@@ -1,0 +1,19 @@
+{
+    "TestItems": [
+        {
+            "CertificationDetailsToAdd": {
+                "CertificateOrAward": "Postman Student Expert 5 / API Tester",
+                "CertifiedFrom": "Postman",
+                "Year": "2024",
+                "ExpectedMessage": "Postman Student Expert 5 / API Tester has been added to your certification"
+            },
+            "CertificationDetailsToUpdate": {
+                "CertificateOrAward": "CertificateText_Length_255",
+                "CertifiedFrom": "ISTQB",
+                "Year": "2024",
+                "ExpectedMessage": "Invalid Certification or Award"
+            },
+            "CertificationDetailsToDelete": null
+        }
+    ]
+}
