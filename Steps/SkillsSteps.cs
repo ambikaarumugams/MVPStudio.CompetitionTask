@@ -32,7 +32,7 @@ namespace qa_dotnet_cucumber.Steps
         [When("I Add the following skills and select skill level:")]    //Add new skill and level
         public void WhenIAddTheFollowingSkillAndSelectSkillLevel(Table addSkillTable)   //Passing the data thro' the table
         {
-            var skillsToAdd = addSkillTable.CreateSet<AddSkill>();  
+            var skillsToAdd = addSkillTable.CreateSet<AddSkill>();
             var actualAddSkills = new List<string>();
             var expectedAddSkills = new List<string>();
             foreach (var skill in skillsToAdd)
@@ -64,7 +64,7 @@ namespace qa_dotnet_cucumber.Steps
         {
             var actualSkillList = _skillPage.GetAllAddedSkillList();
             var expectedSkillList = _scenarioContext.Get<List<string>>("ExpectedAddSkills");
-            Assert.That(actualSkillList, Is.EqualTo(expectedSkillList), "There is a mismatch!"); 
+            Assert.That(actualSkillList, Is.EqualTo(expectedSkillList), "There is a mismatch!");
         }
 
         [When("I add the following skills and select their levels:")]  //Add skills to update
@@ -256,7 +256,7 @@ namespace qa_dotnet_cucumber.Steps
             _skillPage.AddSkillAndLevel(skillToAdd, skillLevelToAdd);
         }
 
-        [When("I add skill as {string} and level as {string} to update")]  
+        [When("I add skill as {string} and level as {string} to update")]
         public void WhenIAddSkillAsAndLevelAsToUpdate(string skill, string level)
         {
             _skillPage.AddSkillAndLevel(skill, level);

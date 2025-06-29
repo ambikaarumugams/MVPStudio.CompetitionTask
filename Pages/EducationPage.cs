@@ -89,7 +89,7 @@ namespace qa_dotnet_cucumber.Pages
             ClickAddButton();
         }
 
-        public void ClickAddButton() 
+        public void ClickAddButton()
         {
             //Click "Add" button
             var addButton = _wait.Until(ExpectedConditions.ElementToBeClickable(_addButton));
@@ -388,7 +388,7 @@ namespace qa_dotnet_cucumber.Pages
         }
     }
 }
-    
+
 
 
 

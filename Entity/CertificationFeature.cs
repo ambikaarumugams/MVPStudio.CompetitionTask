@@ -2,7 +2,7 @@
 {
     public class CertificationFeature
     {
-       public List<TestItem> TestItems { get; set; }
+        public List<TestItem> TestItems { get; set; }
     }
 
     public class TestItem
@@ -21,5 +21,5 @@
     }
 }
 
-    
+
 

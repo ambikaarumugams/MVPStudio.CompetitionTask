@@ -31,7 +31,7 @@ Scenario: As  user, I should able to edit existing skills in the user profile
 	Then I should see a success message and the updated skills in my profile
 
 @positive @valid
-Scenario:  As  user, I should able to delete existing skills from the user profile
+Scenario: As  user, I should able to delete existing skills from the user profile
 	When I add the following skills and select their levels:
 		| Skill          | SkillLevel   |
 		| Manual Testing | Expert       |
@@ -53,8 +53,8 @@ Scenario: As a user, I want to Edit the existing skills by giving same skill and
 	Then I should see the success message and updated skill in my profile
 
 Scenario: Add multiple skills using external file
-    When I add all skills from CSV
-    Then all skills should be added successfully
+	When I add all skills from CSV
+	Then all skills should be added successfully
 
 			
 

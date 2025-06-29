@@ -59,7 +59,7 @@ namespace qa_dotnet_cucumber.Pages
             //Select Language Level
             var selectLanguageLevelDropDown = _wait.Until(ExpectedConditions.ElementToBeClickable(_selectLanguageLevel));
 
-            SelectElement selectElement = new SelectElement(selectLanguageLevelDropDown);  
+            SelectElement selectElement = new SelectElement(selectLanguageLevelDropDown);
             selectElement.SelectByText(languageLevel);
 
             ClickAddButton();
@@ -141,7 +141,7 @@ namespace qa_dotnet_cucumber.Pages
             }
         }
 
-        private void ResetWaitTo(int seconds)     
+        private void ResetWaitTo(int seconds)
         {
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(seconds);
         }

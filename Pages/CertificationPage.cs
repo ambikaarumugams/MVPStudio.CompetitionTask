@@ -48,7 +48,7 @@ namespace qa_dotnet_cucumber.Pages
             addNewButtonElement.Click();
         }
 
-        public void AddCertifications(string certificationOrAward,string certificationFrom,string certificationYear) //Add certification details 
+        public void AddCertifications(string certificationOrAward, string certificationFrom, string certificationYear) //Add certification details 
         {
             ClickAddNewButton();
             var certificationOrAwardElement = _wait.Until(ExpectedConditions.ElementIsVisible(_certificateOrAwardField));
@@ -87,7 +87,7 @@ namespace qa_dotnet_cucumber.Pages
 
         public void DeleteSpecificCertification(string certificationOrAwardToBeDeleted)  //Delete the specific certification details
         {
-            var certificationTable= _wait.Until(ExpectedConditions.ElementIsVisible(_certificationsTable));  //Table Element
+            var certificationTable = _wait.Until(ExpectedConditions.ElementIsVisible(_certificationsTable));  //Table Element
             var row = certificationTable.FindElement(By.XPath($".//tr[td[1]='{certificationOrAwardToBeDeleted}']")); //From the table find the row element to be deleted by passing the value of the certificate
             var deleteIcon = row.FindElement(By.XPath(".//i[contains(@class,'remove icon')]")); //find the delete icon of the corresponding certificate value
 
@@ -108,7 +108,7 @@ namespace qa_dotnet_cucumber.Pages
                 certificateFromElement.SendKeys(certificationFrom);
             }
 
-            var certificationYearElement = _wait.Until(ExpectedConditions.ElementToBeClickable(_certificationYearDropDown)); 
+            var certificationYearElement = _wait.Until(ExpectedConditions.ElementToBeClickable(_certificationYearDropDown));
             SelectElement selectCertificationYear = new SelectElement(certificationYearElement);
             if (!string.IsNullOrWhiteSpace(certificationYear)) //If the string is not null or white space select the year
             {
@@ -184,7 +184,7 @@ namespace qa_dotnet_cucumber.Pages
             ClickCancelButton();
         }
 
-        public void UpdateCertificationDetails(string existingCertification, string certificationOrAward,string certificationFrom, string certificationYear) //Update the certification details
+        public void UpdateCertificationDetails(string existingCertification, string certificationOrAward, string certificationFrom, string certificationYear) //Update the certification details
         {
             var certificationTable = _wait.Until(ExpectedConditions.ElementIsVisible(_certificationsTable));
             var row = certificationTable.FindElement(By.XPath($".//tr[td[normalize-space(text())='{existingCertification}']]"));

@@ -9,7 +9,7 @@ namespace qa_dotnet_cucumber.Pages
     {
         private readonly IWebDriver _driver;
         private readonly WebDriverWait _wait;
-      //  public IWebDriver Driver { get { return _driver; } }
+        //  public IWebDriver Driver { get { return _driver; } }
 
         public SkillPage(IWebDriver driver)  //Inject the driver directly
         {
@@ -161,7 +161,7 @@ namespace qa_dotnet_cucumber.Pages
             try
             {
                 var skillsTable = _wait.Until(ExpectedConditions.ElementIsVisible(_skillsTable));
-                var row = skillsTable.FindElement(By.XPath($".//tr[td[normalize-space(text())='{skill}']]")); 
+                var row = skillsTable.FindElement(By.XPath($".//tr[td[normalize-space(text())='{skill}']]"));
                 return false;
             }
             catch
@@ -213,7 +213,7 @@ namespace qa_dotnet_cucumber.Pages
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(seconds);
         }
 
-        public void LeaveTheSkillAndLevelEmptyWithCombinationsForAdd(string skill,string level)    //To leave the skill field empty for adding skills
+        public void LeaveTheSkillAndLevelEmptyWithCombinationsForAdd(string skill, string level)    //To leave the skill field empty for adding skills
         {
             //Click Add New Button
             var skillsTable = _wait.Until(ExpectedConditions.ElementIsVisible(_skillsTable));
@@ -227,7 +227,7 @@ namespace qa_dotnet_cucumber.Pages
             {
                 addSkillsElement.SendKeys(skill);
             }
-            
+
             //Select Skill Level
             var selectSkillLevelDropDown = _wait.Until(ExpectedConditions.ElementToBeClickable(_selectSkillLevel));
 
@@ -240,9 +240,9 @@ namespace qa_dotnet_cucumber.Pages
             ClickAddButton();
         }
 
-  
-        public void LeaveTheSkillAndLevelEmptyWithCombinationsForUpdate(string existingSkill,string skillToUpdate,string skillLevelToUpdate)    //To leave the skill field empty for updating skill
-        {   
+
+        public void LeaveTheSkillAndLevelEmptyWithCombinationsForUpdate(string existingSkill, string skillToUpdate, string skillLevelToUpdate)    //To leave the skill field empty for updating skill
+        {
             try
             {
                 var skillsTable = _wait.Until(ExpectedConditions.ElementIsVisible(_skillsTable));

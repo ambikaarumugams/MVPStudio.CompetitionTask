@@ -96,12 +96,12 @@ Scenario: Validate if the user is able to add and update huge data in the"Certif
 	When I enter huge Certificate or Award details to perform update from json file with the TestName "UpdateCertificationDetails_DestructiveTesting"
 	Then I should see the error message
 
-Scenario:  Validate if the user is able to delete the certification details 
-    When I delete certification details from json file with the TestName "DeleteCertificationDetails_ValidInput"
+Scenario: Validate if the user is able to delete the certification details
+	When I delete certification details from json file with the TestName "DeleteCertificationDetails_ValidInput"
 	Then I should see the success message for delete
 
 Scenario: Validate if the user is not able to delete the certification details during session expired
-    When I delete certification details from json file after the session has expired with the TestName "DeleteCertificationDetails_WhenSessionExpired"
+	When I delete certification details from json file after the session has expired with the TestName "DeleteCertificationDetails_WhenSessionExpired"
 	Then I should see the error message for session expired
 	Then I should log in again to perform clean up
 

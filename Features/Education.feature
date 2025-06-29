@@ -41,7 +41,7 @@ Scenario: Validate if the user is not able to add education details when the ses
 
 Scenario: Validate if the user is not able add education details with valid input
 	When I enter education details from json file with the TestName "AddEducationDetails_NegativeTestingWithValidInput"
-	Then I should see the error message for adding education details 
+	Then I should see the error message for adding education details
 
 Scenario: Validate if the user is able to cancel the add process
 	When I enter education details from the Json file with the test name "AddEducationDetails_Cancel"
@@ -76,8 +76,8 @@ Scenario: Validate if the user is not able to update education details when the 
 	Then I should see the error message to update for session expired
 	Then I should login again to perform cleanup
 
-Scenario:  Validate if the user is able to delete the education details 
-    When I delete education details from json file with the TestName "DeleteEducationDetails_ValidInput"
+Scenario: Validate if the user is able to delete the education details
+	When I delete education details from json file with the TestName "DeleteEducationDetails_ValidInput"
 	Then I should see the success message for delete
 
 Scenario: Validate if the user is not able to delete education details when the session has expired
@@ -89,11 +89,11 @@ Scenario: Validate if the user is not able to update the education details which
 	When I update education details with the same existing details from json file with the TestName "UpdateEducationDetails_DuplicateData"
 	Then I should see the error message for duplicate data
 
-Scenario:Validate if the user is not able to update education details with valid input
+Scenario: Validate if the user is not able to update education details with valid input
 	When I update education details with the existing details from json file with the TestName "UpdateEducationDetails_NegativeTestingWithValidInput"
-	Then I should see the error message for updating education details 
+	Then I should see the error message for updating education details
 
-Scenario:Validate if the user is not able to add huge data in the education field
+Scenario: Validate if the user is not able to add huge data in the education field
 	When I enter education details for destructive testing from json file with the TestName "AddEducationDetails_DestructiveTesting"
 	Then I should see the error message for huge data
 

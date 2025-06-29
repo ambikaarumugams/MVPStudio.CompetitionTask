@@ -38,7 +38,7 @@ namespace qa_dotnet_cucumber.Hooks
             Console.WriteLine($"[BeforeTestRun] Starting test run at {DateTime.Now}");
             string currentDir = Directory.GetCurrentDirectory();  //Get the current working directory
             //Load settings.json from the current directory
-            string settingsPath = Path.Combine(currentDir, "settings.json");  
+            string settingsPath = Path.Combine(currentDir, "settings.json");
             string json = File.ReadAllText(settingsPath);
             _settings = JsonSerializer.Deserialize<TestSettings>(json);
 
@@ -46,21 +46,21 @@ namespace qa_dotnet_cucumber.Hooks
             string projectRoot = Path.GetFullPath(Path.Combine(currentDir, "..", ".."));
             string reportFileName = _settings.Report.Path.TrimStart('/'); // e.g., "TestReport.html"
             string reportPath = Path.Combine(projectRoot, reportFileName);
-             
+
             Console.WriteLine($"[BeforeTestRun] Report path resolved: {reportPath}");
 
             //Initialize Extent spark reporter
-            _htmlReporter = new ExtentSparkReporter(reportPath);  
+            _htmlReporter = new ExtentSparkReporter(reportPath);
             _htmlReporter.Config.Theme = AventStack.ExtentReports.Reporter.Config.Theme.Dark;
 
             //Attach the reporter to the extent reports
-            _extent = new ExtentReports();  
+            _extent = new ExtentReports();
             _extent.AttachReporter(_htmlReporter);
 
-            _extent.AddSystemInfo("Title",_settings.Report.Title);
+            _extent.AddSystemInfo("Title", _settings.Report.Title);
             _extent.AddSystemInfo("BaseUrl", _settings.Environment.BaseUrl);
             _extent.AddSystemInfo("Testing Environment", _settings.Environment.TestingEnvironment);
-            _extent.AddSystemInfo("BrowserType",_settings.Browser.Type);
+            _extent.AddSystemInfo("BrowserType", _settings.Browser.Type);
             _extent.AddSystemInfo("OS", _settings.Environment.OS);
             _extent.AddSystemInfo("Author", _settings.Environment.Author);
 
@@ -119,7 +119,7 @@ namespace qa_dotnet_cucumber.Hooks
             _objectContainer.RegisterInstanceAs(new EducationPage(_driver));
             _objectContainer.RegisterInstanceAs(new CertificationPage(_driver));
 
-            lock (_reportLock) 
+            lock (_reportLock)
             {
                 _test = _extent.CreateTest(scenarioContext.ScenarioInfo.Title);
                 scenarioContext.Set(_test, "ExtentTest");
@@ -142,9 +142,9 @@ namespace qa_dotnet_cucumber.Hooks
             }
             else
             {
-                var screenshot = ((ITakesScreenshot) _driver).GetScreenshot();
+                var screenshot = ((ITakesScreenshot)_driver).GetScreenshot();
                 string base64Screenshot = screenshot.AsBase64EncodedString;
-                
+
                 test.Log(Status.Fail, $"<b>{stepType}</b>   {stepText} ").AddScreenCaptureFromBase64String(base64Screenshot, "Failure Screenshot");
                 Console.WriteLine($"Step failed: {stepText}");
             }
@@ -244,8 +244,8 @@ namespace qa_dotnet_cucumber.Hooks
 
                 if (driver != null)
                 {
-                   driver?.Quit();
-                   Console.WriteLine($"Finished scenario on Thread {Thread.CurrentThread.ManagedThreadId} at {DateTime.Now}");
+                    driver?.Quit();
+                    Console.WriteLine($"Finished scenario on Thread {Thread.CurrentThread.ManagedThreadId} at {DateTime.Now}");
                 }
             }
             catch (Exception ex)

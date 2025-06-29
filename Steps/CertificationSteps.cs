@@ -28,7 +28,7 @@ namespace qa_dotnet_cucumber.Steps
         public void GivenINavigateToTheProfilePageAsARegisteredUser()
         {
             _navigationHelper.NavigateTo("Home");
-            var loginDetails = JsonHelper.LoadJson<LoginDetails>("LoginData"); 
+            var loginDetails = JsonHelper.LoadJson<LoginDetails>("LoginData");
             var username = loginDetails.UserName;
             var password = loginDetails.Password;
             _loginPage.Login(username, password);
@@ -74,7 +74,7 @@ namespace qa_dotnet_cucumber.Steps
         public void WhenIEnterInvalidCertificationDetailsFromJsonFileWithTheTestName(string fileName)
         {
             var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
-          
+
             if (scenario != null)
             {
                 var actualCertificationsList = new List<string>();
@@ -168,7 +168,7 @@ namespace qa_dotnet_cucumber.Steps
         public void WhenILeaveEitherOneOrAllTheFieldsEmptyAndGiveTheDataFromJsonFileWithTheTestName(string fileName)
         {
             var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
-          
+
             if (scenario != null)
             {
                 var actualCertificationsList = new List<string>();
@@ -202,7 +202,7 @@ namespace qa_dotnet_cucumber.Steps
         public void WhenIEnterSameCertificationDetailsTwiceFromJsonFileWithTheTestName(string fileName)
         {
             var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
-            
+
             var actualMessages = new List<(string Message, string Type)>();
             var expectedMessages = new List<string>();
             var cleanUpList = new List<string>();
@@ -250,7 +250,7 @@ namespace qa_dotnet_cucumber.Steps
         public void WhenIEnterCertificationDetailsFromJsonFileAfterTheSessionHasExpiredWithTheTestName(string fileName)
         {
             var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
-          
+
             if (scenario != null)
             {
                 var actualMessageList = new List<string>();
@@ -298,7 +298,7 @@ namespace qa_dotnet_cucumber.Steps
         public void WhenIEnterCertificationDetailsFromJsonFileAndCancelTheAddWithTheTestName(string fileName)
         {
             var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
-           
+
             if (scenario != null)
             {
                 var actualList = new List<string>();
@@ -323,7 +323,7 @@ namespace qa_dotnet_cucumber.Steps
         {
             var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
             if (scenario != null)
-            { 
+            {
                 var actualUpdateMessages = new List<string>();
                 var expectedUpdateMessages = new List<string>();
                 var cleanUpList = new List<string>();
@@ -371,7 +371,7 @@ namespace qa_dotnet_cucumber.Steps
         public void WhenIUpdateLengthyCertificateOrAwardDetailsWithTheExistingDetailsFromJsonFileWithTheTestName(string fileName)
         {
             var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
-            
+
             if (scenario != null)
             {
                 var actualCertificationsListForUpdate = new List<string>();
@@ -402,7 +402,7 @@ namespace qa_dotnet_cucumber.Steps
         public void WhenIUpdateLengthyCertificateFromDetailsWithTheExistingDetailsFromJsonFileWithTheTestName(string fileName)
         {
             var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
-            
+
             if (scenario != null)
             {
                 var actualCertificationsListForUpdate = new List<string>();
@@ -471,7 +471,7 @@ namespace qa_dotnet_cucumber.Steps
         public void WhenIUpdateSameCertificationDetailsTwiceFromJsonFileWithTheTestName(string fileName)
         {
             var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
-           
+
             if (scenario != null)
             {
                 var actualMessages = new List<(string Message, string Type)>();
@@ -509,7 +509,7 @@ namespace qa_dotnet_cucumber.Steps
         public void WhenIEnterCertificationDetailsFromJsonFileAndCancelTheUpdateWithTheTestName(string fileName)
         {
             var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
-           
+
             if (scenario != null)
             {
                 var actualMessages = new List<string>();
@@ -545,7 +545,7 @@ namespace qa_dotnet_cucumber.Steps
         public void WhenIUpdateCertificationDetailsFromJsonFileAfterTheSessionHasExpiredWithTheTestName(string fileName)
         {
             var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
-           
+
             if (scenario != null)
             {
                 var actualMessageList = new List<string>();
@@ -585,7 +585,7 @@ namespace qa_dotnet_cucumber.Steps
         public void WhenIEnterHugeCertificateOrAwardDetailsToPerformAddFromJsonFileWithTheTestName(string fileName)
         {
             var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
-           if (scenario != null)
+            if (scenario != null)
             {
                 var actualMessagesList = new List<string>();
                 var cleanUpList = new List<string>();
@@ -613,7 +613,7 @@ namespace qa_dotnet_cucumber.Steps
         public void WhenIEnterHugeCertificateOrAwardDetailsToPerformUpdateFromJsonFileWithTheTestName(string fileName)
         {
             var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
-          
+
             if (scenario != null)
             {
                 var actualMessageList = new List<string>();
@@ -644,7 +644,7 @@ namespace qa_dotnet_cucumber.Steps
         public void WhenIDeleteCertificationDetailsFromJsonFileAfterTheSessionHasExpiredWithTheTestName(string fileName)
         {
             var scenario = JsonHelper.LoadJson<Entity.CertificationFeature>(fileName);
-          
+
             if (scenario != null)
             {
                 var actualMessageList = new List<string>();
@@ -697,7 +697,7 @@ namespace qa_dotnet_cucumber.Steps
         [Then("I should see the success message for delete")]
         public void ThenIShouldSeeTheSuccessMessageForDelete()
         {
-            var actualList =_scenarioContext.Get<List<string>>("ActualMessageList");
+            var actualList = _scenarioContext.Get<List<string>>("ActualMessageList");
             var expectedList = _scenarioContext.Get<List<string>>("ExpectedMessageList");
             Assert.That(actualList, Is.EquivalentTo(expectedList), "Lists contain different elements");
         }

@@ -4,14 +4,14 @@ using qa_dotnet_cucumber.Pages;
 namespace qa_dotnet_cucumber.Steps
 {
     [Binding]
-    [Scope(Feature ="Login")]
-   
+    [Scope(Feature = "Login")]
+
     public class LoginSteps
     {
         private readonly LoginPage _loginPage;
         private readonly NavigationHelper _navigationHelper;
 
-        public LoginSteps(LoginPage loginPage, NavigationHelper navigationHelper)   
+        public LoginSteps(LoginPage loginPage, NavigationHelper navigationHelper)
         {
             _loginPage = loginPage;
             _navigationHelper = navigationHelper;
@@ -35,7 +35,7 @@ namespace qa_dotnet_cucumber.Steps
         {
             _loginPage.Login("admintest@gmail.com", "admin123");
         }
-       
+
         [When("I enter invalid username and valid password")]
         public void WhenIEnterInvalidUsernameAndValidPassword()
         {
@@ -69,7 +69,7 @@ namespace qa_dotnet_cucumber.Steps
         [When("I enter valid username and password as NoSql operator")]
         public void WhenIEnterValidUsernameAndPasswordAsNoSqlOperator()
         {
-            _loginPage.Login("ambikaarumugams@gmail.com","{ '$ne': null } ");
+            _loginPage.Login("ambikaarumugams@gmail.com", "{ '$ne': null } ");
         }
 
         [Then("I should see the successful message")]
@@ -99,7 +99,7 @@ namespace qa_dotnet_cucumber.Steps
         }
 
         [Then("I should see {string} error message and {string} notification")]
-        public void ThenIShouldSeeErrorMessageAndNotification(string errorMessage , string verificationOption)
+        public void ThenIShouldSeeErrorMessageAndNotification(string errorMessage, string verificationOption)
         {
             Assert.That(_loginPage.IsErrorMsgDisplayed(errorMessage), Is.True, $"Error Message {errorMessage} should be displayed");
             Assert.That(_loginPage.IsVerificationOptionAvailable(verificationOption), Is.True, $"Verification option \"{verificationOption}\" should be displayed");

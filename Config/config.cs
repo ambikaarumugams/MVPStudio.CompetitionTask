@@ -1,7 +1,3 @@
-using AventStack.ExtentReports.Model;
-using Newtonsoft.Json;
-using OpenQA.Selenium.BiDi.Communication;
-
 namespace qa_dotnet_cucumber.Config
 {
     public class TestSettings
@@ -32,5 +28,5 @@ namespace qa_dotnet_cucumber.Config
         public string OS { get; set; }
     }
 
-  
+
 }

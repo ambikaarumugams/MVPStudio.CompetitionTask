@@ -51,7 +51,7 @@ Scenario: As a user, I shouldn't be able to delete when session expired
 	When I want to delete language "Italian" when the session is expired
 	Then I should see "There is an error when deleting language" error message
 
-@negative @valid	
+@negative @valid
 Scenario: As a user, I should able to Cancel the Add operation
 	When I click Add New button, enter the language "Spanish" and it's level "Native/Bilingual"
 	Then I should able to Cancel the operation and verify that the language "Spanish" shouldn't be added
@@ -121,7 +121,7 @@ Scenario: As a user, I shouldn't be able to Edit the existing languages by givin
 @destructive
 Scenario: As a user, I shouldn't be able to update large data as a language
 	When I add language as "Turkish" and level as "Basic"
-	When I update existing language "Turkish" with  huge language name of length 5000 and language level as "Basic" 
+	When I update existing language "Turkish" with  huge language name of length 5000 and language level as "Basic"
 	Then I should see the error message " Language name is too long "
 
 

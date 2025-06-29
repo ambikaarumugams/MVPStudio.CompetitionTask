@@ -12,6 +12,5 @@
         public const string ErrorMessageForSessionExpiredToUpdate = "There is an error when updating education";
         public const string ErrorMessageForSessionExpiredToDelete = "There is an error when removing the Education entry";
     }
-
 }
 

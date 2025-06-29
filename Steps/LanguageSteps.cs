@@ -46,7 +46,7 @@ namespace qa_dotnet_cucumber.Steps
             _scenarioContext.Set(actualAddLanguages, "ActualAddLanguages");   //Store it in scenarioContext for assertion 
             _scenarioContext.Set(expectedAddLanguages, "ExpectedAddLanguages");  //Store it in scenarioContext for assertion
             _scenarioContext.Set(expectedAddLanguages, "LanguagesToCleanup");    //Store the languages that I've added to retrieve it in hooks to clean up the stored data
-          //_scenarioContext.Set(languageTable, "ExpectedTable");   // To set values in scenario context as a table for assertion
+                                                                                 //_scenarioContext.Set(languageTable, "ExpectedTable");   // To set values in scenario context as a table for assertion
         }
 
         [When("I should see the languages and verify it has been added successfully")]   //Success message validation
@@ -176,7 +176,7 @@ namespace qa_dotnet_cucumber.Steps
             _languagePage.AddNewLanguageAndLevel(language, level);
             var successMessage = _languagePage.GetSuccessMessageForAddNewLanguage(language);
             Console.WriteLine(successMessage);
-            _scenarioContext.Set(new List<string>{language},"ActualMessage");     //I'm storing this to clean up in different step
+            _scenarioContext.Set(new List<string> { language }, "ActualMessage");     //I'm storing this to clean up in different step
         }
 
         [When("when I update the language and language level:")]       //Update the existing language and select different language level
@@ -201,9 +201,9 @@ namespace qa_dotnet_cucumber.Steps
         {
             var actualList = _scenarioContext.Get<List<string>>("ActualSameLanguageAndDifferentLevelForUpdate");
             var expectedList = _scenarioContext.Get<List<string>>("ExpectedSameLanguageAndDifferentLevelForUpdate");
-            var actualMessage = actualList.FirstOrDefault();  
+            var actualMessage = actualList.FirstOrDefault();
             var expectedMessage = expectedList.FirstOrDefault();
-            Assert.That(actualMessage,Does.Contain(expectedMessage), $"Expected Message '{expectedMessage}' hasn't updated, but got '{actualMessage}'");
+            Assert.That(actualMessage, Does.Contain(expectedMessage), $"Expected Message '{expectedMessage}' hasn't updated, but got '{actualMessage}'");
         }
 
         [When("I try to add a language {string} with level {string}")]     //Add invalid languages like random strings, numbers, special characters and empty space
@@ -225,7 +225,7 @@ namespace qa_dotnet_cucumber.Steps
         public void WhenIAddALanguageWithCharactersAndLevel(int length, string level)
         {
             var longLanguageName = new string('a', length);    //Passing the length to create a string
-            _languagePage.AddNewLanguageAndLevel(longLanguageName,level);
+            _languagePage.AddNewLanguageAndLevel(longLanguageName, level);
             var successMessage = _languagePage.GetSuccessMessageForAddNewLanguage(longLanguageName);
             _scenarioContext.Set(successMessage, "ActualLanguages");
             _scenarioContext.Set(new List<string> { longLanguageName }, "LanguagesToCleanup");  //Clean up
@@ -235,9 +235,9 @@ namespace qa_dotnet_cucumber.Steps
         public void ThenIShouldSeeTheErrorMessage(string expected)
         {
             var actualLanguages = _scenarioContext.Get<string>("ActualLanguages");
-           
-                Assert.That(actualLanguages.Contains(expected), Is.True,
-                    $"Expected message contains '{expected}', but got '{actualLanguages}'");
+
+            Assert.That(actualLanguages.Contains(expected), Is.True,
+                $"Expected message contains '{expected}', but got '{actualLanguages}'");
         }
 
         [When("I click Add New button, enter the language {string} and it's level {string}")]    //To cancel the add language and level
@@ -257,7 +257,7 @@ namespace qa_dotnet_cucumber.Steps
         public void WhenIAddLanguageAndItsLevel(string language, string level)
         {
             _languagePage.AddNewLanguageAndLevel(language, level);
-            _scenarioContext.Set(new List<string>{language},"LanguagesToCleanup");   //Clean up
+            _scenarioContext.Set(new List<string> { language }, "LanguagesToCleanup");   //Clean up
         }
 
         [When("I click edit icon of {string} and Update level to {string} and level to {string}")]    //To cancel the update
@@ -283,7 +283,7 @@ namespace qa_dotnet_cucumber.Steps
         {
             Assert.That(_languagePage.IsCancelButtonNotDisplayed(), Is.True, $"Cancel button is Displayed!");
         }
-        
+
         [When("I want to add language as {string} and level as {string} when the session is expired")]  //Try to add a language when the session is expired
         public void WhenIWantToAddLanguageAsAndLevelAsWhenTheSessionIsExpired(string languageToAdd, string levelToAdd)
         {
@@ -346,8 +346,8 @@ namespace qa_dotnet_cucumber.Steps
             _languagePage.LeaveTheLanguageAndLevelEmptyWithCombinationsForUpdate(existingLanguage, languageToUpdate, levelToUpdate);
             var actualMessage = _languagePage.GetErrorMessage();
             _languagePage.ClickCancelUpdate();
-            _scenarioContext.Set(actualMessage,"ActualMessage");
-            _scenarioContext.Set(new List<string> {existingLanguage},"LanguagesToCleanup");     //To clean up existing language
+            _scenarioContext.Set(actualMessage, "ActualMessage");
+            _scenarioContext.Set(new List<string> { existingLanguage }, "LanguagesToCleanup");     //To clean up existing language
         }
 
         [Then("I should see the {string}")]     //Validation for expected error message
@@ -435,7 +435,7 @@ namespace qa_dotnet_cucumber.Steps
         {
             var cleanUp = _scenarioContext.Get<List<string>>("ActualMessage");   //I retrieve the language to be cleaned up from the previous step (step 1)
             var sameLanguageSameLevel = sameLanguageSameLevelForUpdateTable.CreateInstance<UpdateLanguage>();
-            _languagePage.UpdateLanguageAndLevel(sameLanguageSameLevel.ExistingLanguage,sameLanguageSameLevel.LanguageToUpdate,sameLanguageSameLevel.LanguageLevelToUpdate);
+            _languagePage.UpdateLanguageAndLevel(sameLanguageSameLevel.ExistingLanguage, sameLanguageSameLevel.LanguageToUpdate, sameLanguageSameLevel.LanguageLevelToUpdate);
             var message = _languagePage.GetErrorMessage();  //When I add the same language second time it will show error message
             Console.WriteLine(message);
             _languagePage.ClickCancelUpdate();  //I got no such element exception for clean up. When I click the cancel update button, I could see the added language list.
@@ -451,7 +451,7 @@ namespace qa_dotnet_cucumber.Steps
             Assert.That(actual, Is.EqualTo(expectedMessage), $"Expected message {expectedMessage} isn't found");
         }
 
-       [When("I update existing language {string} with  huge language name of length {int} and language level as {string}")]  //To update huge language name
+        [When("I update existing language {string} with  huge language name of length {int} and language level as {string}")]  //To update huge language name
         public void WhenIUpdateExistingLanguageWithHugeLanguageNameOfLengthAndLanguageLevelAs(string existingLanguage, int length, string level)
         {
             var longLanguageName = new string('f', length);
